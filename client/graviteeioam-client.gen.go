@@ -17,6 +17,7 @@ import (
 )
 
 const (
+	Basic_authScopes    = "basic_auth.Scopes"
 	Gravitee_authScopes = "gravitee_auth.Scopes"
 )
 
@@ -1211,6 +1212,13 @@ type AuditEntityReferenceType string
 type AuditOutcome struct {
 	Message *string `json:"message,omitempty"`
 	Status  *string `json:"status,omitempty"`
+}
+
+// AuthToken defines model for AuthToken.
+type AuthToken struct {
+	AccessToken *string `json:"access_token,omitempty"`
+	ExpiresAt   *string `json:"expires_at,omitempty"`
+	TokenType   *string `json:"token_type,omitempty"`
 }
 
 // AuthenticationDeviceNotifier defines model for AuthenticationDeviceNotifier.
@@ -3498,6 +3506,9 @@ func WithRequestEditorFn(fn RequestEditorFn) ClientOption {
 
 // The interface specification for the client above.
 type ClientInterface interface {
+	// Post request
+	Post(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// List request
 	List(ctx context.Context, organizationId string, params *ListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -4447,6 +4458,18 @@ type ClientInterface interface {
 
 	// MarkAsRead request
 	MarkAsRead(ctx context.Context, notificationId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+}
+
+func (c *Client) Post(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPostRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
 }
 
 func (c *Client) List(ctx context.Context, organizationId string, params *ListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -8551,6 +8574,33 @@ func (c *Client) MarkAsRead(ctx context.Context, notificationId string, reqEdito
 		return nil, err
 	}
 	return c.Client.Do(req)
+}
+
+// NewPostRequest generates requests for Post
+func NewPostRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/auth/token")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
 }
 
 // NewListRequest generates requests for List
@@ -23542,6 +23592,9 @@ func WithBaseURL(baseURL string) ClientOption {
 
 // ClientWithResponsesInterface is the interface specification for the client with responses above.
 type ClientWithResponsesInterface interface {
+	// PostWithResponse request
+	PostWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*PostResponse, error)
+
 	// ListWithResponse request
 	ListWithResponse(ctx context.Context, organizationId string, params *ListParams, reqEditors ...RequestEditorFn) (*ListResponse, error)
 
@@ -24491,6 +24544,28 @@ type ClientWithResponsesInterface interface {
 
 	// MarkAsReadWithResponse request
 	MarkAsReadWithResponse(ctx context.Context, notificationId string, reqEditors ...RequestEditorFn) (*MarkAsReadResponse, error)
+}
+
+type PostResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]AuthToken
+}
+
+// Status returns HTTPResponse.Status
+func (r PostResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PostResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
 }
 
 type ListResponse struct {
@@ -30242,6 +30317,15 @@ func (r MarkAsReadResponse) StatusCode() int {
 	return 0
 }
 
+// PostWithResponse request returning *PostResponse
+func (c *ClientWithResponses) PostWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*PostResponse, error) {
+	rsp, err := c.Post(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePostResponse(rsp)
+}
+
 // ListWithResponse request returning *ListResponse
 func (c *ClientWithResponses) ListWithResponse(ctx context.Context, organizationId string, params *ListParams, reqEditors ...RequestEditorFn) (*ListResponse, error) {
 	rsp, err := c.List(ctx, organizationId, params, reqEditors...)
@@ -33242,6 +33326,32 @@ func (c *ClientWithResponses) MarkAsReadWithResponse(ctx context.Context, notifi
 		return nil, err
 	}
 	return ParseMarkAsReadResponse(rsp)
+}
+
+// ParsePostResponse parses an HTTP response from a PostWithResponse call
+func ParsePostResponse(rsp *http.Response) (*PostResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PostResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []AuthToken
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
 }
 
 // ParseListResponse parses an HTTP response from a ListWithResponse call

@@ -46,6 +46,29 @@ tags:
   - name: Bot Detection
   - name: Device Identifier
 paths:
+  /auth/token:
+    post:
+      tags:
+        - auth
+      summary: Exchange auth token
+      operationId: post
+      responses:
+        "200":
+          description: Auth token exchanged
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AuthToken"
+        "401":
+          description: Unauthorised
+          content: {}
+        "500":
+          description: Internal server error
+          content: {}
+      security:
+        - basic-auth: []
   /user:
     get:
       tags:
@@ -10863,6 +10886,15 @@ paths:
         - gravitee-auth: []
 components:
   schemas:
+    AuthToken:
+      type: object
+      properties:
+        access_token:
+          type: string
+        expires_at:
+          type: string
+        token_type:
+          type: string
     User:
       type: object
       properties:
@@ -15421,4 +15453,7 @@ components:
       type: apiKey
       name: Authorization
       in: header
+    basic-auth:
+      type: http
+      scheme: basic
 x-original-swagger-version: "2.0"
