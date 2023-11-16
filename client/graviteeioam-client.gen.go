@@ -3506,8 +3506,8 @@ func WithRequestEditorFn(fn RequestEditorFn) ClientOption {
 
 // The interface specification for the client above.
 type ClientInterface interface {
-	// Post request
-	Post(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// AuthToken request
+	AuthToken(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// List request
 	List(ctx context.Context, organizationId string, params *ListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -4460,8 +4460,8 @@ type ClientInterface interface {
 	MarkAsRead(ctx context.Context, notificationId string, reqEditors ...RequestEditorFn) (*http.Response, error)
 }
 
-func (c *Client) Post(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPostRequest(c.Server)
+func (c *Client) AuthToken(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAuthTokenRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -8576,8 +8576,8 @@ func (c *Client) MarkAsRead(ctx context.Context, notificationId string, reqEdito
 	return c.Client.Do(req)
 }
 
-// NewPostRequest generates requests for Post
-func NewPostRequest(server string) (*http.Request, error) {
+// NewAuthTokenRequest generates requests for AuthToken
+func NewAuthTokenRequest(server string) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -23592,8 +23592,8 @@ func WithBaseURL(baseURL string) ClientOption {
 
 // ClientWithResponsesInterface is the interface specification for the client with responses above.
 type ClientWithResponsesInterface interface {
-	// PostWithResponse request
-	PostWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*PostResponse, error)
+	// AuthTokenWithResponse request
+	AuthTokenWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*AuthTokenResponse, error)
 
 	// ListWithResponse request
 	ListWithResponse(ctx context.Context, organizationId string, params *ListParams, reqEditors ...RequestEditorFn) (*ListResponse, error)
@@ -24546,14 +24546,14 @@ type ClientWithResponsesInterface interface {
 	MarkAsReadWithResponse(ctx context.Context, notificationId string, reqEditors ...RequestEditorFn) (*MarkAsReadResponse, error)
 }
 
-type PostResponse struct {
+type AuthTokenResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *[]AuthToken
 }
 
 // Status returns HTTPResponse.Status
-func (r PostResponse) Status() string {
+func (r AuthTokenResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -24561,7 +24561,7 @@ func (r PostResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r PostResponse) StatusCode() int {
+func (r AuthTokenResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -30317,13 +30317,13 @@ func (r MarkAsReadResponse) StatusCode() int {
 	return 0
 }
 
-// PostWithResponse request returning *PostResponse
-func (c *ClientWithResponses) PostWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*PostResponse, error) {
-	rsp, err := c.Post(ctx, reqEditors...)
+// AuthTokenWithResponse request returning *AuthTokenResponse
+func (c *ClientWithResponses) AuthTokenWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*AuthTokenResponse, error) {
+	rsp, err := c.AuthToken(ctx, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParsePostResponse(rsp)
+	return ParseAuthTokenResponse(rsp)
 }
 
 // ListWithResponse request returning *ListResponse
@@ -33328,15 +33328,15 @@ func (c *ClientWithResponses) MarkAsReadWithResponse(ctx context.Context, notifi
 	return ParseMarkAsReadResponse(rsp)
 }
 
-// ParsePostResponse parses an HTTP response from a PostWithResponse call
-func ParsePostResponse(rsp *http.Response) (*PostResponse, error) {
+// ParseAuthTokenResponse parses an HTTP response from a AuthTokenWithResponse call
+func ParseAuthTokenResponse(rsp *http.Response) (*AuthTokenResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &PostResponse{
+	response := &AuthTokenResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}

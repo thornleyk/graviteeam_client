@@ -51,7 +51,7 @@ paths:
       tags:
         - auth
       summary: Exchange auth token
-      operationId: post
+      operationId: authToken
       responses:
         "200":
           description: Auth token exchanged
