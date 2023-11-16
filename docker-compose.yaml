@@ -1,0 +1,19 @@
+services:
+  inventory:
+    container_name: graviteeioam-service
+    build:
+      context: .
+    image: thornleyk/graviteeioam-service
+    restart: unless-stopped
+    networks:
+      - my-net
+    ports:
+      - "8080:8080"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://127.0.0.1:8080"]
+      interval: 15s
+      timeout: 3s
+      retries: 3
+networks:
+  my-net:
+    driver: bridge
