@@ -74,7 +74,7 @@ paths:
       tags:
         - user
       summary: Get the current user
-      operationId: get
+      operationId: getCurrentUser
       responses:
         "200":
           description: Current user successfully fetched
@@ -96,7 +96,7 @@ paths:
         - Newsletter
         - user
       summary: Get taglines to display in the newsletter
-      operationId: getTaglines
+      operationId: getNewsletterTaglines
       responses:
         "200":
           description: Retrieved taglines
@@ -150,7 +150,7 @@ paths:
         - user notifications
         - user
       summary: Mark User notification as read
-      operationId: markAsRead
+      operationId: markNotificationAsRead
       parameters:
         - name: notificationId
           in: path
@@ -197,7 +197,7 @@ paths:
         \ specified organization. Except if user has ORGANIZATION_AUDIT[READ] permission\
         \ on the organization, each returned audit is filtered and contains only basic\
         \ information such as id, date, event, actor, target and status."
-      operationId: list
+      operationId: listOrganizationAudits
       parameters:
         - name: organizationId
           in: path
@@ -260,7 +260,7 @@ paths:
       description:
         "User must have the ORGANIZATION_AUDIT[READ] permission on the\
         \ specified organization"
-      operationId: get_1
+      operationId: listOrganizationAudit
       parameters:
         - name: organizationId
           in: path
@@ -290,7 +290,7 @@ paths:
       description:
         "User must have ORGANIZATION_MEMBER[LIST] permission on the specified\
         \ organization"
-      operationId: getMembers
+      operationId: getOrganizationMembers
       parameters:
         - name: organizationId
           in: path
@@ -346,7 +346,7 @@ paths:
       description:
         "User must have ORGANIZATION_MEMBER[DELETE] permission on the specified\
         \ organization"
-      operationId: removeMember
+      operationId: removeOrganizationMember
       parameters:
         - name: organizationId
           in: path
@@ -376,7 +376,7 @@ paths:
         "User must have the ORGANIZATION[LIST] permission on the specified\
         \ organization. Each returned tag is filtered and contains only basic information\
         \ such as id and name."
-      operationId: list_1
+      operationId: listOrganizationTags
       parameters:
         - name: organizationId
           in: path
@@ -404,7 +404,7 @@ paths:
       description:
         "User must have the ORGANIZATION_TAG[CREATE] permission on the\
         \ specified organization"
-      operationId: create
+      operationId: createOrganizationShardingTag
       parameters:
         - name: organizationId
           in: path
@@ -435,7 +435,7 @@ paths:
       description:
         "User must have the ORGANIZATION_TAG[READ] permission on the specified\
         \ organization"
-      operationId: get_2
+      operationId: getOrganizationShardingTag
       parameters:
         - name: organizationId
           in: path
@@ -466,7 +466,7 @@ paths:
       description:
         "User must have the ORGANIZATION_TAG[UPDATE] permission on the\
         \ specified organization"
-      operationId: update
+      operationId: updateOrganizationShardingTag
       parameters:
         - name: organizationId
           in: path
@@ -504,7 +504,7 @@ paths:
       description:
         "User must have the ORGANIZATION_TAG[DELETE] permission on the\
         \ specified organization"
-      operationId: delete
+      operationId: deleteOrganizationShardingTag
       parameters:
         - name: organizationId
           in: path
@@ -534,7 +534,7 @@ paths:
         "User must have the ORGANIZATION_ROLE[LIST] permission on the specified\
         \ organization. Each returned role is filtered and contains only basic information\
         \ such as id, name, isSystem and assignableType."
-      operationId: list_2
+      operationId: listOrganizationRoles
       parameters:
         - name: organizationId
           in: path
@@ -573,7 +573,7 @@ paths:
       description:
         "User must have the ORGANIZATION_ROLE[CREATE] permission on the\
         \ specified organization"
-      operationId: create_1
+      operationId: createOrganizationRole
       parameters:
         - name: organizationId
           in: path
@@ -604,7 +604,7 @@ paths:
       description:
         "User must have the ORGANIZATION_ROLE[READ] permission on the specified\
         \ organization"
-      operationId: get_3
+      operationId: getOrganizationRole
       parameters:
         - name: organizationId
           in: path
@@ -635,7 +635,7 @@ paths:
       description:
         "User must have the ORGANIZATION_ROLE[UPDATE] permission on the\
         \ specified organization"
-      operationId: update_1
+      operationId: updateOrganizationRole
       parameters:
         - name: organizationId
           in: path
@@ -673,7 +673,7 @@ paths:
       description:
         "User must have the ORGANIZATION_ROLE[DELETE] permission on the\
         \ specified organization"
-      operationId: delete_1
+      operationId: deleteOrganizationRole
       parameters:
         - name: organizationId
           in: path
@@ -706,7 +706,7 @@ paths:
         "User must have the ORGANIZATION[LIST] permission on the specified\
         \ organization. Each returned group is filtered and contains only basic information\
         \ such as id and name."
-      operationId: list_3
+      operationId: listOrganizationGroups
       parameters:
         - name: organizationId
           in: path
@@ -746,7 +746,7 @@ paths:
       description:
         "User must have the ORGANIZATION_GROUP[CREATE] permission on the\
         \ specified organization"
-      operationId: create_2
+      operationId: createOrganizationGroup
       parameters:
         - name: organizationId
           in: path
@@ -875,7 +875,7 @@ paths:
       description:
         "User must have the ORGANIZATION_GROUP[READ] permission on the\
         \ specified organization"
-      operationId: list_4
+      operationId: listOrganizationGroupMembers
       parameters:
         - name: organizationId
           in: path
@@ -919,7 +919,7 @@ paths:
       description:
         "User must have the ORGANIZATION_GROUP[UPDATE] permission on the\
         \ specified organization"
-      operationId: addMember
+      operationId: addOrganizationGroupMember
       parameters:
         - name: organizationId
           in: path
@@ -955,7 +955,7 @@ paths:
       description:
         "User must have the ORGANIZATION_GROUP[UPDATE] permission on the\
         \ specified organization"
-      operationId: removeMember_1
+      operationId: deleteOrganizationGroupMember
       parameters:
         - name: organizationId
           in: path
@@ -993,7 +993,7 @@ paths:
         "User must have the ORGANIZATION_IDENTITY_PROVIDER[LIST] permission\
         \ on the specified organization. Each returned identity provider is filtered\
         \ and contains only basic information such as id, name, type and isExternal."
-      operationId: list_5
+      operationId: listOrganizationIdentities
       parameters:
         - name: organizationId
           in: path
@@ -1451,7 +1451,7 @@ paths:
       description:
         "User must have the ORGANIZATION_SETTINGS[READ] permission on the\
         \ specified organization"
-      operationId: get_6
+      operationId: getOrganizationSettings
       parameters:
         - name: organizationId
           in: path

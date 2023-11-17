@@ -889,13 +889,13 @@ const (
 	WEBAUTHNREGISTER         Get7ParamsTemplate = "WEBAUTHN_REGISTER"
 )
 
-// Defines values for List2ParamsType.
+// Defines values for ListOrganizationRolesParamsType.
 const (
-	List2ParamsTypeAPPLICATION  List2ParamsType = "APPLICATION"
-	List2ParamsTypeDOMAIN       List2ParamsType = "DOMAIN"
-	List2ParamsTypeENVIRONMENT  List2ParamsType = "ENVIRONMENT"
-	List2ParamsTypeORGANIZATION List2ParamsType = "ORGANIZATION"
-	List2ParamsTypePLATFORM     List2ParamsType = "PLATFORM"
+	ListOrganizationRolesParamsTypeAPPLICATION  ListOrganizationRolesParamsType = "APPLICATION"
+	ListOrganizationRolesParamsTypeDOMAIN       ListOrganizationRolesParamsType = "DOMAIN"
+	ListOrganizationRolesParamsTypeENVIRONMENT  ListOrganizationRolesParamsType = "ENVIRONMENT"
+	ListOrganizationRolesParamsTypeORGANIZATION ListOrganizationRolesParamsType = "ORGANIZATION"
+	ListOrganizationRolesParamsTypePLATFORM     ListOrganizationRolesParamsType = "PLATFORM"
 )
 
 // AccessPolicy defines model for AccessPolicy.
@@ -2931,8 +2931,8 @@ type WebAuthnSettingsAuthenticatorAttachment string
 // WebAuthnSettingsUserVerification defines model for WebAuthnSettings.UserVerification.
 type WebAuthnSettingsUserVerification string
 
-// ListParams defines parameters for List.
-type ListParams struct {
+// ListOrganizationAuditsParams defines parameters for ListOrganizationAudits.
+type ListOrganizationAuditsParams struct {
 	Type   *string `form:"type,omitempty" json:"type,omitempty"`
 	Status *string `form:"status,omitempty" json:"status,omitempty"`
 	User   *string `form:"user,omitempty" json:"user,omitempty"`
@@ -3146,30 +3146,30 @@ type Get7Params struct {
 // Get7ParamsTemplate defines parameters for Get7.
 type Get7ParamsTemplate string
 
-// List3Params defines parameters for List3.
-type List3Params struct {
+// ListOrganizationGroupsParams defines parameters for ListOrganizationGroups.
+type ListOrganizationGroupsParams struct {
 	Page *int32 `form:"page,omitempty" json:"page,omitempty"`
 	Size *int32 `form:"size,omitempty" json:"size,omitempty"`
 }
 
-// List4Params defines parameters for List4.
-type List4Params struct {
+// ListOrganizationGroupMembersParams defines parameters for ListOrganizationGroupMembers.
+type ListOrganizationGroupMembersParams struct {
 	Page *int32 `form:"page,omitempty" json:"page,omitempty"`
 	Size *int32 `form:"size,omitempty" json:"size,omitempty"`
 }
 
-// List5Params defines parameters for List5.
-type List5Params struct {
+// ListOrganizationIdentitiesParams defines parameters for ListOrganizationIdentities.
+type ListOrganizationIdentitiesParams struct {
 	UserProvider *bool `form:"userProvider,omitempty" json:"userProvider,omitempty"`
 }
 
-// List2Params defines parameters for List2.
-type List2Params struct {
-	Type *List2ParamsType `form:"type,omitempty" json:"type,omitempty"`
+// ListOrganizationRolesParams defines parameters for ListOrganizationRoles.
+type ListOrganizationRolesParams struct {
+	Type *ListOrganizationRolesParamsType `form:"type,omitempty" json:"type,omitempty"`
 }
 
-// List2ParamsType defines parameters for List2.
-type List2ParamsType string
+// ListOrganizationRolesParamsType defines parameters for ListOrganizationRoles.
+type ListOrganizationRolesParamsType string
 
 // ListOrganisationUsersParams defines parameters for ListOrganisationUsers.
 type ListOrganisationUsersParams struct {
@@ -3391,8 +3391,8 @@ type Create4JSONRequestBody = NewForm
 // Update3JSONRequestBody defines body for Update3 for application/json ContentType.
 type Update3JSONRequestBody = UpdateForm
 
-// Create2JSONRequestBody defines body for Create2 for application/json ContentType.
-type Create2JSONRequestBody = NewGroup
+// CreateOrganizationGroupJSONRequestBody defines body for CreateOrganizationGroup for application/json ContentType.
+type CreateOrganizationGroupJSONRequestBody = NewGroup
 
 // UpdateOrganizationGroupJSONRequestBody defines body for UpdateOrganizationGroup for application/json ContentType.
 type UpdateOrganizationGroupJSONRequestBody = UpdateGroup
@@ -3406,20 +3406,20 @@ type Update2JSONRequestBody = UpdateIdentityProvider
 // AddOrUpdateMemberJSONRequestBody defines body for AddOrUpdateMember for application/json ContentType.
 type AddOrUpdateMemberJSONRequestBody = NewMembership
 
-// Create1JSONRequestBody defines body for Create1 for application/json ContentType.
-type Create1JSONRequestBody = NewRole
+// CreateOrganizationRoleJSONRequestBody defines body for CreateOrganizationRole for application/json ContentType.
+type CreateOrganizationRoleJSONRequestBody = NewRole
 
-// Update1JSONRequestBody defines body for Update1 for application/json ContentType.
-type Update1JSONRequestBody = UpdateRole
+// UpdateOrganizationRoleJSONRequestBody defines body for UpdateOrganizationRole for application/json ContentType.
+type UpdateOrganizationRoleJSONRequestBody = UpdateRole
 
 // PatchJSONRequestBody defines body for Patch for application/json ContentType.
 type PatchJSONRequestBody = PatchOrganization
 
-// CreateJSONRequestBody defines body for Create for application/json ContentType.
-type CreateJSONRequestBody = NewTag
+// CreateOrganizationShardingTagJSONRequestBody defines body for CreateOrganizationShardingTag for application/json ContentType.
+type CreateOrganizationShardingTagJSONRequestBody = NewTag
 
-// UpdateJSONRequestBody defines body for Update for application/json ContentType.
-type UpdateJSONRequestBody = UpdateTag
+// UpdateOrganizationShardingTagJSONRequestBody defines body for UpdateOrganizationShardingTag for application/json ContentType.
+type UpdateOrganizationShardingTagJSONRequestBody = UpdateTag
 
 // CreateOrganisationUserJSONRequestBody defines body for CreateOrganisationUser for application/json ContentType.
 type CreateOrganisationUserJSONRequestBody = NewUser
@@ -3509,11 +3509,11 @@ type ClientInterface interface {
 	// AuthToken request
 	AuthToken(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// List request
-	List(ctx context.Context, organizationId string, params *ListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// ListOrganizationAudits request
+	ListOrganizationAudits(ctx context.Context, organizationId string, params *ListOrganizationAuditsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// Get1 request
-	Get1(ctx context.Context, organizationId string, audit string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// ListOrganizationAudit request
+	ListOrganizationAudit(ctx context.Context, organizationId string, audit string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// List24 request
 	List24(ctx context.Context, organizationId string, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -4188,13 +4188,13 @@ type ClientInterface interface {
 
 	Update3(ctx context.Context, organizationId string, form string, body Update3JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// List3 request
-	List3(ctx context.Context, organizationId string, params *List3Params, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// ListOrganizationGroups request
+	ListOrganizationGroups(ctx context.Context, organizationId string, params *ListOrganizationGroupsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// Create2WithBody request with any body
-	Create2WithBody(ctx context.Context, organizationId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// CreateOrganizationGroupWithBody request with any body
+	CreateOrganizationGroupWithBody(ctx context.Context, organizationId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	Create2(ctx context.Context, organizationId string, body Create2JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateOrganizationGroup(ctx context.Context, organizationId string, body CreateOrganizationGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// DeleteOrganizationGroup request
 	DeleteOrganizationGroup(ctx context.Context, organizationId string, group string, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -4207,17 +4207,17 @@ type ClientInterface interface {
 
 	UpdateOrganizationGroup(ctx context.Context, organizationId string, group string, body UpdateOrganizationGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// List4 request
-	List4(ctx context.Context, organizationId string, group string, params *List4Params, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// ListOrganizationGroupMembers request
+	ListOrganizationGroupMembers(ctx context.Context, organizationId string, group string, params *ListOrganizationGroupMembersParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// RemoveMember1 request
-	RemoveMember1(ctx context.Context, organizationId string, group string, member string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// DeleteOrganizationGroupMember request
+	DeleteOrganizationGroupMember(ctx context.Context, organizationId string, group string, member string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// AddMember request
-	AddMember(ctx context.Context, organizationId string, group string, member string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// AddOrganizationGroupMember request
+	AddOrganizationGroupMember(ctx context.Context, organizationId string, group string, member string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// List5 request
-	List5(ctx context.Context, organizationId string, params *List5Params, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// ListOrganizationIdentities request
+	ListOrganizationIdentities(ctx context.Context, organizationId string, params *ListOrganizationIdentitiesParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// Create3WithBody request with any body
 	Create3WithBody(ctx context.Context, organizationId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -4235,62 +4235,62 @@ type ClientInterface interface {
 
 	Update2(ctx context.Context, organizationId string, identity string, body Update2JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// GetMembers request
-	GetMembers(ctx context.Context, organizationId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// GetOrganizationMembers request
+	GetOrganizationMembers(ctx context.Context, organizationId string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// AddOrUpdateMemberWithBody request with any body
 	AddOrUpdateMemberWithBody(ctx context.Context, organizationId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	AddOrUpdateMember(ctx context.Context, organizationId string, body AddOrUpdateMemberJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// RemoveMember request
-	RemoveMember(ctx context.Context, organizationId string, member string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// RemoveOrganizationMember request
+	RemoveOrganizationMember(ctx context.Context, organizationId string, member string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// List2 request
-	List2(ctx context.Context, organizationId string, params *List2Params, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// ListOrganizationRoles request
+	ListOrganizationRoles(ctx context.Context, organizationId string, params *ListOrganizationRolesParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// Create1WithBody request with any body
-	Create1WithBody(ctx context.Context, organizationId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// CreateOrganizationRoleWithBody request with any body
+	CreateOrganizationRoleWithBody(ctx context.Context, organizationId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	Create1(ctx context.Context, organizationId string, body Create1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateOrganizationRole(ctx context.Context, organizationId string, body CreateOrganizationRoleJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// Delete1 request
-	Delete1(ctx context.Context, organizationId string, role string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// DeleteOrganizationRole request
+	DeleteOrganizationRole(ctx context.Context, organizationId string, role string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// Get3 request
-	Get3(ctx context.Context, organizationId string, role string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// GetOrganizationRole request
+	GetOrganizationRole(ctx context.Context, organizationId string, role string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// Update1WithBody request with any body
-	Update1WithBody(ctx context.Context, organizationId string, role string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// UpdateOrganizationRoleWithBody request with any body
+	UpdateOrganizationRoleWithBody(ctx context.Context, organizationId string, role string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	Update1(ctx context.Context, organizationId string, role string, body Update1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdateOrganizationRole(ctx context.Context, organizationId string, role string, body UpdateOrganizationRoleJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// Get6 request
-	Get6(ctx context.Context, organizationId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// GetOrganizationSettings request
+	GetOrganizationSettings(ctx context.Context, organizationId string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// PatchWithBody request with any body
 	PatchWithBody(ctx context.Context, organizationId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	Patch(ctx context.Context, organizationId string, body PatchJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// List1 request
-	List1(ctx context.Context, organizationId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// ListOrganizationTags request
+	ListOrganizationTags(ctx context.Context, organizationId string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// CreateWithBody request with any body
-	CreateWithBody(ctx context.Context, organizationId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// CreateOrganizationShardingTagWithBody request with any body
+	CreateOrganizationShardingTagWithBody(ctx context.Context, organizationId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	Create(ctx context.Context, organizationId string, body CreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateOrganizationShardingTag(ctx context.Context, organizationId string, body CreateOrganizationShardingTagJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// Delete request
-	Delete(ctx context.Context, organizationId string, tag string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// DeleteOrganizationShardingTag request
+	DeleteOrganizationShardingTag(ctx context.Context, organizationId string, tag string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// Get2 request
-	Get2(ctx context.Context, organizationId string, tag string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// GetOrganizationShardingTag request
+	GetOrganizationShardingTag(ctx context.Context, organizationId string, tag string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// UpdateWithBody request with any body
-	UpdateWithBody(ctx context.Context, organizationId string, tag string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// UpdateOrganizationShardingTagWithBody request with any body
+	UpdateOrganizationShardingTagWithBody(ctx context.Context, organizationId string, tag string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	Update(ctx context.Context, organizationId string, tag string, body UpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdateOrganizationShardingTag(ctx context.Context, organizationId string, tag string, body UpdateOrganizationShardingTagJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ListOrganisationUsers request
 	ListOrganisationUsers(ctx context.Context, organizationId string, params *ListOrganisationUsersParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -4444,20 +4444,20 @@ type ClientInterface interface {
 	// Get37 request
 	Get37(ctx context.Context, role string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// Get request
-	Get(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// GetCurrentUser request
+	GetCurrentUser(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// SubscribeNewsletterWithBody request with any body
 	SubscribeNewsletterWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// GetTaglines request
-	GetTaglines(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// GetNewsletterTaglines request
+	GetNewsletterTaglines(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ListNotifications request
 	ListNotifications(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// MarkAsRead request
-	MarkAsRead(ctx context.Context, notificationId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// MarkNotificationAsRead request
+	MarkNotificationAsRead(ctx context.Context, notificationId string, reqEditors ...RequestEditorFn) (*http.Response, error)
 }
 
 func (c *Client) AuthToken(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -4472,8 +4472,8 @@ func (c *Client) AuthToken(ctx context.Context, reqEditors ...RequestEditorFn) (
 	return c.Client.Do(req)
 }
 
-func (c *Client) List(ctx context.Context, organizationId string, params *ListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewListRequest(c.Server, organizationId, params)
+func (c *Client) ListOrganizationAudits(ctx context.Context, organizationId string, params *ListOrganizationAuditsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewListOrganizationAuditsRequest(c.Server, organizationId, params)
 	if err != nil {
 		return nil, err
 	}
@@ -4484,8 +4484,8 @@ func (c *Client) List(ctx context.Context, organizationId string, params *ListPa
 	return c.Client.Do(req)
 }
 
-func (c *Client) Get1(ctx context.Context, organizationId string, audit string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGet1Request(c.Server, organizationId, audit)
+func (c *Client) ListOrganizationAudit(ctx context.Context, organizationId string, audit string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewListOrganizationAuditRequest(c.Server, organizationId, audit)
 	if err != nil {
 		return nil, err
 	}
@@ -7436,8 +7436,8 @@ func (c *Client) Update3(ctx context.Context, organizationId string, form string
 	return c.Client.Do(req)
 }
 
-func (c *Client) List3(ctx context.Context, organizationId string, params *List3Params, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewList3Request(c.Server, organizationId, params)
+func (c *Client) ListOrganizationGroups(ctx context.Context, organizationId string, params *ListOrganizationGroupsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewListOrganizationGroupsRequest(c.Server, organizationId, params)
 	if err != nil {
 		return nil, err
 	}
@@ -7448,8 +7448,8 @@ func (c *Client) List3(ctx context.Context, organizationId string, params *List3
 	return c.Client.Do(req)
 }
 
-func (c *Client) Create2WithBody(ctx context.Context, organizationId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCreate2RequestWithBody(c.Server, organizationId, contentType, body)
+func (c *Client) CreateOrganizationGroupWithBody(ctx context.Context, organizationId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateOrganizationGroupRequestWithBody(c.Server, organizationId, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -7460,8 +7460,8 @@ func (c *Client) Create2WithBody(ctx context.Context, organizationId string, con
 	return c.Client.Do(req)
 }
 
-func (c *Client) Create2(ctx context.Context, organizationId string, body Create2JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCreate2Request(c.Server, organizationId, body)
+func (c *Client) CreateOrganizationGroup(ctx context.Context, organizationId string, body CreateOrganizationGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateOrganizationGroupRequest(c.Server, organizationId, body)
 	if err != nil {
 		return nil, err
 	}
@@ -7520,8 +7520,8 @@ func (c *Client) UpdateOrganizationGroup(ctx context.Context, organizationId str
 	return c.Client.Do(req)
 }
 
-func (c *Client) List4(ctx context.Context, organizationId string, group string, params *List4Params, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewList4Request(c.Server, organizationId, group, params)
+func (c *Client) ListOrganizationGroupMembers(ctx context.Context, organizationId string, group string, params *ListOrganizationGroupMembersParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewListOrganizationGroupMembersRequest(c.Server, organizationId, group, params)
 	if err != nil {
 		return nil, err
 	}
@@ -7532,8 +7532,8 @@ func (c *Client) List4(ctx context.Context, organizationId string, group string,
 	return c.Client.Do(req)
 }
 
-func (c *Client) RemoveMember1(ctx context.Context, organizationId string, group string, member string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewRemoveMember1Request(c.Server, organizationId, group, member)
+func (c *Client) DeleteOrganizationGroupMember(ctx context.Context, organizationId string, group string, member string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteOrganizationGroupMemberRequest(c.Server, organizationId, group, member)
 	if err != nil {
 		return nil, err
 	}
@@ -7544,8 +7544,8 @@ func (c *Client) RemoveMember1(ctx context.Context, organizationId string, group
 	return c.Client.Do(req)
 }
 
-func (c *Client) AddMember(ctx context.Context, organizationId string, group string, member string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewAddMemberRequest(c.Server, organizationId, group, member)
+func (c *Client) AddOrganizationGroupMember(ctx context.Context, organizationId string, group string, member string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAddOrganizationGroupMemberRequest(c.Server, organizationId, group, member)
 	if err != nil {
 		return nil, err
 	}
@@ -7556,8 +7556,8 @@ func (c *Client) AddMember(ctx context.Context, organizationId string, group str
 	return c.Client.Do(req)
 }
 
-func (c *Client) List5(ctx context.Context, organizationId string, params *List5Params, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewList5Request(c.Server, organizationId, params)
+func (c *Client) ListOrganizationIdentities(ctx context.Context, organizationId string, params *ListOrganizationIdentitiesParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewListOrganizationIdentitiesRequest(c.Server, organizationId, params)
 	if err != nil {
 		return nil, err
 	}
@@ -7640,8 +7640,8 @@ func (c *Client) Update2(ctx context.Context, organizationId string, identity st
 	return c.Client.Do(req)
 }
 
-func (c *Client) GetMembers(ctx context.Context, organizationId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetMembersRequest(c.Server, organizationId)
+func (c *Client) GetOrganizationMembers(ctx context.Context, organizationId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetOrganizationMembersRequest(c.Server, organizationId)
 	if err != nil {
 		return nil, err
 	}
@@ -7676,8 +7676,8 @@ func (c *Client) AddOrUpdateMember(ctx context.Context, organizationId string, b
 	return c.Client.Do(req)
 }
 
-func (c *Client) RemoveMember(ctx context.Context, organizationId string, member string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewRemoveMemberRequest(c.Server, organizationId, member)
+func (c *Client) RemoveOrganizationMember(ctx context.Context, organizationId string, member string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewRemoveOrganizationMemberRequest(c.Server, organizationId, member)
 	if err != nil {
 		return nil, err
 	}
@@ -7688,8 +7688,8 @@ func (c *Client) RemoveMember(ctx context.Context, organizationId string, member
 	return c.Client.Do(req)
 }
 
-func (c *Client) List2(ctx context.Context, organizationId string, params *List2Params, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewList2Request(c.Server, organizationId, params)
+func (c *Client) ListOrganizationRoles(ctx context.Context, organizationId string, params *ListOrganizationRolesParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewListOrganizationRolesRequest(c.Server, organizationId, params)
 	if err != nil {
 		return nil, err
 	}
@@ -7700,8 +7700,8 @@ func (c *Client) List2(ctx context.Context, organizationId string, params *List2
 	return c.Client.Do(req)
 }
 
-func (c *Client) Create1WithBody(ctx context.Context, organizationId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCreate1RequestWithBody(c.Server, organizationId, contentType, body)
+func (c *Client) CreateOrganizationRoleWithBody(ctx context.Context, organizationId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateOrganizationRoleRequestWithBody(c.Server, organizationId, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -7712,8 +7712,8 @@ func (c *Client) Create1WithBody(ctx context.Context, organizationId string, con
 	return c.Client.Do(req)
 }
 
-func (c *Client) Create1(ctx context.Context, organizationId string, body Create1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCreate1Request(c.Server, organizationId, body)
+func (c *Client) CreateOrganizationRole(ctx context.Context, organizationId string, body CreateOrganizationRoleJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateOrganizationRoleRequest(c.Server, organizationId, body)
 	if err != nil {
 		return nil, err
 	}
@@ -7724,8 +7724,8 @@ func (c *Client) Create1(ctx context.Context, organizationId string, body Create
 	return c.Client.Do(req)
 }
 
-func (c *Client) Delete1(ctx context.Context, organizationId string, role string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDelete1Request(c.Server, organizationId, role)
+func (c *Client) DeleteOrganizationRole(ctx context.Context, organizationId string, role string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteOrganizationRoleRequest(c.Server, organizationId, role)
 	if err != nil {
 		return nil, err
 	}
@@ -7736,8 +7736,8 @@ func (c *Client) Delete1(ctx context.Context, organizationId string, role string
 	return c.Client.Do(req)
 }
 
-func (c *Client) Get3(ctx context.Context, organizationId string, role string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGet3Request(c.Server, organizationId, role)
+func (c *Client) GetOrganizationRole(ctx context.Context, organizationId string, role string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetOrganizationRoleRequest(c.Server, organizationId, role)
 	if err != nil {
 		return nil, err
 	}
@@ -7748,8 +7748,8 @@ func (c *Client) Get3(ctx context.Context, organizationId string, role string, r
 	return c.Client.Do(req)
 }
 
-func (c *Client) Update1WithBody(ctx context.Context, organizationId string, role string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdate1RequestWithBody(c.Server, organizationId, role, contentType, body)
+func (c *Client) UpdateOrganizationRoleWithBody(ctx context.Context, organizationId string, role string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateOrganizationRoleRequestWithBody(c.Server, organizationId, role, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -7760,8 +7760,8 @@ func (c *Client) Update1WithBody(ctx context.Context, organizationId string, rol
 	return c.Client.Do(req)
 }
 
-func (c *Client) Update1(ctx context.Context, organizationId string, role string, body Update1JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdate1Request(c.Server, organizationId, role, body)
+func (c *Client) UpdateOrganizationRole(ctx context.Context, organizationId string, role string, body UpdateOrganizationRoleJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateOrganizationRoleRequest(c.Server, organizationId, role, body)
 	if err != nil {
 		return nil, err
 	}
@@ -7772,8 +7772,8 @@ func (c *Client) Update1(ctx context.Context, organizationId string, role string
 	return c.Client.Do(req)
 }
 
-func (c *Client) Get6(ctx context.Context, organizationId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGet6Request(c.Server, organizationId)
+func (c *Client) GetOrganizationSettings(ctx context.Context, organizationId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetOrganizationSettingsRequest(c.Server, organizationId)
 	if err != nil {
 		return nil, err
 	}
@@ -7808,8 +7808,8 @@ func (c *Client) Patch(ctx context.Context, organizationId string, body PatchJSO
 	return c.Client.Do(req)
 }
 
-func (c *Client) List1(ctx context.Context, organizationId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewList1Request(c.Server, organizationId)
+func (c *Client) ListOrganizationTags(ctx context.Context, organizationId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewListOrganizationTagsRequest(c.Server, organizationId)
 	if err != nil {
 		return nil, err
 	}
@@ -7820,8 +7820,8 @@ func (c *Client) List1(ctx context.Context, organizationId string, reqEditors ..
 	return c.Client.Do(req)
 }
 
-func (c *Client) CreateWithBody(ctx context.Context, organizationId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCreateRequestWithBody(c.Server, organizationId, contentType, body)
+func (c *Client) CreateOrganizationShardingTagWithBody(ctx context.Context, organizationId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateOrganizationShardingTagRequestWithBody(c.Server, organizationId, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -7832,8 +7832,8 @@ func (c *Client) CreateWithBody(ctx context.Context, organizationId string, cont
 	return c.Client.Do(req)
 }
 
-func (c *Client) Create(ctx context.Context, organizationId string, body CreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCreateRequest(c.Server, organizationId, body)
+func (c *Client) CreateOrganizationShardingTag(ctx context.Context, organizationId string, body CreateOrganizationShardingTagJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateOrganizationShardingTagRequest(c.Server, organizationId, body)
 	if err != nil {
 		return nil, err
 	}
@@ -7844,8 +7844,8 @@ func (c *Client) Create(ctx context.Context, organizationId string, body CreateJ
 	return c.Client.Do(req)
 }
 
-func (c *Client) Delete(ctx context.Context, organizationId string, tag string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteRequest(c.Server, organizationId, tag)
+func (c *Client) DeleteOrganizationShardingTag(ctx context.Context, organizationId string, tag string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteOrganizationShardingTagRequest(c.Server, organizationId, tag)
 	if err != nil {
 		return nil, err
 	}
@@ -7856,8 +7856,8 @@ func (c *Client) Delete(ctx context.Context, organizationId string, tag string, 
 	return c.Client.Do(req)
 }
 
-func (c *Client) Get2(ctx context.Context, organizationId string, tag string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGet2Request(c.Server, organizationId, tag)
+func (c *Client) GetOrganizationShardingTag(ctx context.Context, organizationId string, tag string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetOrganizationShardingTagRequest(c.Server, organizationId, tag)
 	if err != nil {
 		return nil, err
 	}
@@ -7868,8 +7868,8 @@ func (c *Client) Get2(ctx context.Context, organizationId string, tag string, re
 	return c.Client.Do(req)
 }
 
-func (c *Client) UpdateWithBody(ctx context.Context, organizationId string, tag string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdateRequestWithBody(c.Server, organizationId, tag, contentType, body)
+func (c *Client) UpdateOrganizationShardingTagWithBody(ctx context.Context, organizationId string, tag string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateOrganizationShardingTagRequestWithBody(c.Server, organizationId, tag, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -7880,8 +7880,8 @@ func (c *Client) UpdateWithBody(ctx context.Context, organizationId string, tag 
 	return c.Client.Do(req)
 }
 
-func (c *Client) Update(ctx context.Context, organizationId string, tag string, body UpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdateRequest(c.Server, organizationId, tag, body)
+func (c *Client) UpdateOrganizationShardingTag(ctx context.Context, organizationId string, tag string, body UpdateOrganizationShardingTagJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateOrganizationShardingTagRequest(c.Server, organizationId, tag, body)
 	if err != nil {
 		return nil, err
 	}
@@ -8516,8 +8516,8 @@ func (c *Client) Get37(ctx context.Context, role string, reqEditors ...RequestEd
 	return c.Client.Do(req)
 }
 
-func (c *Client) Get(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetRequest(c.Server)
+func (c *Client) GetCurrentUser(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetCurrentUserRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -8540,8 +8540,8 @@ func (c *Client) SubscribeNewsletterWithBody(ctx context.Context, contentType st
 	return c.Client.Do(req)
 }
 
-func (c *Client) GetTaglines(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetTaglinesRequest(c.Server)
+func (c *Client) GetNewsletterTaglines(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetNewsletterTaglinesRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -8564,8 +8564,8 @@ func (c *Client) ListNotifications(ctx context.Context, reqEditors ...RequestEdi
 	return c.Client.Do(req)
 }
 
-func (c *Client) MarkAsRead(ctx context.Context, notificationId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarkAsReadRequest(c.Server, notificationId)
+func (c *Client) MarkNotificationAsRead(ctx context.Context, notificationId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarkNotificationAsReadRequest(c.Server, notificationId)
 	if err != nil {
 		return nil, err
 	}
@@ -8603,8 +8603,8 @@ func NewAuthTokenRequest(server string) (*http.Request, error) {
 	return req, nil
 }
 
-// NewListRequest generates requests for List
-func NewListRequest(server string, organizationId string, params *ListParams) (*http.Request, error) {
+// NewListOrganizationAuditsRequest generates requests for ListOrganizationAudits
+func NewListOrganizationAuditsRequest(server string, organizationId string, params *ListOrganizationAuditsParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -8755,8 +8755,8 @@ func NewListRequest(server string, organizationId string, params *ListParams) (*
 	return req, nil
 }
 
-// NewGet1Request generates requests for Get1
-func NewGet1Request(server string, organizationId string, audit string) (*http.Request, error) {
+// NewListOrganizationAuditRequest generates requests for ListOrganizationAudit
+func NewListOrganizationAuditRequest(server string, organizationId string, audit string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -20265,8 +20265,8 @@ func NewUpdate3RequestWithBody(server string, organizationId string, form string
 	return req, nil
 }
 
-// NewList3Request generates requests for List3
-func NewList3Request(server string, organizationId string, params *List3Params) (*http.Request, error) {
+// NewListOrganizationGroupsRequest generates requests for ListOrganizationGroups
+func NewListOrganizationGroupsRequest(server string, organizationId string, params *ListOrganizationGroupsParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -20337,19 +20337,19 @@ func NewList3Request(server string, organizationId string, params *List3Params) 
 	return req, nil
 }
 
-// NewCreate2Request calls the generic Create2 builder with application/json body
-func NewCreate2Request(server string, organizationId string, body Create2JSONRequestBody) (*http.Request, error) {
+// NewCreateOrganizationGroupRequest calls the generic CreateOrganizationGroup builder with application/json body
+func NewCreateOrganizationGroupRequest(server string, organizationId string, body CreateOrganizationGroupJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewCreate2RequestWithBody(server, organizationId, "application/json", bodyReader)
+	return NewCreateOrganizationGroupRequestWithBody(server, organizationId, "application/json", bodyReader)
 }
 
-// NewCreate2RequestWithBody generates requests for Create2 with any type of body
-func NewCreate2RequestWithBody(server string, organizationId string, contentType string, body io.Reader) (*http.Request, error) {
+// NewCreateOrganizationGroupRequestWithBody generates requests for CreateOrganizationGroup with any type of body
+func NewCreateOrganizationGroupRequestWithBody(server string, organizationId string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -20520,8 +20520,8 @@ func NewUpdateOrganizationGroupRequestWithBody(server string, organizationId str
 	return req, nil
 }
 
-// NewList4Request generates requests for List4
-func NewList4Request(server string, organizationId string, group string, params *List4Params) (*http.Request, error) {
+// NewListOrganizationGroupMembersRequest generates requests for ListOrganizationGroupMembers
+func NewListOrganizationGroupMembersRequest(server string, organizationId string, group string, params *ListOrganizationGroupMembersParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -20599,8 +20599,8 @@ func NewList4Request(server string, organizationId string, group string, params 
 	return req, nil
 }
 
-// NewRemoveMember1Request generates requests for RemoveMember1
-func NewRemoveMember1Request(server string, organizationId string, group string, member string) (*http.Request, error) {
+// NewDeleteOrganizationGroupMemberRequest generates requests for DeleteOrganizationGroupMember
+func NewDeleteOrganizationGroupMemberRequest(server string, organizationId string, group string, member string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -20647,8 +20647,8 @@ func NewRemoveMember1Request(server string, organizationId string, group string,
 	return req, nil
 }
 
-// NewAddMemberRequest generates requests for AddMember
-func NewAddMemberRequest(server string, organizationId string, group string, member string) (*http.Request, error) {
+// NewAddOrganizationGroupMemberRequest generates requests for AddOrganizationGroupMember
+func NewAddOrganizationGroupMemberRequest(server string, organizationId string, group string, member string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -20695,8 +20695,8 @@ func NewAddMemberRequest(server string, organizationId string, group string, mem
 	return req, nil
 }
 
-// NewList5Request generates requests for List5
-func NewList5Request(server string, organizationId string, params *List5Params) (*http.Request, error) {
+// NewListOrganizationIdentitiesRequest generates requests for ListOrganizationIdentities
+func NewListOrganizationIdentitiesRequest(server string, organizationId string, params *ListOrganizationIdentitiesParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -20934,8 +20934,8 @@ func NewUpdate2RequestWithBody(server string, organizationId string, identity st
 	return req, nil
 }
 
-// NewGetMembersRequest generates requests for GetMembers
-func NewGetMembersRequest(server string, organizationId string) (*http.Request, error) {
+// NewGetOrganizationMembersRequest generates requests for GetOrganizationMembers
+func NewGetOrganizationMembersRequest(server string, organizationId string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -21015,8 +21015,8 @@ func NewAddOrUpdateMemberRequestWithBody(server string, organizationId string, c
 	return req, nil
 }
 
-// NewRemoveMemberRequest generates requests for RemoveMember
-func NewRemoveMemberRequest(server string, organizationId string, member string) (*http.Request, error) {
+// NewRemoveOrganizationMemberRequest generates requests for RemoveOrganizationMember
+func NewRemoveOrganizationMemberRequest(server string, organizationId string, member string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -21056,8 +21056,8 @@ func NewRemoveMemberRequest(server string, organizationId string, member string)
 	return req, nil
 }
 
-// NewList2Request generates requests for List2
-func NewList2Request(server string, organizationId string, params *List2Params) (*http.Request, error) {
+// NewListOrganizationRolesRequest generates requests for ListOrganizationRoles
+func NewListOrganizationRolesRequest(server string, organizationId string, params *ListOrganizationRolesParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -21112,19 +21112,19 @@ func NewList2Request(server string, organizationId string, params *List2Params) 
 	return req, nil
 }
 
-// NewCreate1Request calls the generic Create1 builder with application/json body
-func NewCreate1Request(server string, organizationId string, body Create1JSONRequestBody) (*http.Request, error) {
+// NewCreateOrganizationRoleRequest calls the generic CreateOrganizationRole builder with application/json body
+func NewCreateOrganizationRoleRequest(server string, organizationId string, body CreateOrganizationRoleJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewCreate1RequestWithBody(server, organizationId, "application/json", bodyReader)
+	return NewCreateOrganizationRoleRequestWithBody(server, organizationId, "application/json", bodyReader)
 }
 
-// NewCreate1RequestWithBody generates requests for Create1 with any type of body
-func NewCreate1RequestWithBody(server string, organizationId string, contentType string, body io.Reader) (*http.Request, error) {
+// NewCreateOrganizationRoleRequestWithBody generates requests for CreateOrganizationRole with any type of body
+func NewCreateOrganizationRoleRequestWithBody(server string, organizationId string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -21159,8 +21159,8 @@ func NewCreate1RequestWithBody(server string, organizationId string, contentType
 	return req, nil
 }
 
-// NewDelete1Request generates requests for Delete1
-func NewDelete1Request(server string, organizationId string, role string) (*http.Request, error) {
+// NewDeleteOrganizationRoleRequest generates requests for DeleteOrganizationRole
+func NewDeleteOrganizationRoleRequest(server string, organizationId string, role string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -21200,8 +21200,8 @@ func NewDelete1Request(server string, organizationId string, role string) (*http
 	return req, nil
 }
 
-// NewGet3Request generates requests for Get3
-func NewGet3Request(server string, organizationId string, role string) (*http.Request, error) {
+// NewGetOrganizationRoleRequest generates requests for GetOrganizationRole
+func NewGetOrganizationRoleRequest(server string, organizationId string, role string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -21241,19 +21241,19 @@ func NewGet3Request(server string, organizationId string, role string) (*http.Re
 	return req, nil
 }
 
-// NewUpdate1Request calls the generic Update1 builder with application/json body
-func NewUpdate1Request(server string, organizationId string, role string, body Update1JSONRequestBody) (*http.Request, error) {
+// NewUpdateOrganizationRoleRequest calls the generic UpdateOrganizationRole builder with application/json body
+func NewUpdateOrganizationRoleRequest(server string, organizationId string, role string, body UpdateOrganizationRoleJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewUpdate1RequestWithBody(server, organizationId, role, "application/json", bodyReader)
+	return NewUpdateOrganizationRoleRequestWithBody(server, organizationId, role, "application/json", bodyReader)
 }
 
-// NewUpdate1RequestWithBody generates requests for Update1 with any type of body
-func NewUpdate1RequestWithBody(server string, organizationId string, role string, contentType string, body io.Reader) (*http.Request, error) {
+// NewUpdateOrganizationRoleRequestWithBody generates requests for UpdateOrganizationRole with any type of body
+func NewUpdateOrganizationRoleRequestWithBody(server string, organizationId string, role string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -21295,8 +21295,8 @@ func NewUpdate1RequestWithBody(server string, organizationId string, role string
 	return req, nil
 }
 
-// NewGet6Request generates requests for Get6
-func NewGet6Request(server string, organizationId string) (*http.Request, error) {
+// NewGetOrganizationSettingsRequest generates requests for GetOrganizationSettings
+func NewGetOrganizationSettingsRequest(server string, organizationId string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -21376,8 +21376,8 @@ func NewPatchRequestWithBody(server string, organizationId string, contentType s
 	return req, nil
 }
 
-// NewList1Request generates requests for List1
-func NewList1Request(server string, organizationId string) (*http.Request, error) {
+// NewListOrganizationTagsRequest generates requests for ListOrganizationTags
+func NewListOrganizationTagsRequest(server string, organizationId string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -21410,19 +21410,19 @@ func NewList1Request(server string, organizationId string) (*http.Request, error
 	return req, nil
 }
 
-// NewCreateRequest calls the generic Create builder with application/json body
-func NewCreateRequest(server string, organizationId string, body CreateJSONRequestBody) (*http.Request, error) {
+// NewCreateOrganizationShardingTagRequest calls the generic CreateOrganizationShardingTag builder with application/json body
+func NewCreateOrganizationShardingTagRequest(server string, organizationId string, body CreateOrganizationShardingTagJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewCreateRequestWithBody(server, organizationId, "application/json", bodyReader)
+	return NewCreateOrganizationShardingTagRequestWithBody(server, organizationId, "application/json", bodyReader)
 }
 
-// NewCreateRequestWithBody generates requests for Create with any type of body
-func NewCreateRequestWithBody(server string, organizationId string, contentType string, body io.Reader) (*http.Request, error) {
+// NewCreateOrganizationShardingTagRequestWithBody generates requests for CreateOrganizationShardingTag with any type of body
+func NewCreateOrganizationShardingTagRequestWithBody(server string, organizationId string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -21457,8 +21457,8 @@ func NewCreateRequestWithBody(server string, organizationId string, contentType 
 	return req, nil
 }
 
-// NewDeleteRequest generates requests for Delete
-func NewDeleteRequest(server string, organizationId string, tag string) (*http.Request, error) {
+// NewDeleteOrganizationShardingTagRequest generates requests for DeleteOrganizationShardingTag
+func NewDeleteOrganizationShardingTagRequest(server string, organizationId string, tag string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -21498,8 +21498,8 @@ func NewDeleteRequest(server string, organizationId string, tag string) (*http.R
 	return req, nil
 }
 
-// NewGet2Request generates requests for Get2
-func NewGet2Request(server string, organizationId string, tag string) (*http.Request, error) {
+// NewGetOrganizationShardingTagRequest generates requests for GetOrganizationShardingTag
+func NewGetOrganizationShardingTagRequest(server string, organizationId string, tag string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -21539,19 +21539,19 @@ func NewGet2Request(server string, organizationId string, tag string) (*http.Req
 	return req, nil
 }
 
-// NewUpdateRequest calls the generic Update builder with application/json body
-func NewUpdateRequest(server string, organizationId string, tag string, body UpdateJSONRequestBody) (*http.Request, error) {
+// NewUpdateOrganizationShardingTagRequest calls the generic UpdateOrganizationShardingTag builder with application/json body
+func NewUpdateOrganizationShardingTagRequest(server string, organizationId string, tag string, body UpdateOrganizationShardingTagJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewUpdateRequestWithBody(server, organizationId, tag, "application/json", bodyReader)
+	return NewUpdateOrganizationShardingTagRequestWithBody(server, organizationId, tag, "application/json", bodyReader)
 }
 
-// NewUpdateRequestWithBody generates requests for Update with any type of body
-func NewUpdateRequestWithBody(server string, organizationId string, tag string, contentType string, body io.Reader) (*http.Request, error) {
+// NewUpdateOrganizationShardingTagRequestWithBody generates requests for UpdateOrganizationShardingTag with any type of body
+func NewUpdateOrganizationShardingTagRequestWithBody(server string, organizationId string, tag string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -23405,8 +23405,8 @@ func NewGet37Request(server string, role string) (*http.Request, error) {
 	return req, nil
 }
 
-// NewGetRequest generates requests for Get
-func NewGetRequest(server string) (*http.Request, error) {
+// NewGetCurrentUserRequest generates requests for GetCurrentUser
+func NewGetCurrentUserRequest(server string) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -23461,8 +23461,8 @@ func NewSubscribeNewsletterRequestWithBody(server string, contentType string, bo
 	return req, nil
 }
 
-// NewGetTaglinesRequest generates requests for GetTaglines
-func NewGetTaglinesRequest(server string) (*http.Request, error) {
+// NewGetNewsletterTaglinesRequest generates requests for GetNewsletterTaglines
+func NewGetNewsletterTaglinesRequest(server string) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -23515,8 +23515,8 @@ func NewListNotificationsRequest(server string) (*http.Request, error) {
 	return req, nil
 }
 
-// NewMarkAsReadRequest generates requests for MarkAsRead
-func NewMarkAsReadRequest(server string, notificationId string) (*http.Request, error) {
+// NewMarkNotificationAsReadRequest generates requests for MarkNotificationAsRead
+func NewMarkNotificationAsReadRequest(server string, notificationId string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -23595,11 +23595,11 @@ type ClientWithResponsesInterface interface {
 	// AuthTokenWithResponse request
 	AuthTokenWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*AuthTokenResponse, error)
 
-	// ListWithResponse request
-	ListWithResponse(ctx context.Context, organizationId string, params *ListParams, reqEditors ...RequestEditorFn) (*ListResponse, error)
+	// ListOrganizationAuditsWithResponse request
+	ListOrganizationAuditsWithResponse(ctx context.Context, organizationId string, params *ListOrganizationAuditsParams, reqEditors ...RequestEditorFn) (*ListOrganizationAuditsResponse, error)
 
-	// Get1WithResponse request
-	Get1WithResponse(ctx context.Context, organizationId string, audit string, reqEditors ...RequestEditorFn) (*Get1Response, error)
+	// ListOrganizationAuditWithResponse request
+	ListOrganizationAuditWithResponse(ctx context.Context, organizationId string, audit string, reqEditors ...RequestEditorFn) (*ListOrganizationAuditResponse, error)
 
 	// List24WithResponse request
 	List24WithResponse(ctx context.Context, organizationId string, reqEditors ...RequestEditorFn) (*List24Response, error)
@@ -24274,13 +24274,13 @@ type ClientWithResponsesInterface interface {
 
 	Update3WithResponse(ctx context.Context, organizationId string, form string, body Update3JSONRequestBody, reqEditors ...RequestEditorFn) (*Update3Response, error)
 
-	// List3WithResponse request
-	List3WithResponse(ctx context.Context, organizationId string, params *List3Params, reqEditors ...RequestEditorFn) (*List3Response, error)
+	// ListOrganizationGroupsWithResponse request
+	ListOrganizationGroupsWithResponse(ctx context.Context, organizationId string, params *ListOrganizationGroupsParams, reqEditors ...RequestEditorFn) (*ListOrganizationGroupsResponse, error)
 
-	// Create2WithBodyWithResponse request with any body
-	Create2WithBodyWithResponse(ctx context.Context, organizationId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Create2Response, error)
+	// CreateOrganizationGroupWithBodyWithResponse request with any body
+	CreateOrganizationGroupWithBodyWithResponse(ctx context.Context, organizationId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateOrganizationGroupResponse, error)
 
-	Create2WithResponse(ctx context.Context, organizationId string, body Create2JSONRequestBody, reqEditors ...RequestEditorFn) (*Create2Response, error)
+	CreateOrganizationGroupWithResponse(ctx context.Context, organizationId string, body CreateOrganizationGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateOrganizationGroupResponse, error)
 
 	// DeleteOrganizationGroupWithResponse request
 	DeleteOrganizationGroupWithResponse(ctx context.Context, organizationId string, group string, reqEditors ...RequestEditorFn) (*DeleteOrganizationGroupResponse, error)
@@ -24293,17 +24293,17 @@ type ClientWithResponsesInterface interface {
 
 	UpdateOrganizationGroupWithResponse(ctx context.Context, organizationId string, group string, body UpdateOrganizationGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateOrganizationGroupResponse, error)
 
-	// List4WithResponse request
-	List4WithResponse(ctx context.Context, organizationId string, group string, params *List4Params, reqEditors ...RequestEditorFn) (*List4Response, error)
+	// ListOrganizationGroupMembersWithResponse request
+	ListOrganizationGroupMembersWithResponse(ctx context.Context, organizationId string, group string, params *ListOrganizationGroupMembersParams, reqEditors ...RequestEditorFn) (*ListOrganizationGroupMembersResponse, error)
 
-	// RemoveMember1WithResponse request
-	RemoveMember1WithResponse(ctx context.Context, organizationId string, group string, member string, reqEditors ...RequestEditorFn) (*RemoveMember1Response, error)
+	// DeleteOrganizationGroupMemberWithResponse request
+	DeleteOrganizationGroupMemberWithResponse(ctx context.Context, organizationId string, group string, member string, reqEditors ...RequestEditorFn) (*DeleteOrganizationGroupMemberResponse, error)
 
-	// AddMemberWithResponse request
-	AddMemberWithResponse(ctx context.Context, organizationId string, group string, member string, reqEditors ...RequestEditorFn) (*AddMemberResponse, error)
+	// AddOrganizationGroupMemberWithResponse request
+	AddOrganizationGroupMemberWithResponse(ctx context.Context, organizationId string, group string, member string, reqEditors ...RequestEditorFn) (*AddOrganizationGroupMemberResponse, error)
 
-	// List5WithResponse request
-	List5WithResponse(ctx context.Context, organizationId string, params *List5Params, reqEditors ...RequestEditorFn) (*List5Response, error)
+	// ListOrganizationIdentitiesWithResponse request
+	ListOrganizationIdentitiesWithResponse(ctx context.Context, organizationId string, params *ListOrganizationIdentitiesParams, reqEditors ...RequestEditorFn) (*ListOrganizationIdentitiesResponse, error)
 
 	// Create3WithBodyWithResponse request with any body
 	Create3WithBodyWithResponse(ctx context.Context, organizationId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Create3Response, error)
@@ -24321,62 +24321,62 @@ type ClientWithResponsesInterface interface {
 
 	Update2WithResponse(ctx context.Context, organizationId string, identity string, body Update2JSONRequestBody, reqEditors ...RequestEditorFn) (*Update2Response, error)
 
-	// GetMembersWithResponse request
-	GetMembersWithResponse(ctx context.Context, organizationId string, reqEditors ...RequestEditorFn) (*GetMembersResponse, error)
+	// GetOrganizationMembersWithResponse request
+	GetOrganizationMembersWithResponse(ctx context.Context, organizationId string, reqEditors ...RequestEditorFn) (*GetOrganizationMembersResponse, error)
 
 	// AddOrUpdateMemberWithBodyWithResponse request with any body
 	AddOrUpdateMemberWithBodyWithResponse(ctx context.Context, organizationId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AddOrUpdateMemberResponse, error)
 
 	AddOrUpdateMemberWithResponse(ctx context.Context, organizationId string, body AddOrUpdateMemberJSONRequestBody, reqEditors ...RequestEditorFn) (*AddOrUpdateMemberResponse, error)
 
-	// RemoveMemberWithResponse request
-	RemoveMemberWithResponse(ctx context.Context, organizationId string, member string, reqEditors ...RequestEditorFn) (*RemoveMemberResponse, error)
+	// RemoveOrganizationMemberWithResponse request
+	RemoveOrganizationMemberWithResponse(ctx context.Context, organizationId string, member string, reqEditors ...RequestEditorFn) (*RemoveOrganizationMemberResponse, error)
 
-	// List2WithResponse request
-	List2WithResponse(ctx context.Context, organizationId string, params *List2Params, reqEditors ...RequestEditorFn) (*List2Response, error)
+	// ListOrganizationRolesWithResponse request
+	ListOrganizationRolesWithResponse(ctx context.Context, organizationId string, params *ListOrganizationRolesParams, reqEditors ...RequestEditorFn) (*ListOrganizationRolesResponse, error)
 
-	// Create1WithBodyWithResponse request with any body
-	Create1WithBodyWithResponse(ctx context.Context, organizationId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Create1Response, error)
+	// CreateOrganizationRoleWithBodyWithResponse request with any body
+	CreateOrganizationRoleWithBodyWithResponse(ctx context.Context, organizationId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateOrganizationRoleResponse, error)
 
-	Create1WithResponse(ctx context.Context, organizationId string, body Create1JSONRequestBody, reqEditors ...RequestEditorFn) (*Create1Response, error)
+	CreateOrganizationRoleWithResponse(ctx context.Context, organizationId string, body CreateOrganizationRoleJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateOrganizationRoleResponse, error)
 
-	// Delete1WithResponse request
-	Delete1WithResponse(ctx context.Context, organizationId string, role string, reqEditors ...RequestEditorFn) (*Delete1Response, error)
+	// DeleteOrganizationRoleWithResponse request
+	DeleteOrganizationRoleWithResponse(ctx context.Context, organizationId string, role string, reqEditors ...RequestEditorFn) (*DeleteOrganizationRoleResponse, error)
 
-	// Get3WithResponse request
-	Get3WithResponse(ctx context.Context, organizationId string, role string, reqEditors ...RequestEditorFn) (*Get3Response, error)
+	// GetOrganizationRoleWithResponse request
+	GetOrganizationRoleWithResponse(ctx context.Context, organizationId string, role string, reqEditors ...RequestEditorFn) (*GetOrganizationRoleResponse, error)
 
-	// Update1WithBodyWithResponse request with any body
-	Update1WithBodyWithResponse(ctx context.Context, organizationId string, role string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Update1Response, error)
+	// UpdateOrganizationRoleWithBodyWithResponse request with any body
+	UpdateOrganizationRoleWithBodyWithResponse(ctx context.Context, organizationId string, role string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateOrganizationRoleResponse, error)
 
-	Update1WithResponse(ctx context.Context, organizationId string, role string, body Update1JSONRequestBody, reqEditors ...RequestEditorFn) (*Update1Response, error)
+	UpdateOrganizationRoleWithResponse(ctx context.Context, organizationId string, role string, body UpdateOrganizationRoleJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateOrganizationRoleResponse, error)
 
-	// Get6WithResponse request
-	Get6WithResponse(ctx context.Context, organizationId string, reqEditors ...RequestEditorFn) (*Get6Response, error)
+	// GetOrganizationSettingsWithResponse request
+	GetOrganizationSettingsWithResponse(ctx context.Context, organizationId string, reqEditors ...RequestEditorFn) (*GetOrganizationSettingsResponse, error)
 
 	// PatchWithBodyWithResponse request with any body
 	PatchWithBodyWithResponse(ctx context.Context, organizationId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PatchResponse, error)
 
 	PatchWithResponse(ctx context.Context, organizationId string, body PatchJSONRequestBody, reqEditors ...RequestEditorFn) (*PatchResponse, error)
 
-	// List1WithResponse request
-	List1WithResponse(ctx context.Context, organizationId string, reqEditors ...RequestEditorFn) (*List1Response, error)
+	// ListOrganizationTagsWithResponse request
+	ListOrganizationTagsWithResponse(ctx context.Context, organizationId string, reqEditors ...RequestEditorFn) (*ListOrganizationTagsResponse, error)
 
-	// CreateWithBodyWithResponse request with any body
-	CreateWithBodyWithResponse(ctx context.Context, organizationId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateResponse, error)
+	// CreateOrganizationShardingTagWithBodyWithResponse request with any body
+	CreateOrganizationShardingTagWithBodyWithResponse(ctx context.Context, organizationId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateOrganizationShardingTagResponse, error)
 
-	CreateWithResponse(ctx context.Context, organizationId string, body CreateJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateResponse, error)
+	CreateOrganizationShardingTagWithResponse(ctx context.Context, organizationId string, body CreateOrganizationShardingTagJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateOrganizationShardingTagResponse, error)
 
-	// DeleteWithResponse request
-	DeleteWithResponse(ctx context.Context, organizationId string, tag string, reqEditors ...RequestEditorFn) (*DeleteResponse, error)
+	// DeleteOrganizationShardingTagWithResponse request
+	DeleteOrganizationShardingTagWithResponse(ctx context.Context, organizationId string, tag string, reqEditors ...RequestEditorFn) (*DeleteOrganizationShardingTagResponse, error)
 
-	// Get2WithResponse request
-	Get2WithResponse(ctx context.Context, organizationId string, tag string, reqEditors ...RequestEditorFn) (*Get2Response, error)
+	// GetOrganizationShardingTagWithResponse request
+	GetOrganizationShardingTagWithResponse(ctx context.Context, organizationId string, tag string, reqEditors ...RequestEditorFn) (*GetOrganizationShardingTagResponse, error)
 
-	// UpdateWithBodyWithResponse request with any body
-	UpdateWithBodyWithResponse(ctx context.Context, organizationId string, tag string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateResponse, error)
+	// UpdateOrganizationShardingTagWithBodyWithResponse request with any body
+	UpdateOrganizationShardingTagWithBodyWithResponse(ctx context.Context, organizationId string, tag string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateOrganizationShardingTagResponse, error)
 
-	UpdateWithResponse(ctx context.Context, organizationId string, tag string, body UpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateResponse, error)
+	UpdateOrganizationShardingTagWithResponse(ctx context.Context, organizationId string, tag string, body UpdateOrganizationShardingTagJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateOrganizationShardingTagResponse, error)
 
 	// ListOrganisationUsersWithResponse request
 	ListOrganisationUsersWithResponse(ctx context.Context, organizationId string, params *ListOrganisationUsersParams, reqEditors ...RequestEditorFn) (*ListOrganisationUsersResponse, error)
@@ -24530,20 +24530,20 @@ type ClientWithResponsesInterface interface {
 	// Get37WithResponse request
 	Get37WithResponse(ctx context.Context, role string, reqEditors ...RequestEditorFn) (*Get37Response, error)
 
-	// GetWithResponse request
-	GetWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetResponse, error)
+	// GetCurrentUserWithResponse request
+	GetCurrentUserWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetCurrentUserResponse, error)
 
 	// SubscribeNewsletterWithBodyWithResponse request with any body
 	SubscribeNewsletterWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SubscribeNewsletterResponse, error)
 
-	// GetTaglinesWithResponse request
-	GetTaglinesWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetTaglinesResponse, error)
+	// GetNewsletterTaglinesWithResponse request
+	GetNewsletterTaglinesWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetNewsletterTaglinesResponse, error)
 
 	// ListNotificationsWithResponse request
 	ListNotificationsWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ListNotificationsResponse, error)
 
-	// MarkAsReadWithResponse request
-	MarkAsReadWithResponse(ctx context.Context, notificationId string, reqEditors ...RequestEditorFn) (*MarkAsReadResponse, error)
+	// MarkNotificationAsReadWithResponse request
+	MarkNotificationAsReadWithResponse(ctx context.Context, notificationId string, reqEditors ...RequestEditorFn) (*MarkNotificationAsReadResponse, error)
 }
 
 type AuthTokenResponse struct {
@@ -24568,14 +24568,14 @@ func (r AuthTokenResponse) StatusCode() int {
 	return 0
 }
 
-type ListResponse struct {
+type ListOrganizationAuditsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *[]Audit
 }
 
 // Status returns HTTPResponse.Status
-func (r ListResponse) Status() string {
+func (r ListOrganizationAuditsResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -24583,21 +24583,21 @@ func (r ListResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r ListResponse) StatusCode() int {
+func (r ListOrganizationAuditsResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type Get1Response struct {
+type ListOrganizationAuditResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *Audit
 }
 
 // Status returns HTTPResponse.Status
-func (r Get1Response) Status() string {
+func (r ListOrganizationAuditResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -24605,7 +24605,7 @@ func (r Get1Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r Get1Response) StatusCode() int {
+func (r ListOrganizationAuditResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -28583,14 +28583,14 @@ func (r Update3Response) StatusCode() int {
 	return 0
 }
 
-type List3Response struct {
+type ListOrganizationGroupsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *[]Group
 }
 
 // Status returns HTTPResponse.Status
-func (r List3Response) Status() string {
+func (r ListOrganizationGroupsResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -28598,20 +28598,20 @@ func (r List3Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r List3Response) StatusCode() int {
+func (r ListOrganizationGroupsResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type Create2Response struct {
+type CreateOrganizationGroupResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 }
 
 // Status returns HTTPResponse.Status
-func (r Create2Response) Status() string {
+func (r CreateOrganizationGroupResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -28619,7 +28619,7 @@ func (r Create2Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r Create2Response) StatusCode() int {
+func (r CreateOrganizationGroupResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -28691,14 +28691,14 @@ func (r UpdateOrganizationGroupResponse) StatusCode() int {
 	return 0
 }
 
-type List4Response struct {
+type ListOrganizationGroupMembersResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *User
 }
 
 // Status returns HTTPResponse.Status
-func (r List4Response) Status() string {
+func (r ListOrganizationGroupMembersResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -28706,20 +28706,20 @@ func (r List4Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r List4Response) StatusCode() int {
+func (r ListOrganizationGroupMembersResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type RemoveMember1Response struct {
+type DeleteOrganizationGroupMemberResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 }
 
 // Status returns HTTPResponse.Status
-func (r RemoveMember1Response) Status() string {
+func (r DeleteOrganizationGroupMemberResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -28727,20 +28727,20 @@ func (r RemoveMember1Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r RemoveMember1Response) StatusCode() int {
+func (r DeleteOrganizationGroupMemberResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type AddMemberResponse struct {
+type AddOrganizationGroupMemberResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 }
 
 // Status returns HTTPResponse.Status
-func (r AddMemberResponse) Status() string {
+func (r AddOrganizationGroupMemberResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -28748,21 +28748,21 @@ func (r AddMemberResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r AddMemberResponse) StatusCode() int {
+func (r AddOrganizationGroupMemberResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type List5Response struct {
+type ListOrganizationIdentitiesResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *[]FilteredIdentityProviderInfo
 }
 
 // Status returns HTTPResponse.Status
-func (r List5Response) Status() string {
+func (r ListOrganizationIdentitiesResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -28770,7 +28770,7 @@ func (r List5Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r List5Response) StatusCode() int {
+func (r ListOrganizationIdentitiesResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -28863,14 +28863,14 @@ func (r Update2Response) StatusCode() int {
 	return 0
 }
 
-type GetMembersResponse struct {
+type GetOrganizationMembersResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *MembershipListItem
 }
 
 // Status returns HTTPResponse.Status
-func (r GetMembersResponse) Status() string {
+func (r GetOrganizationMembersResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -28878,7 +28878,7 @@ func (r GetMembersResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r GetMembersResponse) StatusCode() int {
+func (r GetOrganizationMembersResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -28906,13 +28906,13 @@ func (r AddOrUpdateMemberResponse) StatusCode() int {
 	return 0
 }
 
-type RemoveMemberResponse struct {
+type RemoveOrganizationMemberResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 }
 
 // Status returns HTTPResponse.Status
-func (r RemoveMemberResponse) Status() string {
+func (r RemoveOrganizationMemberResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -28920,21 +28920,21 @@ func (r RemoveMemberResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r RemoveMemberResponse) StatusCode() int {
+func (r RemoveOrganizationMemberResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type List2Response struct {
+type ListOrganizationRolesResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *[]RoleEntity
 }
 
 // Status returns HTTPResponse.Status
-func (r List2Response) Status() string {
+func (r ListOrganizationRolesResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -28942,20 +28942,20 @@ func (r List2Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r List2Response) StatusCode() int {
+func (r ListOrganizationRolesResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type Create1Response struct {
+type CreateOrganizationRoleResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 }
 
 // Status returns HTTPResponse.Status
-func (r Create1Response) Status() string {
+func (r CreateOrganizationRoleResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -28963,20 +28963,20 @@ func (r Create1Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r Create1Response) StatusCode() int {
+func (r CreateOrganizationRoleResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type Delete1Response struct {
+type DeleteOrganizationRoleResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 }
 
 // Status returns HTTPResponse.Status
-func (r Delete1Response) Status() string {
+func (r DeleteOrganizationRoleResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -28984,21 +28984,21 @@ func (r Delete1Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r Delete1Response) StatusCode() int {
+func (r DeleteOrganizationRoleResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type Get3Response struct {
+type GetOrganizationRoleResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *RoleEntity
 }
 
 // Status returns HTTPResponse.Status
-func (r Get3Response) Status() string {
+func (r GetOrganizationRoleResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -29006,21 +29006,21 @@ func (r Get3Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r Get3Response) StatusCode() int {
+func (r GetOrganizationRoleResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type Update1Response struct {
+type UpdateOrganizationRoleResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON201      *RoleEntity
 }
 
 // Status returns HTTPResponse.Status
-func (r Update1Response) Status() string {
+func (r UpdateOrganizationRoleResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -29028,21 +29028,21 @@ func (r Update1Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r Update1Response) StatusCode() int {
+func (r UpdateOrganizationRoleResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type Get6Response struct {
+type GetOrganizationSettingsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *Domain
 }
 
 // Status returns HTTPResponse.Status
-func (r Get6Response) Status() string {
+func (r GetOrganizationSettingsResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -29050,7 +29050,7 @@ func (r Get6Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r Get6Response) StatusCode() int {
+func (r GetOrganizationSettingsResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -29079,14 +29079,14 @@ func (r PatchResponse) StatusCode() int {
 	return 0
 }
 
-type List1Response struct {
+type ListOrganizationTagsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *[]Domain
 }
 
 // Status returns HTTPResponse.Status
-func (r List1Response) Status() string {
+func (r ListOrganizationTagsResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -29094,20 +29094,20 @@ func (r List1Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r List1Response) StatusCode() int {
+func (r ListOrganizationTagsResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type CreateResponse struct {
+type CreateOrganizationShardingTagResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 }
 
 // Status returns HTTPResponse.Status
-func (r CreateResponse) Status() string {
+func (r CreateOrganizationShardingTagResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -29115,20 +29115,20 @@ func (r CreateResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r CreateResponse) StatusCode() int {
+func (r CreateOrganizationShardingTagResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type DeleteResponse struct {
+type DeleteOrganizationShardingTagResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 }
 
 // Status returns HTTPResponse.Status
-func (r DeleteResponse) Status() string {
+func (r DeleteOrganizationShardingTagResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -29136,43 +29136,21 @@ func (r DeleteResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r DeleteResponse) StatusCode() int {
+func (r DeleteOrganizationShardingTagResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type Get2Response struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *Tag
-}
-
-// Status returns HTTPResponse.Status
-func (r Get2Response) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r Get2Response) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type UpdateResponse struct {
+type GetOrganizationShardingTagResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *Tag
 }
 
 // Status returns HTTPResponse.Status
-func (r UpdateResponse) Status() string {
+func (r GetOrganizationShardingTagResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -29180,7 +29158,29 @@ func (r UpdateResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r UpdateResponse) StatusCode() int {
+func (r GetOrganizationShardingTagResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type UpdateOrganizationShardingTagResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *Tag
+}
+
+// Status returns HTTPResponse.Status
+func (r UpdateOrganizationShardingTagResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UpdateOrganizationShardingTagResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -30210,14 +30210,14 @@ func (r Get37Response) StatusCode() int {
 	return 0
 }
 
-type GetResponse struct {
+type GetCurrentUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *map[string]map[string]interface{}
 }
 
 // Status returns HTTPResponse.Status
-func (r GetResponse) Status() string {
+func (r GetCurrentUserResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -30225,7 +30225,7 @@ func (r GetResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r GetResponse) StatusCode() int {
+func (r GetCurrentUserResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -30253,13 +30253,13 @@ func (r SubscribeNewsletterResponse) StatusCode() int {
 	return 0
 }
 
-type GetTaglinesResponse struct {
+type GetNewsletterTaglinesResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 }
 
 // Status returns HTTPResponse.Status
-func (r GetTaglinesResponse) Status() string {
+func (r GetNewsletterTaglinesResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -30267,7 +30267,7 @@ func (r GetTaglinesResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r GetTaglinesResponse) StatusCode() int {
+func (r GetNewsletterTaglinesResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -30296,13 +30296,13 @@ func (r ListNotificationsResponse) StatusCode() int {
 	return 0
 }
 
-type MarkAsReadResponse struct {
+type MarkNotificationAsReadResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 }
 
 // Status returns HTTPResponse.Status
-func (r MarkAsReadResponse) Status() string {
+func (r MarkNotificationAsReadResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -30310,7 +30310,7 @@ func (r MarkAsReadResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r MarkAsReadResponse) StatusCode() int {
+func (r MarkNotificationAsReadResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -30326,22 +30326,22 @@ func (c *ClientWithResponses) AuthTokenWithResponse(ctx context.Context, reqEdit
 	return ParseAuthTokenResponse(rsp)
 }
 
-// ListWithResponse request returning *ListResponse
-func (c *ClientWithResponses) ListWithResponse(ctx context.Context, organizationId string, params *ListParams, reqEditors ...RequestEditorFn) (*ListResponse, error) {
-	rsp, err := c.List(ctx, organizationId, params, reqEditors...)
+// ListOrganizationAuditsWithResponse request returning *ListOrganizationAuditsResponse
+func (c *ClientWithResponses) ListOrganizationAuditsWithResponse(ctx context.Context, organizationId string, params *ListOrganizationAuditsParams, reqEditors ...RequestEditorFn) (*ListOrganizationAuditsResponse, error) {
+	rsp, err := c.ListOrganizationAudits(ctx, organizationId, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseListResponse(rsp)
+	return ParseListOrganizationAuditsResponse(rsp)
 }
 
-// Get1WithResponse request returning *Get1Response
-func (c *ClientWithResponses) Get1WithResponse(ctx context.Context, organizationId string, audit string, reqEditors ...RequestEditorFn) (*Get1Response, error) {
-	rsp, err := c.Get1(ctx, organizationId, audit, reqEditors...)
+// ListOrganizationAuditWithResponse request returning *ListOrganizationAuditResponse
+func (c *ClientWithResponses) ListOrganizationAuditWithResponse(ctx context.Context, organizationId string, audit string, reqEditors ...RequestEditorFn) (*ListOrganizationAuditResponse, error) {
+	rsp, err := c.ListOrganizationAudit(ctx, organizationId, audit, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseGet1Response(rsp)
+	return ParseListOrganizationAuditResponse(rsp)
 }
 
 // List24WithResponse request returning *List24Response
@@ -32487,30 +32487,30 @@ func (c *ClientWithResponses) Update3WithResponse(ctx context.Context, organizat
 	return ParseUpdate3Response(rsp)
 }
 
-// List3WithResponse request returning *List3Response
-func (c *ClientWithResponses) List3WithResponse(ctx context.Context, organizationId string, params *List3Params, reqEditors ...RequestEditorFn) (*List3Response, error) {
-	rsp, err := c.List3(ctx, organizationId, params, reqEditors...)
+// ListOrganizationGroupsWithResponse request returning *ListOrganizationGroupsResponse
+func (c *ClientWithResponses) ListOrganizationGroupsWithResponse(ctx context.Context, organizationId string, params *ListOrganizationGroupsParams, reqEditors ...RequestEditorFn) (*ListOrganizationGroupsResponse, error) {
+	rsp, err := c.ListOrganizationGroups(ctx, organizationId, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseList3Response(rsp)
+	return ParseListOrganizationGroupsResponse(rsp)
 }
 
-// Create2WithBodyWithResponse request with arbitrary body returning *Create2Response
-func (c *ClientWithResponses) Create2WithBodyWithResponse(ctx context.Context, organizationId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Create2Response, error) {
-	rsp, err := c.Create2WithBody(ctx, organizationId, contentType, body, reqEditors...)
+// CreateOrganizationGroupWithBodyWithResponse request with arbitrary body returning *CreateOrganizationGroupResponse
+func (c *ClientWithResponses) CreateOrganizationGroupWithBodyWithResponse(ctx context.Context, organizationId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateOrganizationGroupResponse, error) {
+	rsp, err := c.CreateOrganizationGroupWithBody(ctx, organizationId, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseCreate2Response(rsp)
+	return ParseCreateOrganizationGroupResponse(rsp)
 }
 
-func (c *ClientWithResponses) Create2WithResponse(ctx context.Context, organizationId string, body Create2JSONRequestBody, reqEditors ...RequestEditorFn) (*Create2Response, error) {
-	rsp, err := c.Create2(ctx, organizationId, body, reqEditors...)
+func (c *ClientWithResponses) CreateOrganizationGroupWithResponse(ctx context.Context, organizationId string, body CreateOrganizationGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateOrganizationGroupResponse, error) {
+	rsp, err := c.CreateOrganizationGroup(ctx, organizationId, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseCreate2Response(rsp)
+	return ParseCreateOrganizationGroupResponse(rsp)
 }
 
 // DeleteOrganizationGroupWithResponse request returning *DeleteOrganizationGroupResponse
@@ -32548,40 +32548,40 @@ func (c *ClientWithResponses) UpdateOrganizationGroupWithResponse(ctx context.Co
 	return ParseUpdateOrganizationGroupResponse(rsp)
 }
 
-// List4WithResponse request returning *List4Response
-func (c *ClientWithResponses) List4WithResponse(ctx context.Context, organizationId string, group string, params *List4Params, reqEditors ...RequestEditorFn) (*List4Response, error) {
-	rsp, err := c.List4(ctx, organizationId, group, params, reqEditors...)
+// ListOrganizationGroupMembersWithResponse request returning *ListOrganizationGroupMembersResponse
+func (c *ClientWithResponses) ListOrganizationGroupMembersWithResponse(ctx context.Context, organizationId string, group string, params *ListOrganizationGroupMembersParams, reqEditors ...RequestEditorFn) (*ListOrganizationGroupMembersResponse, error) {
+	rsp, err := c.ListOrganizationGroupMembers(ctx, organizationId, group, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseList4Response(rsp)
+	return ParseListOrganizationGroupMembersResponse(rsp)
 }
 
-// RemoveMember1WithResponse request returning *RemoveMember1Response
-func (c *ClientWithResponses) RemoveMember1WithResponse(ctx context.Context, organizationId string, group string, member string, reqEditors ...RequestEditorFn) (*RemoveMember1Response, error) {
-	rsp, err := c.RemoveMember1(ctx, organizationId, group, member, reqEditors...)
+// DeleteOrganizationGroupMemberWithResponse request returning *DeleteOrganizationGroupMemberResponse
+func (c *ClientWithResponses) DeleteOrganizationGroupMemberWithResponse(ctx context.Context, organizationId string, group string, member string, reqEditors ...RequestEditorFn) (*DeleteOrganizationGroupMemberResponse, error) {
+	rsp, err := c.DeleteOrganizationGroupMember(ctx, organizationId, group, member, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseRemoveMember1Response(rsp)
+	return ParseDeleteOrganizationGroupMemberResponse(rsp)
 }
 
-// AddMemberWithResponse request returning *AddMemberResponse
-func (c *ClientWithResponses) AddMemberWithResponse(ctx context.Context, organizationId string, group string, member string, reqEditors ...RequestEditorFn) (*AddMemberResponse, error) {
-	rsp, err := c.AddMember(ctx, organizationId, group, member, reqEditors...)
+// AddOrganizationGroupMemberWithResponse request returning *AddOrganizationGroupMemberResponse
+func (c *ClientWithResponses) AddOrganizationGroupMemberWithResponse(ctx context.Context, organizationId string, group string, member string, reqEditors ...RequestEditorFn) (*AddOrganizationGroupMemberResponse, error) {
+	rsp, err := c.AddOrganizationGroupMember(ctx, organizationId, group, member, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseAddMemberResponse(rsp)
+	return ParseAddOrganizationGroupMemberResponse(rsp)
 }
 
-// List5WithResponse request returning *List5Response
-func (c *ClientWithResponses) List5WithResponse(ctx context.Context, organizationId string, params *List5Params, reqEditors ...RequestEditorFn) (*List5Response, error) {
-	rsp, err := c.List5(ctx, organizationId, params, reqEditors...)
+// ListOrganizationIdentitiesWithResponse request returning *ListOrganizationIdentitiesResponse
+func (c *ClientWithResponses) ListOrganizationIdentitiesWithResponse(ctx context.Context, organizationId string, params *ListOrganizationIdentitiesParams, reqEditors ...RequestEditorFn) (*ListOrganizationIdentitiesResponse, error) {
+	rsp, err := c.ListOrganizationIdentities(ctx, organizationId, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseList5Response(rsp)
+	return ParseListOrganizationIdentitiesResponse(rsp)
 }
 
 // Create3WithBodyWithResponse request with arbitrary body returning *Create3Response
@@ -32636,13 +32636,13 @@ func (c *ClientWithResponses) Update2WithResponse(ctx context.Context, organizat
 	return ParseUpdate2Response(rsp)
 }
 
-// GetMembersWithResponse request returning *GetMembersResponse
-func (c *ClientWithResponses) GetMembersWithResponse(ctx context.Context, organizationId string, reqEditors ...RequestEditorFn) (*GetMembersResponse, error) {
-	rsp, err := c.GetMembers(ctx, organizationId, reqEditors...)
+// GetOrganizationMembersWithResponse request returning *GetOrganizationMembersResponse
+func (c *ClientWithResponses) GetOrganizationMembersWithResponse(ctx context.Context, organizationId string, reqEditors ...RequestEditorFn) (*GetOrganizationMembersResponse, error) {
+	rsp, err := c.GetOrganizationMembers(ctx, organizationId, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseGetMembersResponse(rsp)
+	return ParseGetOrganizationMembersResponse(rsp)
 }
 
 // AddOrUpdateMemberWithBodyWithResponse request with arbitrary body returning *AddOrUpdateMemberResponse
@@ -32662,83 +32662,83 @@ func (c *ClientWithResponses) AddOrUpdateMemberWithResponse(ctx context.Context,
 	return ParseAddOrUpdateMemberResponse(rsp)
 }
 
-// RemoveMemberWithResponse request returning *RemoveMemberResponse
-func (c *ClientWithResponses) RemoveMemberWithResponse(ctx context.Context, organizationId string, member string, reqEditors ...RequestEditorFn) (*RemoveMemberResponse, error) {
-	rsp, err := c.RemoveMember(ctx, organizationId, member, reqEditors...)
+// RemoveOrganizationMemberWithResponse request returning *RemoveOrganizationMemberResponse
+func (c *ClientWithResponses) RemoveOrganizationMemberWithResponse(ctx context.Context, organizationId string, member string, reqEditors ...RequestEditorFn) (*RemoveOrganizationMemberResponse, error) {
+	rsp, err := c.RemoveOrganizationMember(ctx, organizationId, member, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseRemoveMemberResponse(rsp)
+	return ParseRemoveOrganizationMemberResponse(rsp)
 }
 
-// List2WithResponse request returning *List2Response
-func (c *ClientWithResponses) List2WithResponse(ctx context.Context, organizationId string, params *List2Params, reqEditors ...RequestEditorFn) (*List2Response, error) {
-	rsp, err := c.List2(ctx, organizationId, params, reqEditors...)
+// ListOrganizationRolesWithResponse request returning *ListOrganizationRolesResponse
+func (c *ClientWithResponses) ListOrganizationRolesWithResponse(ctx context.Context, organizationId string, params *ListOrganizationRolesParams, reqEditors ...RequestEditorFn) (*ListOrganizationRolesResponse, error) {
+	rsp, err := c.ListOrganizationRoles(ctx, organizationId, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseList2Response(rsp)
+	return ParseListOrganizationRolesResponse(rsp)
 }
 
-// Create1WithBodyWithResponse request with arbitrary body returning *Create1Response
-func (c *ClientWithResponses) Create1WithBodyWithResponse(ctx context.Context, organizationId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Create1Response, error) {
-	rsp, err := c.Create1WithBody(ctx, organizationId, contentType, body, reqEditors...)
+// CreateOrganizationRoleWithBodyWithResponse request with arbitrary body returning *CreateOrganizationRoleResponse
+func (c *ClientWithResponses) CreateOrganizationRoleWithBodyWithResponse(ctx context.Context, organizationId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateOrganizationRoleResponse, error) {
+	rsp, err := c.CreateOrganizationRoleWithBody(ctx, organizationId, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseCreate1Response(rsp)
+	return ParseCreateOrganizationRoleResponse(rsp)
 }
 
-func (c *ClientWithResponses) Create1WithResponse(ctx context.Context, organizationId string, body Create1JSONRequestBody, reqEditors ...RequestEditorFn) (*Create1Response, error) {
-	rsp, err := c.Create1(ctx, organizationId, body, reqEditors...)
+func (c *ClientWithResponses) CreateOrganizationRoleWithResponse(ctx context.Context, organizationId string, body CreateOrganizationRoleJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateOrganizationRoleResponse, error) {
+	rsp, err := c.CreateOrganizationRole(ctx, organizationId, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseCreate1Response(rsp)
+	return ParseCreateOrganizationRoleResponse(rsp)
 }
 
-// Delete1WithResponse request returning *Delete1Response
-func (c *ClientWithResponses) Delete1WithResponse(ctx context.Context, organizationId string, role string, reqEditors ...RequestEditorFn) (*Delete1Response, error) {
-	rsp, err := c.Delete1(ctx, organizationId, role, reqEditors...)
+// DeleteOrganizationRoleWithResponse request returning *DeleteOrganizationRoleResponse
+func (c *ClientWithResponses) DeleteOrganizationRoleWithResponse(ctx context.Context, organizationId string, role string, reqEditors ...RequestEditorFn) (*DeleteOrganizationRoleResponse, error) {
+	rsp, err := c.DeleteOrganizationRole(ctx, organizationId, role, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseDelete1Response(rsp)
+	return ParseDeleteOrganizationRoleResponse(rsp)
 }
 
-// Get3WithResponse request returning *Get3Response
-func (c *ClientWithResponses) Get3WithResponse(ctx context.Context, organizationId string, role string, reqEditors ...RequestEditorFn) (*Get3Response, error) {
-	rsp, err := c.Get3(ctx, organizationId, role, reqEditors...)
+// GetOrganizationRoleWithResponse request returning *GetOrganizationRoleResponse
+func (c *ClientWithResponses) GetOrganizationRoleWithResponse(ctx context.Context, organizationId string, role string, reqEditors ...RequestEditorFn) (*GetOrganizationRoleResponse, error) {
+	rsp, err := c.GetOrganizationRole(ctx, organizationId, role, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseGet3Response(rsp)
+	return ParseGetOrganizationRoleResponse(rsp)
 }
 
-// Update1WithBodyWithResponse request with arbitrary body returning *Update1Response
-func (c *ClientWithResponses) Update1WithBodyWithResponse(ctx context.Context, organizationId string, role string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Update1Response, error) {
-	rsp, err := c.Update1WithBody(ctx, organizationId, role, contentType, body, reqEditors...)
+// UpdateOrganizationRoleWithBodyWithResponse request with arbitrary body returning *UpdateOrganizationRoleResponse
+func (c *ClientWithResponses) UpdateOrganizationRoleWithBodyWithResponse(ctx context.Context, organizationId string, role string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateOrganizationRoleResponse, error) {
+	rsp, err := c.UpdateOrganizationRoleWithBody(ctx, organizationId, role, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseUpdate1Response(rsp)
+	return ParseUpdateOrganizationRoleResponse(rsp)
 }
 
-func (c *ClientWithResponses) Update1WithResponse(ctx context.Context, organizationId string, role string, body Update1JSONRequestBody, reqEditors ...RequestEditorFn) (*Update1Response, error) {
-	rsp, err := c.Update1(ctx, organizationId, role, body, reqEditors...)
+func (c *ClientWithResponses) UpdateOrganizationRoleWithResponse(ctx context.Context, organizationId string, role string, body UpdateOrganizationRoleJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateOrganizationRoleResponse, error) {
+	rsp, err := c.UpdateOrganizationRole(ctx, organizationId, role, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseUpdate1Response(rsp)
+	return ParseUpdateOrganizationRoleResponse(rsp)
 }
 
-// Get6WithResponse request returning *Get6Response
-func (c *ClientWithResponses) Get6WithResponse(ctx context.Context, organizationId string, reqEditors ...RequestEditorFn) (*Get6Response, error) {
-	rsp, err := c.Get6(ctx, organizationId, reqEditors...)
+// GetOrganizationSettingsWithResponse request returning *GetOrganizationSettingsResponse
+func (c *ClientWithResponses) GetOrganizationSettingsWithResponse(ctx context.Context, organizationId string, reqEditors ...RequestEditorFn) (*GetOrganizationSettingsResponse, error) {
+	rsp, err := c.GetOrganizationSettings(ctx, organizationId, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseGet6Response(rsp)
+	return ParseGetOrganizationSettingsResponse(rsp)
 }
 
 // PatchWithBodyWithResponse request with arbitrary body returning *PatchResponse
@@ -32758,65 +32758,65 @@ func (c *ClientWithResponses) PatchWithResponse(ctx context.Context, organizatio
 	return ParsePatchResponse(rsp)
 }
 
-// List1WithResponse request returning *List1Response
-func (c *ClientWithResponses) List1WithResponse(ctx context.Context, organizationId string, reqEditors ...RequestEditorFn) (*List1Response, error) {
-	rsp, err := c.List1(ctx, organizationId, reqEditors...)
+// ListOrganizationTagsWithResponse request returning *ListOrganizationTagsResponse
+func (c *ClientWithResponses) ListOrganizationTagsWithResponse(ctx context.Context, organizationId string, reqEditors ...RequestEditorFn) (*ListOrganizationTagsResponse, error) {
+	rsp, err := c.ListOrganizationTags(ctx, organizationId, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseList1Response(rsp)
+	return ParseListOrganizationTagsResponse(rsp)
 }
 
-// CreateWithBodyWithResponse request with arbitrary body returning *CreateResponse
-func (c *ClientWithResponses) CreateWithBodyWithResponse(ctx context.Context, organizationId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateResponse, error) {
-	rsp, err := c.CreateWithBody(ctx, organizationId, contentType, body, reqEditors...)
+// CreateOrganizationShardingTagWithBodyWithResponse request with arbitrary body returning *CreateOrganizationShardingTagResponse
+func (c *ClientWithResponses) CreateOrganizationShardingTagWithBodyWithResponse(ctx context.Context, organizationId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateOrganizationShardingTagResponse, error) {
+	rsp, err := c.CreateOrganizationShardingTagWithBody(ctx, organizationId, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseCreateResponse(rsp)
+	return ParseCreateOrganizationShardingTagResponse(rsp)
 }
 
-func (c *ClientWithResponses) CreateWithResponse(ctx context.Context, organizationId string, body CreateJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateResponse, error) {
-	rsp, err := c.Create(ctx, organizationId, body, reqEditors...)
+func (c *ClientWithResponses) CreateOrganizationShardingTagWithResponse(ctx context.Context, organizationId string, body CreateOrganizationShardingTagJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateOrganizationShardingTagResponse, error) {
+	rsp, err := c.CreateOrganizationShardingTag(ctx, organizationId, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseCreateResponse(rsp)
+	return ParseCreateOrganizationShardingTagResponse(rsp)
 }
 
-// DeleteWithResponse request returning *DeleteResponse
-func (c *ClientWithResponses) DeleteWithResponse(ctx context.Context, organizationId string, tag string, reqEditors ...RequestEditorFn) (*DeleteResponse, error) {
-	rsp, err := c.Delete(ctx, organizationId, tag, reqEditors...)
+// DeleteOrganizationShardingTagWithResponse request returning *DeleteOrganizationShardingTagResponse
+func (c *ClientWithResponses) DeleteOrganizationShardingTagWithResponse(ctx context.Context, organizationId string, tag string, reqEditors ...RequestEditorFn) (*DeleteOrganizationShardingTagResponse, error) {
+	rsp, err := c.DeleteOrganizationShardingTag(ctx, organizationId, tag, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseDeleteResponse(rsp)
+	return ParseDeleteOrganizationShardingTagResponse(rsp)
 }
 
-// Get2WithResponse request returning *Get2Response
-func (c *ClientWithResponses) Get2WithResponse(ctx context.Context, organizationId string, tag string, reqEditors ...RequestEditorFn) (*Get2Response, error) {
-	rsp, err := c.Get2(ctx, organizationId, tag, reqEditors...)
+// GetOrganizationShardingTagWithResponse request returning *GetOrganizationShardingTagResponse
+func (c *ClientWithResponses) GetOrganizationShardingTagWithResponse(ctx context.Context, organizationId string, tag string, reqEditors ...RequestEditorFn) (*GetOrganizationShardingTagResponse, error) {
+	rsp, err := c.GetOrganizationShardingTag(ctx, organizationId, tag, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseGet2Response(rsp)
+	return ParseGetOrganizationShardingTagResponse(rsp)
 }
 
-// UpdateWithBodyWithResponse request with arbitrary body returning *UpdateResponse
-func (c *ClientWithResponses) UpdateWithBodyWithResponse(ctx context.Context, organizationId string, tag string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateResponse, error) {
-	rsp, err := c.UpdateWithBody(ctx, organizationId, tag, contentType, body, reqEditors...)
+// UpdateOrganizationShardingTagWithBodyWithResponse request with arbitrary body returning *UpdateOrganizationShardingTagResponse
+func (c *ClientWithResponses) UpdateOrganizationShardingTagWithBodyWithResponse(ctx context.Context, organizationId string, tag string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateOrganizationShardingTagResponse, error) {
+	rsp, err := c.UpdateOrganizationShardingTagWithBody(ctx, organizationId, tag, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseUpdateResponse(rsp)
+	return ParseUpdateOrganizationShardingTagResponse(rsp)
 }
 
-func (c *ClientWithResponses) UpdateWithResponse(ctx context.Context, organizationId string, tag string, body UpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateResponse, error) {
-	rsp, err := c.Update(ctx, organizationId, tag, body, reqEditors...)
+func (c *ClientWithResponses) UpdateOrganizationShardingTagWithResponse(ctx context.Context, organizationId string, tag string, body UpdateOrganizationShardingTagJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateOrganizationShardingTagResponse, error) {
+	rsp, err := c.UpdateOrganizationShardingTag(ctx, organizationId, tag, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseUpdateResponse(rsp)
+	return ParseUpdateOrganizationShardingTagResponse(rsp)
 }
 
 // ListOrganisationUsersWithResponse request returning *ListOrganisationUsersResponse
@@ -33283,13 +33283,13 @@ func (c *ClientWithResponses) Get37WithResponse(ctx context.Context, role string
 	return ParseGet37Response(rsp)
 }
 
-// GetWithResponse request returning *GetResponse
-func (c *ClientWithResponses) GetWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetResponse, error) {
-	rsp, err := c.Get(ctx, reqEditors...)
+// GetCurrentUserWithResponse request returning *GetCurrentUserResponse
+func (c *ClientWithResponses) GetCurrentUserWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetCurrentUserResponse, error) {
+	rsp, err := c.GetCurrentUser(ctx, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseGetResponse(rsp)
+	return ParseGetCurrentUserResponse(rsp)
 }
 
 // SubscribeNewsletterWithBodyWithResponse request with arbitrary body returning *SubscribeNewsletterResponse
@@ -33301,13 +33301,13 @@ func (c *ClientWithResponses) SubscribeNewsletterWithBodyWithResponse(ctx contex
 	return ParseSubscribeNewsletterResponse(rsp)
 }
 
-// GetTaglinesWithResponse request returning *GetTaglinesResponse
-func (c *ClientWithResponses) GetTaglinesWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetTaglinesResponse, error) {
-	rsp, err := c.GetTaglines(ctx, reqEditors...)
+// GetNewsletterTaglinesWithResponse request returning *GetNewsletterTaglinesResponse
+func (c *ClientWithResponses) GetNewsletterTaglinesWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetNewsletterTaglinesResponse, error) {
+	rsp, err := c.GetNewsletterTaglines(ctx, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseGetTaglinesResponse(rsp)
+	return ParseGetNewsletterTaglinesResponse(rsp)
 }
 
 // ListNotificationsWithResponse request returning *ListNotificationsResponse
@@ -33319,13 +33319,13 @@ func (c *ClientWithResponses) ListNotificationsWithResponse(ctx context.Context,
 	return ParseListNotificationsResponse(rsp)
 }
 
-// MarkAsReadWithResponse request returning *MarkAsReadResponse
-func (c *ClientWithResponses) MarkAsReadWithResponse(ctx context.Context, notificationId string, reqEditors ...RequestEditorFn) (*MarkAsReadResponse, error) {
-	rsp, err := c.MarkAsRead(ctx, notificationId, reqEditors...)
+// MarkNotificationAsReadWithResponse request returning *MarkNotificationAsReadResponse
+func (c *ClientWithResponses) MarkNotificationAsReadWithResponse(ctx context.Context, notificationId string, reqEditors ...RequestEditorFn) (*MarkNotificationAsReadResponse, error) {
+	rsp, err := c.MarkNotificationAsRead(ctx, notificationId, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseMarkAsReadResponse(rsp)
+	return ParseMarkNotificationAsReadResponse(rsp)
 }
 
 // ParseAuthTokenResponse parses an HTTP response from a AuthTokenWithResponse call
@@ -33354,15 +33354,15 @@ func ParseAuthTokenResponse(rsp *http.Response) (*AuthTokenResponse, error) {
 	return response, nil
 }
 
-// ParseListResponse parses an HTTP response from a ListWithResponse call
-func ParseListResponse(rsp *http.Response) (*ListResponse, error) {
+// ParseListOrganizationAuditsResponse parses an HTTP response from a ListOrganizationAuditsWithResponse call
+func ParseListOrganizationAuditsResponse(rsp *http.Response) (*ListOrganizationAuditsResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &ListResponse{
+	response := &ListOrganizationAuditsResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -33380,15 +33380,15 @@ func ParseListResponse(rsp *http.Response) (*ListResponse, error) {
 	return response, nil
 }
 
-// ParseGet1Response parses an HTTP response from a Get1WithResponse call
-func ParseGet1Response(rsp *http.Response) (*Get1Response, error) {
+// ParseListOrganizationAuditResponse parses an HTTP response from a ListOrganizationAuditWithResponse call
+func ParseListOrganizationAuditResponse(rsp *http.Response) (*ListOrganizationAuditResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &Get1Response{
+	response := &ListOrganizationAuditResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -37608,15 +37608,15 @@ func ParseUpdate3Response(rsp *http.Response) (*Update3Response, error) {
 	return response, nil
 }
 
-// ParseList3Response parses an HTTP response from a List3WithResponse call
-func ParseList3Response(rsp *http.Response) (*List3Response, error) {
+// ParseListOrganizationGroupsResponse parses an HTTP response from a ListOrganizationGroupsWithResponse call
+func ParseListOrganizationGroupsResponse(rsp *http.Response) (*ListOrganizationGroupsResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &List3Response{
+	response := &ListOrganizationGroupsResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -37634,15 +37634,15 @@ func ParseList3Response(rsp *http.Response) (*List3Response, error) {
 	return response, nil
 }
 
-// ParseCreate2Response parses an HTTP response from a Create2WithResponse call
-func ParseCreate2Response(rsp *http.Response) (*Create2Response, error) {
+// ParseCreateOrganizationGroupResponse parses an HTTP response from a CreateOrganizationGroupWithResponse call
+func ParseCreateOrganizationGroupResponse(rsp *http.Response) (*CreateOrganizationGroupResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &Create2Response{
+	response := &CreateOrganizationGroupResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -37718,15 +37718,15 @@ func ParseUpdateOrganizationGroupResponse(rsp *http.Response) (*UpdateOrganizati
 	return response, nil
 }
 
-// ParseList4Response parses an HTTP response from a List4WithResponse call
-func ParseList4Response(rsp *http.Response) (*List4Response, error) {
+// ParseListOrganizationGroupMembersResponse parses an HTTP response from a ListOrganizationGroupMembersWithResponse call
+func ParseListOrganizationGroupMembersResponse(rsp *http.Response) (*ListOrganizationGroupMembersResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &List4Response{
+	response := &ListOrganizationGroupMembersResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -37744,15 +37744,15 @@ func ParseList4Response(rsp *http.Response) (*List4Response, error) {
 	return response, nil
 }
 
-// ParseRemoveMember1Response parses an HTTP response from a RemoveMember1WithResponse call
-func ParseRemoveMember1Response(rsp *http.Response) (*RemoveMember1Response, error) {
+// ParseDeleteOrganizationGroupMemberResponse parses an HTTP response from a DeleteOrganizationGroupMemberWithResponse call
+func ParseDeleteOrganizationGroupMemberResponse(rsp *http.Response) (*DeleteOrganizationGroupMemberResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &RemoveMember1Response{
+	response := &DeleteOrganizationGroupMemberResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -37760,15 +37760,15 @@ func ParseRemoveMember1Response(rsp *http.Response) (*RemoveMember1Response, err
 	return response, nil
 }
 
-// ParseAddMemberResponse parses an HTTP response from a AddMemberWithResponse call
-func ParseAddMemberResponse(rsp *http.Response) (*AddMemberResponse, error) {
+// ParseAddOrganizationGroupMemberResponse parses an HTTP response from a AddOrganizationGroupMemberWithResponse call
+func ParseAddOrganizationGroupMemberResponse(rsp *http.Response) (*AddOrganizationGroupMemberResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &AddMemberResponse{
+	response := &AddOrganizationGroupMemberResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -37776,15 +37776,15 @@ func ParseAddMemberResponse(rsp *http.Response) (*AddMemberResponse, error) {
 	return response, nil
 }
 
-// ParseList5Response parses an HTTP response from a List5WithResponse call
-func ParseList5Response(rsp *http.Response) (*List5Response, error) {
+// ParseListOrganizationIdentitiesResponse parses an HTTP response from a ListOrganizationIdentitiesWithResponse call
+func ParseListOrganizationIdentitiesResponse(rsp *http.Response) (*ListOrganizationIdentitiesResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &List5Response{
+	response := &ListOrganizationIdentitiesResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -37886,15 +37886,15 @@ func ParseUpdate2Response(rsp *http.Response) (*Update2Response, error) {
 	return response, nil
 }
 
-// ParseGetMembersResponse parses an HTTP response from a GetMembersWithResponse call
-func ParseGetMembersResponse(rsp *http.Response) (*GetMembersResponse, error) {
+// ParseGetOrganizationMembersResponse parses an HTTP response from a GetOrganizationMembersWithResponse call
+func ParseGetOrganizationMembersResponse(rsp *http.Response) (*GetOrganizationMembersResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &GetMembersResponse{
+	response := &GetOrganizationMembersResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -37928,15 +37928,15 @@ func ParseAddOrUpdateMemberResponse(rsp *http.Response) (*AddOrUpdateMemberRespo
 	return response, nil
 }
 
-// ParseRemoveMemberResponse parses an HTTP response from a RemoveMemberWithResponse call
-func ParseRemoveMemberResponse(rsp *http.Response) (*RemoveMemberResponse, error) {
+// ParseRemoveOrganizationMemberResponse parses an HTTP response from a RemoveOrganizationMemberWithResponse call
+func ParseRemoveOrganizationMemberResponse(rsp *http.Response) (*RemoveOrganizationMemberResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &RemoveMemberResponse{
+	response := &RemoveOrganizationMemberResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -37944,15 +37944,15 @@ func ParseRemoveMemberResponse(rsp *http.Response) (*RemoveMemberResponse, error
 	return response, nil
 }
 
-// ParseList2Response parses an HTTP response from a List2WithResponse call
-func ParseList2Response(rsp *http.Response) (*List2Response, error) {
+// ParseListOrganizationRolesResponse parses an HTTP response from a ListOrganizationRolesWithResponse call
+func ParseListOrganizationRolesResponse(rsp *http.Response) (*ListOrganizationRolesResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &List2Response{
+	response := &ListOrganizationRolesResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -37970,15 +37970,15 @@ func ParseList2Response(rsp *http.Response) (*List2Response, error) {
 	return response, nil
 }
 
-// ParseCreate1Response parses an HTTP response from a Create1WithResponse call
-func ParseCreate1Response(rsp *http.Response) (*Create1Response, error) {
+// ParseCreateOrganizationRoleResponse parses an HTTP response from a CreateOrganizationRoleWithResponse call
+func ParseCreateOrganizationRoleResponse(rsp *http.Response) (*CreateOrganizationRoleResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &Create1Response{
+	response := &CreateOrganizationRoleResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -37986,15 +37986,15 @@ func ParseCreate1Response(rsp *http.Response) (*Create1Response, error) {
 	return response, nil
 }
 
-// ParseDelete1Response parses an HTTP response from a Delete1WithResponse call
-func ParseDelete1Response(rsp *http.Response) (*Delete1Response, error) {
+// ParseDeleteOrganizationRoleResponse parses an HTTP response from a DeleteOrganizationRoleWithResponse call
+func ParseDeleteOrganizationRoleResponse(rsp *http.Response) (*DeleteOrganizationRoleResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &Delete1Response{
+	response := &DeleteOrganizationRoleResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -38002,15 +38002,15 @@ func ParseDelete1Response(rsp *http.Response) (*Delete1Response, error) {
 	return response, nil
 }
 
-// ParseGet3Response parses an HTTP response from a Get3WithResponse call
-func ParseGet3Response(rsp *http.Response) (*Get3Response, error) {
+// ParseGetOrganizationRoleResponse parses an HTTP response from a GetOrganizationRoleWithResponse call
+func ParseGetOrganizationRoleResponse(rsp *http.Response) (*GetOrganizationRoleResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &Get3Response{
+	response := &GetOrganizationRoleResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -38028,15 +38028,15 @@ func ParseGet3Response(rsp *http.Response) (*Get3Response, error) {
 	return response, nil
 }
 
-// ParseUpdate1Response parses an HTTP response from a Update1WithResponse call
-func ParseUpdate1Response(rsp *http.Response) (*Update1Response, error) {
+// ParseUpdateOrganizationRoleResponse parses an HTTP response from a UpdateOrganizationRoleWithResponse call
+func ParseUpdateOrganizationRoleResponse(rsp *http.Response) (*UpdateOrganizationRoleResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &Update1Response{
+	response := &UpdateOrganizationRoleResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -38054,15 +38054,15 @@ func ParseUpdate1Response(rsp *http.Response) (*Update1Response, error) {
 	return response, nil
 }
 
-// ParseGet6Response parses an HTTP response from a Get6WithResponse call
-func ParseGet6Response(rsp *http.Response) (*Get6Response, error) {
+// ParseGetOrganizationSettingsResponse parses an HTTP response from a GetOrganizationSettingsWithResponse call
+func ParseGetOrganizationSettingsResponse(rsp *http.Response) (*GetOrganizationSettingsResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &Get6Response{
+	response := &GetOrganizationSettingsResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -38106,15 +38106,15 @@ func ParsePatchResponse(rsp *http.Response) (*PatchResponse, error) {
 	return response, nil
 }
 
-// ParseList1Response parses an HTTP response from a List1WithResponse call
-func ParseList1Response(rsp *http.Response) (*List1Response, error) {
+// ParseListOrganizationTagsResponse parses an HTTP response from a ListOrganizationTagsWithResponse call
+func ParseListOrganizationTagsResponse(rsp *http.Response) (*ListOrganizationTagsResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &List1Response{
+	response := &ListOrganizationTagsResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -38132,15 +38132,15 @@ func ParseList1Response(rsp *http.Response) (*List1Response, error) {
 	return response, nil
 }
 
-// ParseCreateResponse parses an HTTP response from a CreateWithResponse call
-func ParseCreateResponse(rsp *http.Response) (*CreateResponse, error) {
+// ParseCreateOrganizationShardingTagResponse parses an HTTP response from a CreateOrganizationShardingTagWithResponse call
+func ParseCreateOrganizationShardingTagResponse(rsp *http.Response) (*CreateOrganizationShardingTagResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &CreateResponse{
+	response := &CreateOrganizationShardingTagResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -38148,15 +38148,15 @@ func ParseCreateResponse(rsp *http.Response) (*CreateResponse, error) {
 	return response, nil
 }
 
-// ParseDeleteResponse parses an HTTP response from a DeleteWithResponse call
-func ParseDeleteResponse(rsp *http.Response) (*DeleteResponse, error) {
+// ParseDeleteOrganizationShardingTagResponse parses an HTTP response from a DeleteOrganizationShardingTagWithResponse call
+func ParseDeleteOrganizationShardingTagResponse(rsp *http.Response) (*DeleteOrganizationShardingTagResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &DeleteResponse{
+	response := &DeleteOrganizationShardingTagResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -38164,15 +38164,15 @@ func ParseDeleteResponse(rsp *http.Response) (*DeleteResponse, error) {
 	return response, nil
 }
 
-// ParseGet2Response parses an HTTP response from a Get2WithResponse call
-func ParseGet2Response(rsp *http.Response) (*Get2Response, error) {
+// ParseGetOrganizationShardingTagResponse parses an HTTP response from a GetOrganizationShardingTagWithResponse call
+func ParseGetOrganizationShardingTagResponse(rsp *http.Response) (*GetOrganizationShardingTagResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &Get2Response{
+	response := &GetOrganizationShardingTagResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -38190,15 +38190,15 @@ func ParseGet2Response(rsp *http.Response) (*Get2Response, error) {
 	return response, nil
 }
 
-// ParseUpdateResponse parses an HTTP response from a UpdateWithResponse call
-func ParseUpdateResponse(rsp *http.Response) (*UpdateResponse, error) {
+// ParseUpdateOrganizationShardingTagResponse parses an HTTP response from a UpdateOrganizationShardingTagWithResponse call
+func ParseUpdateOrganizationShardingTagResponse(rsp *http.Response) (*UpdateOrganizationShardingTagResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &UpdateResponse{
+	response := &UpdateOrganizationShardingTagResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -39125,15 +39125,15 @@ func ParseGet37Response(rsp *http.Response) (*Get37Response, error) {
 	return response, nil
 }
 
-// ParseGetResponse parses an HTTP response from a GetWithResponse call
-func ParseGetResponse(rsp *http.Response) (*GetResponse, error) {
+// ParseGetCurrentUserResponse parses an HTTP response from a GetCurrentUserWithResponse call
+func ParseGetCurrentUserResponse(rsp *http.Response) (*GetCurrentUserResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &GetResponse{
+	response := &GetCurrentUserResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -39167,15 +39167,15 @@ func ParseSubscribeNewsletterResponse(rsp *http.Response) (*SubscribeNewsletterR
 	return response, nil
 }
 
-// ParseGetTaglinesResponse parses an HTTP response from a GetTaglinesWithResponse call
-func ParseGetTaglinesResponse(rsp *http.Response) (*GetTaglinesResponse, error) {
+// ParseGetNewsletterTaglinesResponse parses an HTTP response from a GetNewsletterTaglinesWithResponse call
+func ParseGetNewsletterTaglinesResponse(rsp *http.Response) (*GetNewsletterTaglinesResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &GetTaglinesResponse{
+	response := &GetNewsletterTaglinesResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -39209,15 +39209,15 @@ func ParseListNotificationsResponse(rsp *http.Response) (*ListNotificationsRespo
 	return response, nil
 }
 
-// ParseMarkAsReadResponse parses an HTTP response from a MarkAsReadWithResponse call
-func ParseMarkAsReadResponse(rsp *http.Response) (*MarkAsReadResponse, error) {
+// ParseMarkNotificationAsReadResponse parses an HTTP response from a MarkNotificationAsReadWithResponse call
+func ParseMarkNotificationAsReadResponse(rsp *http.Response) (*MarkNotificationAsReadResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &MarkAsReadResponse{
+	response := &MarkNotificationAsReadResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
