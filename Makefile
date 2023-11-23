@@ -19,6 +19,8 @@ lint: tools
 	$(GOBIN)/golangci-lint run ./...
 
 generate:
+# github.com/deepmap/oapi-codegen/pkg/runtime"
+	go install github.com/deepmap/oapi-codegen/cmd/oapi-codegen@latest
 	go generate ./...
 
 test:
