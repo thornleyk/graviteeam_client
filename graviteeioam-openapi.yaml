@@ -197,7 +197,7 @@ paths:
         \ specified organization. Except if user has ORGANIZATION_AUDIT[READ] permission\
         \ on the organization, each returned audit is filtered and contains only basic\
         \ information such as id, date, event, actor, target and status."
-      operationId: organizationListPlatformAudits
+      operationId: organizationListPlatformAuditsPaginated
       parameters:
         - name: organizationId
           in: path
@@ -706,7 +706,7 @@ paths:
         "User must have the ORGANIZATION[LIST] permission on the specified\
         \ organization. Each returned group is filtered and contains only basic information\
         \ such as id and name."
-      operationId: organizationListPlatformGroups
+      operationId: organizationListPlatformGroupsPaginated
       parameters:
         - name: organizationId
           in: path
@@ -875,7 +875,7 @@ paths:
       description:
         "User must have the ORGANIZATION_GROUP[READ] permission on the\
         \ specified organization"
-      operationId: organizationListPlatformGroupMembers
+      operationId: organizationListPlatformGroupMembersPaginated
       parameters:
         - name: organizationId
           in: path
@@ -1161,7 +1161,7 @@ paths:
         \ such as id and username and displayname. Last login and identity provider\
         \ name will be also returned if current user has ORGANIZATION_USER[READ] permission\
         \ on the organization."
-      operationId: organizationListPlatformUsers
+      operationId: organizationListPlatformUsersPaginated
       parameters:
         - name: organizationId
           in: path
@@ -1760,7 +1760,7 @@ paths:
         \ permission on the specified environment or DOMAIN[READ] permission on the\
         \ specified organization.Each returned domain is filtered and contains only\
         \ basic information such as id, name and description and isEnabled."
-      operationId: environmentListDomains
+      operationId: environmentListDomainsPaginated
       parameters:
         - name: organizationId
           in: path
@@ -2014,7 +2014,7 @@ paths:
         \ permission on the domain, environment or organization, each returned audit\
         \ is filtered and contains only basic information such as id, date, event,\
         \ actor, target and status."
-      operationId: environmentListDomainAudits
+      operationId: environmentListDomainAuditsPaginated
       parameters:
         - name: organizationId
           in: path
@@ -2297,7 +2297,7 @@ paths:
         \ domain or DOMAIN_ROLE[LIST] permission on the specified environment or DOMAIN_ROLE[LIST]\
         \ permission on the specified organization. Each returned role is filtered\
         \ and contains only basic information such as id and name."
-      operationId: environmentListDomainRoles
+      operationId: environmentListDomainRolesPaginated
       parameters:
         - name: organizationId
           in: path
@@ -2535,7 +2535,7 @@ paths:
         \ domain or DOMAIN_GROUP[LIST] permission on the specified environment or\
         \ DOMAIN_GROUP[LIST] permission on the specified organization. Each returned\
         \ group is filtered and contains only basic information such as id and name."
-      operationId: environmentListDomainGroups
+      operationId: environmentListDomainGroupsPaginated
       parameters:
         - name: organizationId
           in: path
@@ -2765,7 +2765,7 @@ paths:
         "User must have the DOMAIN_GROUP[READ] permission on the specified\
         \ domain or DOMAIN_GROUP[READ] permission on the specified environment or\
         \ DOMAIN_GROUP[READ] permission on the specified organization"
-      operationId: domainGetGroupMemebers
+      operationId: domainGetGroupMemebersPaginated
       parameters:
         - name: organizationId
           in: path
@@ -3303,7 +3303,7 @@ paths:
         \ and contains only basic information such as id and username and displayname.\
         \ Last login and identity provider name will be also returned if current user\
         \ has DOMAIN_USER[READ] permission on the domain, environment or organization."
-      operationId: environmentListDomainUsers
+      operationId: environmentListDomainUsersPaginated
       parameters:
         - name: organizationId
           in: path
@@ -4478,7 +4478,7 @@ paths:
         "User must have the DOMAIN_USER[READ] permission on the specified\
         \ domain or DOMAIN_USER[READ] permission on the specified environment or DOMAIN_USER[READ]\
         \ permission on the specified organization"
-      operationId: environmentListDomainUserAudits
+      operationId: environmentListDomainUserAuditsPaginated
       parameters:
         - name: organizationId
           in: path
@@ -4647,7 +4647,7 @@ paths:
         \ domain or APPLICATION[READ] permission on the specified environment or APPLICATION[READ]\
         \ permission on the specified organization. Each returned application is filtered\
         \ and contains only basic information such as id, name, description and isEnabled."
-      operationId: environmentListDomainApplications
+      operationId: environmentListDomainApplicationsPaginated
       parameters:
         - name: organizationId
           in: path
@@ -5959,7 +5959,7 @@ paths:
         \ application or APPLICATION_RESOURCE[LIST] permission on the specified domain\
         \ or APPLICATION_RESOURCE[LIST] permission on the specified environment or\
         \ APPLICATION_RESOURCE[LIST] permission on the specified organization"
-      operationId: applicationListResources
+      operationId: applicationListResourcesPaginated
       parameters:
         - name: organizationId
           in: path
@@ -6760,7 +6760,7 @@ paths:
         \ DOMAIN_SCOPE[LIST] permission on the specified organization Each returned\
         \ scope is filtered and contains only basic information such as id, key, name,\
         \ description, isSystem and isDiscovery."
-      operationId: environmentListDomainScopes
+      operationId: environmentListDomainScopesPaginated
       parameters:
         - name: organizationId
           in: path
