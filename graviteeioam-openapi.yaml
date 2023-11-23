@@ -9929,7 +9929,7 @@ paths:
       description:
         "User must have the ORGANIZATION_ENTRYPOINT[CREATE] permission\
         \ on the specified organization"
-      operationId: create_14
+      operationId: organizationCreateEntrypoint
       parameters:
         - name: organizationId
           in: path

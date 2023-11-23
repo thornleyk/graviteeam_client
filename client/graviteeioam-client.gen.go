@@ -3254,8 +3254,8 @@ type PlatformListPluginResourcesParams struct {
 	Expand *[]string `form:"expand,omitempty" json:"expand,omitempty"`
 }
 
-// Create14JSONRequestBody defines body for Create14 for application/json ContentType.
-type Create14JSONRequestBody = NewEntrypoint
+// OrganizationCreateEntrypointJSONRequestBody defines body for OrganizationCreateEntrypoint for application/json ContentType.
+type OrganizationCreateEntrypointJSONRequestBody = NewEntrypoint
 
 // OrganizationUpdateEntrypointJSONRequestBody defines body for OrganizationUpdateEntrypoint for application/json ContentType.
 type OrganizationUpdateEntrypointJSONRequestBody = UpdateEntrypoint
@@ -3567,10 +3567,10 @@ type ClientInterface interface {
 	// OrganizationListEntrypoints request
 	OrganizationListEntrypoints(ctx context.Context, organizationId string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// Create14WithBody request with any body
-	Create14WithBody(ctx context.Context, organizationId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// OrganizationCreateEntrypointWithBody request with any body
+	OrganizationCreateEntrypointWithBody(ctx context.Context, organizationId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	Create14(ctx context.Context, organizationId string, body Create14JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	OrganizationCreateEntrypoint(ctx context.Context, organizationId string, body OrganizationCreateEntrypointJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OrganizationDeleteEntrypoint request
 	OrganizationDeleteEntrypoint(ctx context.Context, organizationId string, entrypointId string, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -4557,8 +4557,8 @@ func (c *Client) OrganizationListEntrypoints(ctx context.Context, organizationId
 	return c.Client.Do(req)
 }
 
-func (c *Client) Create14WithBody(ctx context.Context, organizationId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCreate14RequestWithBody(c.Server, organizationId, contentType, body)
+func (c *Client) OrganizationCreateEntrypointWithBody(ctx context.Context, organizationId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOrganizationCreateEntrypointRequestWithBody(c.Server, organizationId, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4569,8 +4569,8 @@ func (c *Client) Create14WithBody(ctx context.Context, organizationId string, co
 	return c.Client.Do(req)
 }
 
-func (c *Client) Create14(ctx context.Context, organizationId string, body Create14JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCreate14Request(c.Server, organizationId, body)
+func (c *Client) OrganizationCreateEntrypoint(ctx context.Context, organizationId string, body OrganizationCreateEntrypointJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOrganizationCreateEntrypointRequest(c.Server, organizationId, body)
 	if err != nil {
 		return nil, err
 	}
@@ -8879,19 +8879,19 @@ func NewOrganizationListEntrypointsRequest(server string, organizationId string)
 	return req, nil
 }
 
-// NewCreate14Request calls the generic Create14 builder with application/json body
-func NewCreate14Request(server string, organizationId string, body Create14JSONRequestBody) (*http.Request, error) {
+// NewOrganizationCreateEntrypointRequest calls the generic OrganizationCreateEntrypoint builder with application/json body
+func NewOrganizationCreateEntrypointRequest(server string, organizationId string, body OrganizationCreateEntrypointJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewCreate14RequestWithBody(server, organizationId, "application/json", bodyReader)
+	return NewOrganizationCreateEntrypointRequestWithBody(server, organizationId, "application/json", bodyReader)
 }
 
-// NewCreate14RequestWithBody generates requests for Create14 with any type of body
-func NewCreate14RequestWithBody(server string, organizationId string, contentType string, body io.Reader) (*http.Request, error) {
+// NewOrganizationCreateEntrypointRequestWithBody generates requests for OrganizationCreateEntrypoint with any type of body
+func NewOrganizationCreateEntrypointRequestWithBody(server string, organizationId string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -23653,10 +23653,10 @@ type ClientWithResponsesInterface interface {
 	// OrganizationListEntrypointsWithResponse request
 	OrganizationListEntrypointsWithResponse(ctx context.Context, organizationId string, reqEditors ...RequestEditorFn) (*OrganizationListEntrypointsResponse, error)
 
-	// Create14WithBodyWithResponse request with any body
-	Create14WithBodyWithResponse(ctx context.Context, organizationId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Create14Response, error)
+	// OrganizationCreateEntrypointWithBodyWithResponse request with any body
+	OrganizationCreateEntrypointWithBodyWithResponse(ctx context.Context, organizationId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OrganizationCreateEntrypointResponse, error)
 
-	Create14WithResponse(ctx context.Context, organizationId string, body Create14JSONRequestBody, reqEditors ...RequestEditorFn) (*Create14Response, error)
+	OrganizationCreateEntrypointWithResponse(ctx context.Context, organizationId string, body OrganizationCreateEntrypointJSONRequestBody, reqEditors ...RequestEditorFn) (*OrganizationCreateEntrypointResponse, error)
 
 	// OrganizationDeleteEntrypointWithResponse request
 	OrganizationDeleteEntrypointWithResponse(ctx context.Context, organizationId string, entrypointId string, reqEditors ...RequestEditorFn) (*OrganizationDeleteEntrypointResponse, error)
@@ -24683,13 +24683,13 @@ func (r OrganizationListEntrypointsResponse) StatusCode() int {
 	return 0
 }
 
-type Create14Response struct {
+type OrganizationCreateEntrypointResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 }
 
 // Status returns HTTPResponse.Status
-func (r Create14Response) Status() string {
+func (r OrganizationCreateEntrypointResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -24697,7 +24697,7 @@ func (r Create14Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r Create14Response) StatusCode() int {
+func (r OrganizationCreateEntrypointResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -30402,21 +30402,21 @@ func (c *ClientWithResponses) OrganizationListEntrypointsWithResponse(ctx contex
 	return ParseOrganizationListEntrypointsResponse(rsp)
 }
 
-// Create14WithBodyWithResponse request with arbitrary body returning *Create14Response
-func (c *ClientWithResponses) Create14WithBodyWithResponse(ctx context.Context, organizationId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*Create14Response, error) {
-	rsp, err := c.Create14WithBody(ctx, organizationId, contentType, body, reqEditors...)
+// OrganizationCreateEntrypointWithBodyWithResponse request with arbitrary body returning *OrganizationCreateEntrypointResponse
+func (c *ClientWithResponses) OrganizationCreateEntrypointWithBodyWithResponse(ctx context.Context, organizationId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OrganizationCreateEntrypointResponse, error) {
+	rsp, err := c.OrganizationCreateEntrypointWithBody(ctx, organizationId, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseCreate14Response(rsp)
+	return ParseOrganizationCreateEntrypointResponse(rsp)
 }
 
-func (c *ClientWithResponses) Create14WithResponse(ctx context.Context, organizationId string, body Create14JSONRequestBody, reqEditors ...RequestEditorFn) (*Create14Response, error) {
-	rsp, err := c.Create14(ctx, organizationId, body, reqEditors...)
+func (c *ClientWithResponses) OrganizationCreateEntrypointWithResponse(ctx context.Context, organizationId string, body OrganizationCreateEntrypointJSONRequestBody, reqEditors ...RequestEditorFn) (*OrganizationCreateEntrypointResponse, error) {
+	rsp, err := c.OrganizationCreateEntrypoint(ctx, organizationId, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseCreate14Response(rsp)
+	return ParseOrganizationCreateEntrypointResponse(rsp)
 }
 
 // OrganizationDeleteEntrypointWithResponse request returning *OrganizationDeleteEntrypointResponse
@@ -33481,15 +33481,15 @@ func ParseOrganizationListEntrypointsResponse(rsp *http.Response) (*Organization
 	return response, nil
 }
 
-// ParseCreate14Response parses an HTTP response from a Create14WithResponse call
-func ParseCreate14Response(rsp *http.Response) (*Create14Response, error) {
+// ParseOrganizationCreateEntrypointResponse parses an HTTP response from a OrganizationCreateEntrypointWithResponse call
+func ParseOrganizationCreateEntrypointResponse(rsp *http.Response) (*OrganizationCreateEntrypointResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &Create14Response{
+	response := &OrganizationCreateEntrypointResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
