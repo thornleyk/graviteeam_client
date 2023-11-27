@@ -1988,7 +1988,7 @@ type Organization struct {
 	DynamicClientRegistrationEnabled         *bool                                 `json:"dynamicClientRegistrationEnabled,omitempty"`
 	DynamicClientRegistrationTemplateEnabled *bool                                 `json:"dynamicClientRegistrationTemplateEnabled,omitempty"`
 	Enabled                                  *bool                                 `json:"enabled,omitempty"`
-	Hrid                                     *[]string                             `json:"hrid,omitempty"`
+	Hrids                                    *[]string                             `json:"hrids,omitempty"`
 	Id                                       *string                               `json:"id,omitempty"`
 	Identities                               *[]string                             `json:"identities,omitempty"`
 	LoginSettings                            *LoginSettings                        `json:"loginSettings,omitempty"`
@@ -2980,8 +2980,8 @@ type WebAuthnSettingsAuthenticatorAttachment string
 // WebAuthnSettingsUserVerification defines model for WebAuthnSettings.UserVerification.
 type WebAuthnSettingsUserVerification string
 
-// OrganizationListPlatformAuditsParams defines parameters for OrganizationListPlatformAudits.
-type OrganizationListPlatformAuditsParams struct {
+// OrganizationListPlatformAuditsPaginatedParams defines parameters for OrganizationListPlatformAuditsPaginated.
+type OrganizationListPlatformAuditsPaginatedParams struct {
 	Type   *string `form:"type,omitempty" json:"type,omitempty"`
 	Status *string `form:"status,omitempty" json:"status,omitempty"`
 	User   *string `form:"user,omitempty" json:"user,omitempty"`
@@ -2991,8 +2991,8 @@ type OrganizationListPlatformAuditsParams struct {
 	Page   *int32  `form:"page,omitempty" json:"page,omitempty"`
 }
 
-// EnvironmentListDomainsParams defines parameters for EnvironmentListDomains.
-type EnvironmentListDomainsParams struct {
+// EnvironmentListDomainsPaginatedParams defines parameters for EnvironmentListDomainsPaginated.
+type EnvironmentListDomainsPaginatedParams struct {
 	Page *int32  `form:"page,omitempty" json:"page,omitempty"`
 	Size *int32  `form:"size,omitempty" json:"size,omitempty"`
 	Q    *string `form:"q,omitempty" json:"q,omitempty"`
@@ -3023,8 +3023,8 @@ type DomainGetAnalyticsParams struct {
 // DomainGetAnalyticsParamsType defines parameters for DomainGetAnalytics.
 type DomainGetAnalyticsParamsType string
 
-// EnvironmentListDomainApplicationsParams defines parameters for EnvironmentListDomainApplications.
-type EnvironmentListDomainApplicationsParams struct {
+// EnvironmentListDomainApplicationsPaginatedParams defines parameters for EnvironmentListDomainApplicationsPaginated.
+type EnvironmentListDomainApplicationsPaginatedParams struct {
 	Page *int32  `form:"page,omitempty" json:"page,omitempty"`
 	Size *int32  `form:"size,omitempty" json:"size,omitempty"`
 	Q    *string `form:"q,omitempty" json:"q,omitempty"`
@@ -3071,14 +3071,14 @@ type ApplicationListFormsParams struct {
 // ApplicationListFormsParamsTemplate defines parameters for ApplicationListForms.
 type ApplicationListFormsParamsTemplate string
 
-// ApplicationListResourcesParams defines parameters for ApplicationListResources.
-type ApplicationListResourcesParams struct {
+// ApplicationListResourcesPaginatedParams defines parameters for ApplicationListResourcesPaginated.
+type ApplicationListResourcesPaginatedParams struct {
 	Page *int32 `form:"page,omitempty" json:"page,omitempty"`
 	Size *int32 `form:"size,omitempty" json:"size,omitempty"`
 }
 
-// EnvironmentListDomainAuditsParams defines parameters for EnvironmentListDomainAudits.
-type EnvironmentListDomainAuditsParams struct {
+// EnvironmentListDomainAuditsPaginatedParams defines parameters for EnvironmentListDomainAuditsPaginated.
+type EnvironmentListDomainAuditsPaginatedParams struct {
 	Type   *string `form:"type,omitempty" json:"type,omitempty"`
 	Status *string `form:"status,omitempty" json:"status,omitempty"`
 	User   *string `form:"user,omitempty" json:"user,omitempty"`
@@ -3112,14 +3112,14 @@ type EnvironmentListDomainFormsParams struct {
 // EnvironmentListDomainFormsParamsTemplate defines parameters for EnvironmentListDomainForms.
 type EnvironmentListDomainFormsParamsTemplate string
 
-// EnvironmentListDomainGroupsParams defines parameters for EnvironmentListDomainGroups.
-type EnvironmentListDomainGroupsParams struct {
+// EnvironmentListDomainGroupsPaginatedParams defines parameters for EnvironmentListDomainGroupsPaginated.
+type EnvironmentListDomainGroupsPaginatedParams struct {
 	Page *int32 `form:"page,omitempty" json:"page,omitempty"`
 	Size *int32 `form:"size,omitempty" json:"size,omitempty"`
 }
 
-// DomainGetGroupMemebersParams defines parameters for DomainGetGroupMemebers.
-type DomainGetGroupMemebersParams struct {
+// DomainGetGroupMemebersPaginatedParams defines parameters for DomainGetGroupMemebersPaginated.
+type DomainGetGroupMemebersPaginatedParams struct {
 	Page *int32 `form:"page,omitempty" json:"page,omitempty"`
 	Size *int32 `form:"size,omitempty" json:"size,omitempty"`
 }
@@ -3137,30 +3137,30 @@ type EnvironmentListDomainReportersParams struct {
 	UserProvider *bool `form:"userProvider,omitempty" json:"userProvider,omitempty"`
 }
 
-// EnvironmentListDomainRolesParams defines parameters for EnvironmentListDomainRoles.
-type EnvironmentListDomainRolesParams struct {
+// EnvironmentListDomainRolesPaginatedParams defines parameters for EnvironmentListDomainRolesPaginated.
+type EnvironmentListDomainRolesPaginatedParams struct {
 	Page *int32  `form:"page,omitempty" json:"page,omitempty"`
 	Size *int32  `form:"size,omitempty" json:"size,omitempty"`
 	Q    *string `form:"q,omitempty" json:"q,omitempty"`
 }
 
-// EnvironmentListDomainScopesParams defines parameters for EnvironmentListDomainScopes.
-type EnvironmentListDomainScopesParams struct {
+// EnvironmentListDomainScopesPaginatedParams defines parameters for EnvironmentListDomainScopesPaginated.
+type EnvironmentListDomainScopesPaginatedParams struct {
 	Page *int32  `form:"page,omitempty" json:"page,omitempty"`
 	Size *int32  `form:"size,omitempty" json:"size,omitempty"`
 	Q    *string `form:"q,omitempty" json:"q,omitempty"`
 }
 
-// EnvironmentListDomainUsersParams defines parameters for EnvironmentListDomainUsers.
-type EnvironmentListDomainUsersParams struct {
+// EnvironmentListDomainUsersPaginatedParams defines parameters for EnvironmentListDomainUsersPaginated.
+type EnvironmentListDomainUsersPaginatedParams struct {
 	Q      *string `form:"q,omitempty" json:"q,omitempty"`
 	Filter *string `form:"filter,omitempty" json:"filter,omitempty"`
 	Page   *int32  `form:"page,omitempty" json:"page,omitempty"`
 	Size   *int32  `form:"size,omitempty" json:"size,omitempty"`
 }
 
-// EnvironmentListDomainUserAuditsParams defines parameters for EnvironmentListDomainUserAudits.
-type EnvironmentListDomainUserAuditsParams struct {
+// EnvironmentListDomainUserAuditsPaginatedParams defines parameters for EnvironmentListDomainUserAuditsPaginated.
+type EnvironmentListDomainUserAuditsPaginatedParams struct {
 	Type   *string `form:"type,omitempty" json:"type,omitempty"`
 	Status *string `form:"status,omitempty" json:"status,omitempty"`
 	From   *int64  `form:"from,omitempty" json:"from,omitempty"`
@@ -3195,14 +3195,14 @@ type OrganizationListPlatfomFormTemplatesParams struct {
 // OrganizationListPlatfomFormTemplatesParamsTemplate defines parameters for OrganizationListPlatfomFormTemplates.
 type OrganizationListPlatfomFormTemplatesParamsTemplate string
 
-// OrganizationListPlatformGroupsParams defines parameters for OrganizationListPlatformGroups.
-type OrganizationListPlatformGroupsParams struct {
+// OrganizationListPlatformGroupsPaginatedParams defines parameters for OrganizationListPlatformGroupsPaginated.
+type OrganizationListPlatformGroupsPaginatedParams struct {
 	Page *int32 `form:"page,omitempty" json:"page,omitempty"`
 	Size *int32 `form:"size,omitempty" json:"size,omitempty"`
 }
 
-// OrganizationListPlatformGroupMembersParams defines parameters for OrganizationListPlatformGroupMembers.
-type OrganizationListPlatformGroupMembersParams struct {
+// OrganizationListPlatformGroupMembersPaginatedParams defines parameters for OrganizationListPlatformGroupMembersPaginated.
+type OrganizationListPlatformGroupMembersPaginatedParams struct {
 	Page *int32 `form:"page,omitempty" json:"page,omitempty"`
 	Size *int32 `form:"size,omitempty" json:"size,omitempty"`
 }
@@ -3220,8 +3220,8 @@ type OrganizationListPlatformRolesParams struct {
 // OrganizationListPlatformRolesParamsType defines parameters for OrganizationListPlatformRoles.
 type OrganizationListPlatformRolesParamsType string
 
-// OrganizationListPlatformUsersParams defines parameters for OrganizationListPlatformUsers.
-type OrganizationListPlatformUsersParams struct {
+// OrganizationListPlatformUsersPaginatedParams defines parameters for OrganizationListPlatformUsersPaginated.
+type OrganizationListPlatformUsersPaginatedParams struct {
 	Q      *string `form:"q,omitempty" json:"q,omitempty"`
 	Filter *string `form:"filter,omitempty" json:"filter,omitempty"`
 	Page   *int32  `form:"page,omitempty" json:"page,omitempty"`
@@ -3558,8 +3558,8 @@ type ClientInterface interface {
 	// AuthTokenExchange request
 	AuthTokenExchange(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// OrganizationListPlatformAudits request
-	OrganizationListPlatformAudits(ctx context.Context, organizationId string, params *OrganizationListPlatformAuditsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// OrganizationListPlatformAuditsPaginated request
+	OrganizationListPlatformAuditsPaginated(ctx context.Context, organizationId string, params *OrganizationListPlatformAuditsPaginatedParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OrganizationGetPlatformAudit request
 	OrganizationGetPlatformAudit(ctx context.Context, organizationId string, audit string, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -3586,8 +3586,8 @@ type ClientInterface interface {
 	// OrganizationListPlatfomEnvironments request
 	OrganizationListPlatfomEnvironments(ctx context.Context, organizationId string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// EnvironmentListDomains request
-	EnvironmentListDomains(ctx context.Context, organizationId string, environmentId string, params *EnvironmentListDomainsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// EnvironmentListDomainsPaginated request
+	EnvironmentListDomainsPaginated(ctx context.Context, organizationId string, environmentId string, params *EnvironmentListDomainsPaginatedParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// EnvironmentCreateDomainWithBody request with any body
 	EnvironmentCreateDomainWithBody(ctx context.Context, organizationId string, environmentId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -3643,8 +3643,8 @@ type ClientInterface interface {
 	// DomainGetAnalytics request
 	DomainGetAnalytics(ctx context.Context, organizationId string, environmentId string, domain string, params *DomainGetAnalyticsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// EnvironmentListDomainApplications request
-	EnvironmentListDomainApplications(ctx context.Context, organizationId string, environmentId string, domain string, params *EnvironmentListDomainApplicationsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// EnvironmentListDomainApplicationsPaginated request
+	EnvironmentListDomainApplicationsPaginated(ctx context.Context, organizationId string, environmentId string, domain string, params *EnvironmentListDomainApplicationsPaginatedParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// EnvironmentCreateDomainApplicationWithBody request with any body
 	EnvironmentCreateDomainApplicationWithBody(ctx context.Context, organizationId string, environmentId string, domain string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -3732,8 +3732,8 @@ type ClientInterface interface {
 	// ApplicationDeleteMember request
 	ApplicationDeleteMember(ctx context.Context, organizationId string, environmentId string, domain string, application string, member string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// ApplicationListResources request
-	ApplicationListResources(ctx context.Context, organizationId string, environmentId string, domain string, application string, params *ApplicationListResourcesParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// ApplicationListResourcesPaginated request
+	ApplicationListResourcesPaginated(ctx context.Context, organizationId string, environmentId string, domain string, application string, params *ApplicationListResourcesPaginatedParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ApplicationGetResource request
 	ApplicationGetResource(ctx context.Context, organizationId string, environmentId string, domain string, application string, resource string, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -3752,8 +3752,8 @@ type ClientInterface interface {
 
 	ApplicationUpdateType(ctx context.Context, organizationId string, environmentId string, domain string, application string, body ApplicationUpdateTypeJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// EnvironmentListDomainAudits request
-	EnvironmentListDomainAudits(ctx context.Context, organizationId string, environmentId string, domain string, params *EnvironmentListDomainAuditsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// EnvironmentListDomainAuditsPaginated request
+	EnvironmentListDomainAuditsPaginated(ctx context.Context, organizationId string, environmentId string, domain string, params *EnvironmentListDomainAuditsPaginatedParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// DomainGetAudit request
 	DomainGetAudit(ctx context.Context, organizationId string, environmentId string, domain string, audit string, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -3937,8 +3937,8 @@ type ClientInterface interface {
 
 	DomainUpdateForm(ctx context.Context, organizationId string, environmentId string, domain string, form string, body DomainUpdateFormJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// EnvironmentListDomainGroups request
-	EnvironmentListDomainGroups(ctx context.Context, organizationId string, environmentId string, domain string, params *EnvironmentListDomainGroupsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// EnvironmentListDomainGroupsPaginated request
+	EnvironmentListDomainGroupsPaginated(ctx context.Context, organizationId string, environmentId string, domain string, params *EnvironmentListDomainGroupsPaginatedParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// EnvironmentCreateDomainGroupWithBody request with any body
 	EnvironmentCreateDomainGroupWithBody(ctx context.Context, organizationId string, environmentId string, domain string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -3956,8 +3956,8 @@ type ClientInterface interface {
 
 	DomainUpdateGroup(ctx context.Context, organizationId string, environmentId string, domain string, group string, body DomainUpdateGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// DomainGetGroupMemebers request
-	DomainGetGroupMemebers(ctx context.Context, organizationId string, environmentId string, domain string, group string, params *DomainGetGroupMemebersParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// DomainGetGroupMemebersPaginated request
+	DomainGetGroupMemebersPaginated(ctx context.Context, organizationId string, environmentId string, domain string, group string, params *DomainGetGroupMemebersPaginatedParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// EnvironmentRemoveDomainGroupMemeber request
 	EnvironmentRemoveDomainGroupMemeber(ctx context.Context, organizationId string, environmentId string, domain string, group string, member string, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -4065,8 +4065,8 @@ type ClientInterface interface {
 
 	DomainUpdateResource(ctx context.Context, organizationId string, environmentId string, domain string, resource string, body DomainUpdateResourceJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// EnvironmentListDomainRoles request
-	EnvironmentListDomainRoles(ctx context.Context, organizationId string, environmentId string, domain string, params *EnvironmentListDomainRolesParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// EnvironmentListDomainRolesPaginated request
+	EnvironmentListDomainRolesPaginated(ctx context.Context, organizationId string, environmentId string, domain string, params *EnvironmentListDomainRolesPaginatedParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// EnvironmentCreateDomainMemberRoleWithBody request with any body
 	EnvironmentCreateDomainMemberRoleWithBody(ctx context.Context, organizationId string, environmentId string, domain string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -4084,8 +4084,8 @@ type ClientInterface interface {
 
 	DomainUpdateRole(ctx context.Context, organizationId string, environmentId string, domain string, role string, body DomainUpdateRoleJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// EnvironmentListDomainScopes request
-	EnvironmentListDomainScopes(ctx context.Context, organizationId string, environmentId string, domain string, params *EnvironmentListDomainScopesParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// EnvironmentListDomainScopesPaginated request
+	EnvironmentListDomainScopesPaginated(ctx context.Context, organizationId string, environmentId string, domain string, params *EnvironmentListDomainScopesPaginatedParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// EnvironmentCreateDomainScopeWithBody request with any body
 	EnvironmentCreateDomainScopeWithBody(ctx context.Context, organizationId string, environmentId string, domain string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -4127,8 +4127,8 @@ type ClientInterface interface {
 
 	DomainUpdateTheme(ctx context.Context, organizationId string, environmentId string, domain string, themeId string, body DomainUpdateThemeJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// EnvironmentListDomainUsers request
-	EnvironmentListDomainUsers(ctx context.Context, organizationId string, environmentId string, domain string, params *EnvironmentListDomainUsersParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// EnvironmentListDomainUsersPaginated request
+	EnvironmentListDomainUsersPaginated(ctx context.Context, organizationId string, environmentId string, domain string, params *EnvironmentListDomainUsersPaginatedParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// EnvironmentCreateDomainUserWithBody request with any body
 	EnvironmentCreateDomainUserWithBody(ctx context.Context, organizationId string, environmentId string, domain string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -4146,8 +4146,8 @@ type ClientInterface interface {
 
 	DomainUpdateUser(ctx context.Context, organizationId string, environmentId string, domain string, user string, body DomainUpdateUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// EnvironmentListDomainUserAudits request
-	EnvironmentListDomainUserAudits(ctx context.Context, organizationId string, environmentId string, domain string, user string, params *EnvironmentListDomainUserAuditsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// EnvironmentListDomainUserAuditsPaginated request
+	EnvironmentListDomainUserAuditsPaginated(ctx context.Context, organizationId string, environmentId string, domain string, user string, params *EnvironmentListDomainUserAuditsPaginatedParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// DomainGetUserAudit request
 	DomainGetUserAudit(ctx context.Context, organizationId string, environmentId string, domain string, user string, audit string, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -4237,8 +4237,8 @@ type ClientInterface interface {
 
 	OrganizationUpdatePlatfomFormTemplate(ctx context.Context, organizationId string, form string, body OrganizationUpdatePlatfomFormTemplateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// OrganizationListPlatformGroups request
-	OrganizationListPlatformGroups(ctx context.Context, organizationId string, params *OrganizationListPlatformGroupsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// OrganizationListPlatformGroupsPaginated request
+	OrganizationListPlatformGroupsPaginated(ctx context.Context, organizationId string, params *OrganizationListPlatformGroupsPaginatedParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OrganizationCreatePlatformGroupWithBody request with any body
 	OrganizationCreatePlatformGroupWithBody(ctx context.Context, organizationId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -4256,8 +4256,8 @@ type ClientInterface interface {
 
 	OrganizationUpdatePlatformGroup(ctx context.Context, organizationId string, group string, body OrganizationUpdatePlatformGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// OrganizationListPlatformGroupMembers request
-	OrganizationListPlatformGroupMembers(ctx context.Context, organizationId string, group string, params *OrganizationListPlatformGroupMembersParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// OrganizationListPlatformGroupMembersPaginated request
+	OrganizationListPlatformGroupMembersPaginated(ctx context.Context, organizationId string, group string, params *OrganizationListPlatformGroupMembersPaginatedParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OrganizationRemovePlatformGroupMember request
 	OrganizationRemovePlatformGroupMember(ctx context.Context, organizationId string, group string, member string, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -4341,8 +4341,8 @@ type ClientInterface interface {
 
 	OrganizationUpdatePlatformShardingTag(ctx context.Context, organizationId string, tag string, body OrganizationUpdatePlatformShardingTagJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// OrganizationListPlatformUsers request
-	OrganizationListPlatformUsers(ctx context.Context, organizationId string, params *OrganizationListPlatformUsersParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// OrganizationListPlatformUsersPaginated request
+	OrganizationListPlatformUsersPaginated(ctx context.Context, organizationId string, params *OrganizationListPlatformUsersPaginatedParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OrganizationCreatePlatformUserWithBody request with any body
 	OrganizationCreatePlatformUserWithBody(ctx context.Context, organizationId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -4521,8 +4521,8 @@ func (c *Client) AuthTokenExchange(ctx context.Context, reqEditors ...RequestEdi
 	return c.Client.Do(req)
 }
 
-func (c *Client) OrganizationListPlatformAudits(ctx context.Context, organizationId string, params *OrganizationListPlatformAuditsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOrganizationListPlatformAuditsRequest(c.Server, organizationId, params)
+func (c *Client) OrganizationListPlatformAuditsPaginated(ctx context.Context, organizationId string, params *OrganizationListPlatformAuditsPaginatedParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOrganizationListPlatformAuditsPaginatedRequest(c.Server, organizationId, params)
 	if err != nil {
 		return nil, err
 	}
@@ -4641,8 +4641,8 @@ func (c *Client) OrganizationListPlatfomEnvironments(ctx context.Context, organi
 	return c.Client.Do(req)
 }
 
-func (c *Client) EnvironmentListDomains(ctx context.Context, organizationId string, environmentId string, params *EnvironmentListDomainsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewEnvironmentListDomainsRequest(c.Server, organizationId, environmentId, params)
+func (c *Client) EnvironmentListDomainsPaginated(ctx context.Context, organizationId string, environmentId string, params *EnvironmentListDomainsPaginatedParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewEnvironmentListDomainsPaginatedRequest(c.Server, organizationId, environmentId, params)
 	if err != nil {
 		return nil, err
 	}
@@ -4893,8 +4893,8 @@ func (c *Client) DomainGetAnalytics(ctx context.Context, organizationId string, 
 	return c.Client.Do(req)
 }
 
-func (c *Client) EnvironmentListDomainApplications(ctx context.Context, organizationId string, environmentId string, domain string, params *EnvironmentListDomainApplicationsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewEnvironmentListDomainApplicationsRequest(c.Server, organizationId, environmentId, domain, params)
+func (c *Client) EnvironmentListDomainApplicationsPaginated(ctx context.Context, organizationId string, environmentId string, domain string, params *EnvironmentListDomainApplicationsPaginatedParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewEnvironmentListDomainApplicationsPaginatedRequest(c.Server, organizationId, environmentId, domain, params)
 	if err != nil {
 		return nil, err
 	}
@@ -5289,8 +5289,8 @@ func (c *Client) ApplicationDeleteMember(ctx context.Context, organizationId str
 	return c.Client.Do(req)
 }
 
-func (c *Client) ApplicationListResources(ctx context.Context, organizationId string, environmentId string, domain string, application string, params *ApplicationListResourcesParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewApplicationListResourcesRequest(c.Server, organizationId, environmentId, domain, application, params)
+func (c *Client) ApplicationListResourcesPaginated(ctx context.Context, organizationId string, environmentId string, domain string, application string, params *ApplicationListResourcesPaginatedParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewApplicationListResourcesPaginatedRequest(c.Server, organizationId, environmentId, domain, application, params)
 	if err != nil {
 		return nil, err
 	}
@@ -5373,8 +5373,8 @@ func (c *Client) ApplicationUpdateType(ctx context.Context, organizationId strin
 	return c.Client.Do(req)
 }
 
-func (c *Client) EnvironmentListDomainAudits(ctx context.Context, organizationId string, environmentId string, domain string, params *EnvironmentListDomainAuditsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewEnvironmentListDomainAuditsRequest(c.Server, organizationId, environmentId, domain, params)
+func (c *Client) EnvironmentListDomainAuditsPaginated(ctx context.Context, organizationId string, environmentId string, domain string, params *EnvironmentListDomainAuditsPaginatedParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewEnvironmentListDomainAuditsPaginatedRequest(c.Server, organizationId, environmentId, domain, params)
 	if err != nil {
 		return nil, err
 	}
@@ -6189,8 +6189,8 @@ func (c *Client) DomainUpdateForm(ctx context.Context, organizationId string, en
 	return c.Client.Do(req)
 }
 
-func (c *Client) EnvironmentListDomainGroups(ctx context.Context, organizationId string, environmentId string, domain string, params *EnvironmentListDomainGroupsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewEnvironmentListDomainGroupsRequest(c.Server, organizationId, environmentId, domain, params)
+func (c *Client) EnvironmentListDomainGroupsPaginated(ctx context.Context, organizationId string, environmentId string, domain string, params *EnvironmentListDomainGroupsPaginatedParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewEnvironmentListDomainGroupsPaginatedRequest(c.Server, organizationId, environmentId, domain, params)
 	if err != nil {
 		return nil, err
 	}
@@ -6273,8 +6273,8 @@ func (c *Client) DomainUpdateGroup(ctx context.Context, organizationId string, e
 	return c.Client.Do(req)
 }
 
-func (c *Client) DomainGetGroupMemebers(ctx context.Context, organizationId string, environmentId string, domain string, group string, params *DomainGetGroupMemebersParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDomainGetGroupMemebersRequest(c.Server, organizationId, environmentId, domain, group, params)
+func (c *Client) DomainGetGroupMemebersPaginated(ctx context.Context, organizationId string, environmentId string, domain string, group string, params *DomainGetGroupMemebersPaginatedParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDomainGetGroupMemebersPaginatedRequest(c.Server, organizationId, environmentId, domain, group, params)
 	if err != nil {
 		return nil, err
 	}
@@ -6741,8 +6741,8 @@ func (c *Client) DomainUpdateResource(ctx context.Context, organizationId string
 	return c.Client.Do(req)
 }
 
-func (c *Client) EnvironmentListDomainRoles(ctx context.Context, organizationId string, environmentId string, domain string, params *EnvironmentListDomainRolesParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewEnvironmentListDomainRolesRequest(c.Server, organizationId, environmentId, domain, params)
+func (c *Client) EnvironmentListDomainRolesPaginated(ctx context.Context, organizationId string, environmentId string, domain string, params *EnvironmentListDomainRolesPaginatedParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewEnvironmentListDomainRolesPaginatedRequest(c.Server, organizationId, environmentId, domain, params)
 	if err != nil {
 		return nil, err
 	}
@@ -6825,8 +6825,8 @@ func (c *Client) DomainUpdateRole(ctx context.Context, organizationId string, en
 	return c.Client.Do(req)
 }
 
-func (c *Client) EnvironmentListDomainScopes(ctx context.Context, organizationId string, environmentId string, domain string, params *EnvironmentListDomainScopesParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewEnvironmentListDomainScopesRequest(c.Server, organizationId, environmentId, domain, params)
+func (c *Client) EnvironmentListDomainScopesPaginated(ctx context.Context, organizationId string, environmentId string, domain string, params *EnvironmentListDomainScopesPaginatedParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewEnvironmentListDomainScopesPaginatedRequest(c.Server, organizationId, environmentId, domain, params)
 	if err != nil {
 		return nil, err
 	}
@@ -7017,8 +7017,8 @@ func (c *Client) DomainUpdateTheme(ctx context.Context, organizationId string, e
 	return c.Client.Do(req)
 }
 
-func (c *Client) EnvironmentListDomainUsers(ctx context.Context, organizationId string, environmentId string, domain string, params *EnvironmentListDomainUsersParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewEnvironmentListDomainUsersRequest(c.Server, organizationId, environmentId, domain, params)
+func (c *Client) EnvironmentListDomainUsersPaginated(ctx context.Context, organizationId string, environmentId string, domain string, params *EnvironmentListDomainUsersPaginatedParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewEnvironmentListDomainUsersPaginatedRequest(c.Server, organizationId, environmentId, domain, params)
 	if err != nil {
 		return nil, err
 	}
@@ -7101,8 +7101,8 @@ func (c *Client) DomainUpdateUser(ctx context.Context, organizationId string, en
 	return c.Client.Do(req)
 }
 
-func (c *Client) EnvironmentListDomainUserAudits(ctx context.Context, organizationId string, environmentId string, domain string, user string, params *EnvironmentListDomainUserAuditsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewEnvironmentListDomainUserAuditsRequest(c.Server, organizationId, environmentId, domain, user, params)
+func (c *Client) EnvironmentListDomainUserAuditsPaginated(ctx context.Context, organizationId string, environmentId string, domain string, user string, params *EnvironmentListDomainUserAuditsPaginatedParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewEnvironmentListDomainUserAuditsPaginatedRequest(c.Server, organizationId, environmentId, domain, user, params)
 	if err != nil {
 		return nil, err
 	}
@@ -7485,8 +7485,8 @@ func (c *Client) OrganizationUpdatePlatfomFormTemplate(ctx context.Context, orga
 	return c.Client.Do(req)
 }
 
-func (c *Client) OrganizationListPlatformGroups(ctx context.Context, organizationId string, params *OrganizationListPlatformGroupsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOrganizationListPlatformGroupsRequest(c.Server, organizationId, params)
+func (c *Client) OrganizationListPlatformGroupsPaginated(ctx context.Context, organizationId string, params *OrganizationListPlatformGroupsPaginatedParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOrganizationListPlatformGroupsPaginatedRequest(c.Server, organizationId, params)
 	if err != nil {
 		return nil, err
 	}
@@ -7569,8 +7569,8 @@ func (c *Client) OrganizationUpdatePlatformGroup(ctx context.Context, organizati
 	return c.Client.Do(req)
 }
 
-func (c *Client) OrganizationListPlatformGroupMembers(ctx context.Context, organizationId string, group string, params *OrganizationListPlatformGroupMembersParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOrganizationListPlatformGroupMembersRequest(c.Server, organizationId, group, params)
+func (c *Client) OrganizationListPlatformGroupMembersPaginated(ctx context.Context, organizationId string, group string, params *OrganizationListPlatformGroupMembersPaginatedParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOrganizationListPlatformGroupMembersPaginatedRequest(c.Server, organizationId, group, params)
 	if err != nil {
 		return nil, err
 	}
@@ -7941,8 +7941,8 @@ func (c *Client) OrganizationUpdatePlatformShardingTag(ctx context.Context, orga
 	return c.Client.Do(req)
 }
 
-func (c *Client) OrganizationListPlatformUsers(ctx context.Context, organizationId string, params *OrganizationListPlatformUsersParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOrganizationListPlatformUsersRequest(c.Server, organizationId, params)
+func (c *Client) OrganizationListPlatformUsersPaginated(ctx context.Context, organizationId string, params *OrganizationListPlatformUsersPaginatedParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOrganizationListPlatformUsersPaginatedRequest(c.Server, organizationId, params)
 	if err != nil {
 		return nil, err
 	}
@@ -8652,8 +8652,8 @@ func NewAuthTokenExchangeRequest(server string) (*http.Request, error) {
 	return req, nil
 }
 
-// NewOrganizationListPlatformAuditsRequest generates requests for OrganizationListPlatformAudits
-func NewOrganizationListPlatformAuditsRequest(server string, organizationId string, params *OrganizationListPlatformAuditsParams) (*http.Request, error) {
+// NewOrganizationListPlatformAuditsPaginatedRequest generates requests for OrganizationListPlatformAuditsPaginated
+func NewOrganizationListPlatformAuditsPaginatedRequest(server string, organizationId string, params *OrganizationListPlatformAuditsPaginatedParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -9096,8 +9096,8 @@ func NewOrganizationListPlatfomEnvironmentsRequest(server string, organizationId
 	return req, nil
 }
 
-// NewEnvironmentListDomainsRequest generates requests for EnvironmentListDomains
-func NewEnvironmentListDomainsRequest(server string, organizationId string, environmentId string, params *EnvironmentListDomainsParams) (*http.Request, error) {
+// NewEnvironmentListDomainsPaginatedRequest generates requests for EnvironmentListDomainsPaginated
+func NewEnvironmentListDomainsPaginatedRequest(server string, organizationId string, environmentId string, params *EnvironmentListDomainsPaginatedParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -10053,8 +10053,8 @@ func NewDomainGetAnalyticsRequest(server string, organizationId string, environm
 	return req, nil
 }
 
-// NewEnvironmentListDomainApplicationsRequest generates requests for EnvironmentListDomainApplications
-func NewEnvironmentListDomainApplicationsRequest(server string, organizationId string, environmentId string, domain string, params *EnvironmentListDomainApplicationsParams) (*http.Request, error) {
+// NewEnvironmentListDomainApplicationsPaginatedRequest generates requests for EnvironmentListDomainApplicationsPaginated
+func NewEnvironmentListDomainApplicationsPaginatedRequest(server string, organizationId string, environmentId string, domain string, params *EnvironmentListDomainApplicationsPaginatedParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -11671,8 +11671,8 @@ func NewApplicationDeleteMemberRequest(server string, organizationId string, env
 	return req, nil
 }
 
-// NewApplicationListResourcesRequest generates requests for ApplicationListResources
-func NewApplicationListResourcesRequest(server string, organizationId string, environmentId string, domain string, application string, params *ApplicationListResourcesParams) (*http.Request, error) {
+// NewApplicationListResourcesPaginatedRequest generates requests for ApplicationListResourcesPaginated
+func NewApplicationListResourcesPaginatedRequest(server string, organizationId string, environmentId string, domain string, application string, params *ApplicationListResourcesPaginatedParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -12080,8 +12080,8 @@ func NewApplicationUpdateTypeRequestWithBody(server string, organizationId strin
 	return req, nil
 }
 
-// NewEnvironmentListDomainAuditsRequest generates requests for EnvironmentListDomainAudits
-func NewEnvironmentListDomainAuditsRequest(server string, organizationId string, environmentId string, domain string, params *EnvironmentListDomainAuditsParams) (*http.Request, error) {
+// NewEnvironmentListDomainAuditsPaginatedRequest generates requests for EnvironmentListDomainAuditsPaginated
+func NewEnvironmentListDomainAuditsPaginatedRequest(server string, organizationId string, environmentId string, domain string, params *EnvironmentListDomainAuditsPaginatedParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -15044,8 +15044,8 @@ func NewDomainUpdateFormRequestWithBody(server string, organizationId string, en
 	return req, nil
 }
 
-// NewEnvironmentListDomainGroupsRequest generates requests for EnvironmentListDomainGroups
-func NewEnvironmentListDomainGroupsRequest(server string, organizationId string, environmentId string, domain string, params *EnvironmentListDomainGroupsParams) (*http.Request, error) {
+// NewEnvironmentListDomainGroupsPaginatedRequest generates requests for EnvironmentListDomainGroupsPaginated
+func NewEnvironmentListDomainGroupsPaginatedRequest(server string, organizationId string, environmentId string, domain string, params *EnvironmentListDomainGroupsPaginatedParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -15369,8 +15369,8 @@ func NewDomainUpdateGroupRequestWithBody(server string, organizationId string, e
 	return req, nil
 }
 
-// NewDomainGetGroupMemebersRequest generates requests for DomainGetGroupMemebers
-func NewDomainGetGroupMemebersRequest(server string, organizationId string, environmentId string, domain string, group string, params *DomainGetGroupMemebersParams) (*http.Request, error) {
+// NewDomainGetGroupMemebersPaginatedRequest generates requests for DomainGetGroupMemebersPaginated
+func NewDomainGetGroupMemebersPaginatedRequest(server string, organizationId string, environmentId string, domain string, group string, params *DomainGetGroupMemebersPaginatedParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -17210,8 +17210,8 @@ func NewDomainUpdateResourceRequestWithBody(server string, organizationId string
 	return req, nil
 }
 
-// NewEnvironmentListDomainRolesRequest generates requests for EnvironmentListDomainRoles
-func NewEnvironmentListDomainRolesRequest(server string, organizationId string, environmentId string, domain string, params *EnvironmentListDomainRolesParams) (*http.Request, error) {
+// NewEnvironmentListDomainRolesPaginatedRequest generates requests for EnvironmentListDomainRolesPaginated
+func NewEnvironmentListDomainRolesPaginatedRequest(server string, organizationId string, environmentId string, domain string, params *EnvironmentListDomainRolesPaginatedParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -17551,8 +17551,8 @@ func NewDomainUpdateRoleRequestWithBody(server string, organizationId string, en
 	return req, nil
 }
 
-// NewEnvironmentListDomainScopesRequest generates requests for EnvironmentListDomainScopes
-func NewEnvironmentListDomainScopesRequest(server string, organizationId string, environmentId string, domain string, params *EnvironmentListDomainScopesParams) (*http.Request, error) {
+// NewEnvironmentListDomainScopesPaginatedRequest generates requests for EnvironmentListDomainScopesPaginated
+func NewEnvironmentListDomainScopesPaginatedRequest(server string, organizationId string, environmentId string, domain string, params *EnvironmentListDomainScopesPaginatedParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -18247,8 +18247,8 @@ func NewDomainUpdateThemeRequestWithBody(server string, organizationId string, e
 	return req, nil
 }
 
-// NewEnvironmentListDomainUsersRequest generates requests for EnvironmentListDomainUsers
-func NewEnvironmentListDomainUsersRequest(server string, organizationId string, environmentId string, domain string, params *EnvironmentListDomainUsersParams) (*http.Request, error) {
+// NewEnvironmentListDomainUsersPaginatedRequest generates requests for EnvironmentListDomainUsersPaginated
+func NewEnvironmentListDomainUsersPaginatedRequest(server string, organizationId string, environmentId string, domain string, params *EnvironmentListDomainUsersPaginatedParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -18604,8 +18604,8 @@ func NewDomainUpdateUserRequestWithBody(server string, organizationId string, en
 	return req, nil
 }
 
-// NewEnvironmentListDomainUserAuditsRequest generates requests for EnvironmentListDomainUserAudits
-func NewEnvironmentListDomainUserAuditsRequest(server string, organizationId string, environmentId string, domain string, user string, params *EnvironmentListDomainUserAuditsParams) (*http.Request, error) {
+// NewEnvironmentListDomainUserAuditsPaginatedRequest generates requests for EnvironmentListDomainUserAuditsPaginated
+func NewEnvironmentListDomainUserAuditsPaginatedRequest(server string, organizationId string, environmentId string, domain string, user string, params *EnvironmentListDomainUserAuditsPaginatedParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -20314,8 +20314,8 @@ func NewOrganizationUpdatePlatfomFormTemplateRequestWithBody(server string, orga
 	return req, nil
 }
 
-// NewOrganizationListPlatformGroupsRequest generates requests for OrganizationListPlatformGroups
-func NewOrganizationListPlatformGroupsRequest(server string, organizationId string, params *OrganizationListPlatformGroupsParams) (*http.Request, error) {
+// NewOrganizationListPlatformGroupsPaginatedRequest generates requests for OrganizationListPlatformGroupsPaginated
+func NewOrganizationListPlatformGroupsPaginatedRequest(server string, organizationId string, params *OrganizationListPlatformGroupsPaginatedParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -20569,8 +20569,8 @@ func NewOrganizationUpdatePlatformGroupRequestWithBody(server string, organizati
 	return req, nil
 }
 
-// NewOrganizationListPlatformGroupMembersRequest generates requests for OrganizationListPlatformGroupMembers
-func NewOrganizationListPlatformGroupMembersRequest(server string, organizationId string, group string, params *OrganizationListPlatformGroupMembersParams) (*http.Request, error) {
+// NewOrganizationListPlatformGroupMembersPaginatedRequest generates requests for OrganizationListPlatformGroupMembersPaginated
+func NewOrganizationListPlatformGroupMembersPaginatedRequest(server string, organizationId string, group string, params *OrganizationListPlatformGroupMembersPaginatedParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -21642,8 +21642,8 @@ func NewOrganizationUpdatePlatformShardingTagRequestWithBody(server string, orga
 	return req, nil
 }
 
-// NewOrganizationListPlatformUsersRequest generates requests for OrganizationListPlatformUsers
-func NewOrganizationListPlatformUsersRequest(server string, organizationId string, params *OrganizationListPlatformUsersParams) (*http.Request, error) {
+// NewOrganizationListPlatformUsersPaginatedRequest generates requests for OrganizationListPlatformUsersPaginated
+func NewOrganizationListPlatformUsersPaginatedRequest(server string, organizationId string, params *OrganizationListPlatformUsersPaginatedParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -23644,8 +23644,8 @@ type ClientWithResponsesInterface interface {
 	// AuthTokenExchangeWithResponse request
 	AuthTokenExchangeWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*AuthTokenExchangeResponse, error)
 
-	// OrganizationListPlatformAuditsWithResponse request
-	OrganizationListPlatformAuditsWithResponse(ctx context.Context, organizationId string, params *OrganizationListPlatformAuditsParams, reqEditors ...RequestEditorFn) (*OrganizationListPlatformAuditsResponse, error)
+	// OrganizationListPlatformAuditsPaginatedWithResponse request
+	OrganizationListPlatformAuditsPaginatedWithResponse(ctx context.Context, organizationId string, params *OrganizationListPlatformAuditsPaginatedParams, reqEditors ...RequestEditorFn) (*OrganizationListPlatformAuditsPaginatedResponse, error)
 
 	// OrganizationGetPlatformAuditWithResponse request
 	OrganizationGetPlatformAuditWithResponse(ctx context.Context, organizationId string, audit string, reqEditors ...RequestEditorFn) (*OrganizationGetPlatformAuditResponse, error)
@@ -23672,8 +23672,8 @@ type ClientWithResponsesInterface interface {
 	// OrganizationListPlatfomEnvironmentsWithResponse request
 	OrganizationListPlatfomEnvironmentsWithResponse(ctx context.Context, organizationId string, reqEditors ...RequestEditorFn) (*OrganizationListPlatfomEnvironmentsResponse, error)
 
-	// EnvironmentListDomainsWithResponse request
-	EnvironmentListDomainsWithResponse(ctx context.Context, organizationId string, environmentId string, params *EnvironmentListDomainsParams, reqEditors ...RequestEditorFn) (*EnvironmentListDomainsResponse, error)
+	// EnvironmentListDomainsPaginatedWithResponse request
+	EnvironmentListDomainsPaginatedWithResponse(ctx context.Context, organizationId string, environmentId string, params *EnvironmentListDomainsPaginatedParams, reqEditors ...RequestEditorFn) (*EnvironmentListDomainsPaginatedResponse, error)
 
 	// EnvironmentCreateDomainWithBodyWithResponse request with any body
 	EnvironmentCreateDomainWithBodyWithResponse(ctx context.Context, organizationId string, environmentId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*EnvironmentCreateDomainResponse, error)
@@ -23729,8 +23729,8 @@ type ClientWithResponsesInterface interface {
 	// DomainGetAnalyticsWithResponse request
 	DomainGetAnalyticsWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, params *DomainGetAnalyticsParams, reqEditors ...RequestEditorFn) (*DomainGetAnalyticsResponse, error)
 
-	// EnvironmentListDomainApplicationsWithResponse request
-	EnvironmentListDomainApplicationsWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, params *EnvironmentListDomainApplicationsParams, reqEditors ...RequestEditorFn) (*EnvironmentListDomainApplicationsResponse, error)
+	// EnvironmentListDomainApplicationsPaginatedWithResponse request
+	EnvironmentListDomainApplicationsPaginatedWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, params *EnvironmentListDomainApplicationsPaginatedParams, reqEditors ...RequestEditorFn) (*EnvironmentListDomainApplicationsPaginatedResponse, error)
 
 	// EnvironmentCreateDomainApplicationWithBodyWithResponse request with any body
 	EnvironmentCreateDomainApplicationWithBodyWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*EnvironmentCreateDomainApplicationResponse, error)
@@ -23818,8 +23818,8 @@ type ClientWithResponsesInterface interface {
 	// ApplicationDeleteMemberWithResponse request
 	ApplicationDeleteMemberWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, application string, member string, reqEditors ...RequestEditorFn) (*ApplicationDeleteMemberResponse, error)
 
-	// ApplicationListResourcesWithResponse request
-	ApplicationListResourcesWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, application string, params *ApplicationListResourcesParams, reqEditors ...RequestEditorFn) (*ApplicationListResourcesResponse, error)
+	// ApplicationListResourcesPaginatedWithResponse request
+	ApplicationListResourcesPaginatedWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, application string, params *ApplicationListResourcesPaginatedParams, reqEditors ...RequestEditorFn) (*ApplicationListResourcesPaginatedResponse, error)
 
 	// ApplicationGetResourceWithResponse request
 	ApplicationGetResourceWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, application string, resource string, reqEditors ...RequestEditorFn) (*ApplicationGetResourceResponse, error)
@@ -23838,8 +23838,8 @@ type ClientWithResponsesInterface interface {
 
 	ApplicationUpdateTypeWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, application string, body ApplicationUpdateTypeJSONRequestBody, reqEditors ...RequestEditorFn) (*ApplicationUpdateTypeResponse, error)
 
-	// EnvironmentListDomainAuditsWithResponse request
-	EnvironmentListDomainAuditsWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, params *EnvironmentListDomainAuditsParams, reqEditors ...RequestEditorFn) (*EnvironmentListDomainAuditsResponse, error)
+	// EnvironmentListDomainAuditsPaginatedWithResponse request
+	EnvironmentListDomainAuditsPaginatedWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, params *EnvironmentListDomainAuditsPaginatedParams, reqEditors ...RequestEditorFn) (*EnvironmentListDomainAuditsPaginatedResponse, error)
 
 	// DomainGetAuditWithResponse request
 	DomainGetAuditWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, audit string, reqEditors ...RequestEditorFn) (*DomainGetAuditResponse, error)
@@ -24023,8 +24023,8 @@ type ClientWithResponsesInterface interface {
 
 	DomainUpdateFormWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, form string, body DomainUpdateFormJSONRequestBody, reqEditors ...RequestEditorFn) (*DomainUpdateFormResponse, error)
 
-	// EnvironmentListDomainGroupsWithResponse request
-	EnvironmentListDomainGroupsWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, params *EnvironmentListDomainGroupsParams, reqEditors ...RequestEditorFn) (*EnvironmentListDomainGroupsResponse, error)
+	// EnvironmentListDomainGroupsPaginatedWithResponse request
+	EnvironmentListDomainGroupsPaginatedWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, params *EnvironmentListDomainGroupsPaginatedParams, reqEditors ...RequestEditorFn) (*EnvironmentListDomainGroupsPaginatedResponse, error)
 
 	// EnvironmentCreateDomainGroupWithBodyWithResponse request with any body
 	EnvironmentCreateDomainGroupWithBodyWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*EnvironmentCreateDomainGroupResponse, error)
@@ -24042,8 +24042,8 @@ type ClientWithResponsesInterface interface {
 
 	DomainUpdateGroupWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, group string, body DomainUpdateGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*DomainUpdateGroupResponse, error)
 
-	// DomainGetGroupMemebersWithResponse request
-	DomainGetGroupMemebersWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, group string, params *DomainGetGroupMemebersParams, reqEditors ...RequestEditorFn) (*DomainGetGroupMemebersResponse, error)
+	// DomainGetGroupMemebersPaginatedWithResponse request
+	DomainGetGroupMemebersPaginatedWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, group string, params *DomainGetGroupMemebersPaginatedParams, reqEditors ...RequestEditorFn) (*DomainGetGroupMemebersPaginatedResponse, error)
 
 	// EnvironmentRemoveDomainGroupMemeberWithResponse request
 	EnvironmentRemoveDomainGroupMemeberWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, group string, member string, reqEditors ...RequestEditorFn) (*EnvironmentRemoveDomainGroupMemeberResponse, error)
@@ -24151,8 +24151,8 @@ type ClientWithResponsesInterface interface {
 
 	DomainUpdateResourceWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, resource string, body DomainUpdateResourceJSONRequestBody, reqEditors ...RequestEditorFn) (*DomainUpdateResourceResponse, error)
 
-	// EnvironmentListDomainRolesWithResponse request
-	EnvironmentListDomainRolesWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, params *EnvironmentListDomainRolesParams, reqEditors ...RequestEditorFn) (*EnvironmentListDomainRolesResponse, error)
+	// EnvironmentListDomainRolesPaginatedWithResponse request
+	EnvironmentListDomainRolesPaginatedWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, params *EnvironmentListDomainRolesPaginatedParams, reqEditors ...RequestEditorFn) (*EnvironmentListDomainRolesPaginatedResponse, error)
 
 	// EnvironmentCreateDomainMemberRoleWithBodyWithResponse request with any body
 	EnvironmentCreateDomainMemberRoleWithBodyWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*EnvironmentCreateDomainMemberRoleResponse, error)
@@ -24170,8 +24170,8 @@ type ClientWithResponsesInterface interface {
 
 	DomainUpdateRoleWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, role string, body DomainUpdateRoleJSONRequestBody, reqEditors ...RequestEditorFn) (*DomainUpdateRoleResponse, error)
 
-	// EnvironmentListDomainScopesWithResponse request
-	EnvironmentListDomainScopesWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, params *EnvironmentListDomainScopesParams, reqEditors ...RequestEditorFn) (*EnvironmentListDomainScopesResponse, error)
+	// EnvironmentListDomainScopesPaginatedWithResponse request
+	EnvironmentListDomainScopesPaginatedWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, params *EnvironmentListDomainScopesPaginatedParams, reqEditors ...RequestEditorFn) (*EnvironmentListDomainScopesPaginatedResponse, error)
 
 	// EnvironmentCreateDomainScopeWithBodyWithResponse request with any body
 	EnvironmentCreateDomainScopeWithBodyWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*EnvironmentCreateDomainScopeResponse, error)
@@ -24213,8 +24213,8 @@ type ClientWithResponsesInterface interface {
 
 	DomainUpdateThemeWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, themeId string, body DomainUpdateThemeJSONRequestBody, reqEditors ...RequestEditorFn) (*DomainUpdateThemeResponse, error)
 
-	// EnvironmentListDomainUsersWithResponse request
-	EnvironmentListDomainUsersWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, params *EnvironmentListDomainUsersParams, reqEditors ...RequestEditorFn) (*EnvironmentListDomainUsersResponse, error)
+	// EnvironmentListDomainUsersPaginatedWithResponse request
+	EnvironmentListDomainUsersPaginatedWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, params *EnvironmentListDomainUsersPaginatedParams, reqEditors ...RequestEditorFn) (*EnvironmentListDomainUsersPaginatedResponse, error)
 
 	// EnvironmentCreateDomainUserWithBodyWithResponse request with any body
 	EnvironmentCreateDomainUserWithBodyWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*EnvironmentCreateDomainUserResponse, error)
@@ -24232,8 +24232,8 @@ type ClientWithResponsesInterface interface {
 
 	DomainUpdateUserWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, user string, body DomainUpdateUserJSONRequestBody, reqEditors ...RequestEditorFn) (*DomainUpdateUserResponse, error)
 
-	// EnvironmentListDomainUserAuditsWithResponse request
-	EnvironmentListDomainUserAuditsWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, user string, params *EnvironmentListDomainUserAuditsParams, reqEditors ...RequestEditorFn) (*EnvironmentListDomainUserAuditsResponse, error)
+	// EnvironmentListDomainUserAuditsPaginatedWithResponse request
+	EnvironmentListDomainUserAuditsPaginatedWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, user string, params *EnvironmentListDomainUserAuditsPaginatedParams, reqEditors ...RequestEditorFn) (*EnvironmentListDomainUserAuditsPaginatedResponse, error)
 
 	// DomainGetUserAuditWithResponse request
 	DomainGetUserAuditWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, user string, audit string, reqEditors ...RequestEditorFn) (*DomainGetUserAuditResponse, error)
@@ -24323,8 +24323,8 @@ type ClientWithResponsesInterface interface {
 
 	OrganizationUpdatePlatfomFormTemplateWithResponse(ctx context.Context, organizationId string, form string, body OrganizationUpdatePlatfomFormTemplateJSONRequestBody, reqEditors ...RequestEditorFn) (*OrganizationUpdatePlatfomFormTemplateResponse, error)
 
-	// OrganizationListPlatformGroupsWithResponse request
-	OrganizationListPlatformGroupsWithResponse(ctx context.Context, organizationId string, params *OrganizationListPlatformGroupsParams, reqEditors ...RequestEditorFn) (*OrganizationListPlatformGroupsResponse, error)
+	// OrganizationListPlatformGroupsPaginatedWithResponse request
+	OrganizationListPlatformGroupsPaginatedWithResponse(ctx context.Context, organizationId string, params *OrganizationListPlatformGroupsPaginatedParams, reqEditors ...RequestEditorFn) (*OrganizationListPlatformGroupsPaginatedResponse, error)
 
 	// OrganizationCreatePlatformGroupWithBodyWithResponse request with any body
 	OrganizationCreatePlatformGroupWithBodyWithResponse(ctx context.Context, organizationId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OrganizationCreatePlatformGroupResponse, error)
@@ -24342,8 +24342,8 @@ type ClientWithResponsesInterface interface {
 
 	OrganizationUpdatePlatformGroupWithResponse(ctx context.Context, organizationId string, group string, body OrganizationUpdatePlatformGroupJSONRequestBody, reqEditors ...RequestEditorFn) (*OrganizationUpdatePlatformGroupResponse, error)
 
-	// OrganizationListPlatformGroupMembersWithResponse request
-	OrganizationListPlatformGroupMembersWithResponse(ctx context.Context, organizationId string, group string, params *OrganizationListPlatformGroupMembersParams, reqEditors ...RequestEditorFn) (*OrganizationListPlatformGroupMembersResponse, error)
+	// OrganizationListPlatformGroupMembersPaginatedWithResponse request
+	OrganizationListPlatformGroupMembersPaginatedWithResponse(ctx context.Context, organizationId string, group string, params *OrganizationListPlatformGroupMembersPaginatedParams, reqEditors ...RequestEditorFn) (*OrganizationListPlatformGroupMembersPaginatedResponse, error)
 
 	// OrganizationRemovePlatformGroupMemberWithResponse request
 	OrganizationRemovePlatformGroupMemberWithResponse(ctx context.Context, organizationId string, group string, member string, reqEditors ...RequestEditorFn) (*OrganizationRemovePlatformGroupMemberResponse, error)
@@ -24427,8 +24427,8 @@ type ClientWithResponsesInterface interface {
 
 	OrganizationUpdatePlatformShardingTagWithResponse(ctx context.Context, organizationId string, tag string, body OrganizationUpdatePlatformShardingTagJSONRequestBody, reqEditors ...RequestEditorFn) (*OrganizationUpdatePlatformShardingTagResponse, error)
 
-	// OrganizationListPlatformUsersWithResponse request
-	OrganizationListPlatformUsersWithResponse(ctx context.Context, organizationId string, params *OrganizationListPlatformUsersParams, reqEditors ...RequestEditorFn) (*OrganizationListPlatformUsersResponse, error)
+	// OrganizationListPlatformUsersPaginatedWithResponse request
+	OrganizationListPlatformUsersPaginatedWithResponse(ctx context.Context, organizationId string, params *OrganizationListPlatformUsersPaginatedParams, reqEditors ...RequestEditorFn) (*OrganizationListPlatformUsersPaginatedResponse, error)
 
 	// OrganizationCreatePlatformUserWithBodyWithResponse request with any body
 	OrganizationCreatePlatformUserWithBodyWithResponse(ctx context.Context, organizationId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OrganizationCreatePlatformUserResponse, error)
@@ -24617,14 +24617,14 @@ func (r AuthTokenExchangeResponse) StatusCode() int {
 	return 0
 }
 
-type OrganizationListPlatformAuditsResponse struct {
+type OrganizationListPlatformAuditsPaginatedResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *[]Audit
 }
 
 // Status returns HTTPResponse.Status
-func (r OrganizationListPlatformAuditsResponse) Status() string {
+func (r OrganizationListPlatformAuditsPaginatedResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -24632,7 +24632,7 @@ func (r OrganizationListPlatformAuditsResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r OrganizationListPlatformAuditsResponse) StatusCode() int {
+func (r OrganizationListPlatformAuditsPaginatedResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -24791,14 +24791,14 @@ func (r OrganizationListPlatfomEnvironmentsResponse) StatusCode() int {
 	return 0
 }
 
-type EnvironmentListDomainsResponse struct {
+type EnvironmentListDomainsPaginatedResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *[]Domain
 }
 
 // Status returns HTTPResponse.Status
-func (r EnvironmentListDomainsResponse) Status() string {
+func (r EnvironmentListDomainsPaginatedResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -24806,7 +24806,7 @@ func (r EnvironmentListDomainsResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r EnvironmentListDomainsResponse) StatusCode() int {
+func (r EnvironmentListDomainsPaginatedResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -25118,14 +25118,14 @@ func (r DomainGetAnalyticsResponse) StatusCode() int {
 	return 0
 }
 
-type EnvironmentListDomainApplicationsResponse struct {
+type EnvironmentListDomainApplicationsPaginatedResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *ApplicationPage
 }
 
 // Status returns HTTPResponse.Status
-func (r EnvironmentListDomainApplicationsResponse) Status() string {
+func (r EnvironmentListDomainApplicationsPaginatedResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -25133,7 +25133,7 @@ func (r EnvironmentListDomainApplicationsResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r EnvironmentListDomainApplicationsResponse) StatusCode() int {
+func (r EnvironmentListDomainApplicationsPaginatedResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -25614,14 +25614,14 @@ func (r ApplicationDeleteMemberResponse) StatusCode() int {
 	return 0
 }
 
-type ApplicationListResourcesResponse struct {
+type ApplicationListResourcesPaginatedResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *ResourceListItem
 }
 
 // Status returns HTTPResponse.Status
-func (r ApplicationListResourcesResponse) Status() string {
+func (r ApplicationListResourcesPaginatedResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -25629,7 +25629,7 @@ func (r ApplicationListResourcesResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r ApplicationListResourcesResponse) StatusCode() int {
+func (r ApplicationListResourcesPaginatedResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -25746,14 +25746,14 @@ func (r ApplicationUpdateTypeResponse) StatusCode() int {
 	return 0
 }
 
-type EnvironmentListDomainAuditsResponse struct {
+type EnvironmentListDomainAuditsPaginatedResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *[]Audit
 }
 
 // Status returns HTTPResponse.Status
-func (r EnvironmentListDomainAuditsResponse) Status() string {
+func (r EnvironmentListDomainAuditsPaginatedResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -25761,7 +25761,7 @@ func (r EnvironmentListDomainAuditsResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r EnvironmentListDomainAuditsResponse) StatusCode() int {
+func (r EnvironmentListDomainAuditsPaginatedResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -26807,14 +26807,14 @@ func (r DomainUpdateFormResponse) StatusCode() int {
 	return 0
 }
 
-type EnvironmentListDomainGroupsResponse struct {
+type EnvironmentListDomainGroupsPaginatedResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *GroupPage
 }
 
 // Status returns HTTPResponse.Status
-func (r EnvironmentListDomainGroupsResponse) Status() string {
+func (r EnvironmentListDomainGroupsPaginatedResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -26822,7 +26822,7 @@ func (r EnvironmentListDomainGroupsResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r EnvironmentListDomainGroupsResponse) StatusCode() int {
+func (r EnvironmentListDomainGroupsPaginatedResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -26916,14 +26916,14 @@ func (r DomainUpdateGroupResponse) StatusCode() int {
 	return 0
 }
 
-type DomainGetGroupMemebersResponse struct {
+type DomainGetGroupMemebersPaginatedResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *User
 }
 
 // Status returns HTTPResponse.Status
-func (r DomainGetGroupMemebersResponse) Status() string {
+func (r DomainGetGroupMemebersPaginatedResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -26931,7 +26931,7 @@ func (r DomainGetGroupMemebersResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r DomainGetGroupMemebersResponse) StatusCode() int {
+func (r DomainGetGroupMemebersPaginatedResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -27590,14 +27590,14 @@ func (r DomainUpdateResourceResponse) StatusCode() int {
 	return 0
 }
 
-type EnvironmentListDomainRolesResponse struct {
+type EnvironmentListDomainRolesPaginatedResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *RolePage
 }
 
 // Status returns HTTPResponse.Status
-func (r EnvironmentListDomainRolesResponse) Status() string {
+func (r EnvironmentListDomainRolesPaginatedResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -27605,7 +27605,7 @@ func (r EnvironmentListDomainRolesResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r EnvironmentListDomainRolesResponse) StatusCode() int {
+func (r EnvironmentListDomainRolesPaginatedResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -27699,14 +27699,14 @@ func (r DomainUpdateRoleResponse) StatusCode() int {
 	return 0
 }
 
-type EnvironmentListDomainScopesResponse struct {
+type EnvironmentListDomainScopesPaginatedResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *ScopePage
 }
 
 // Status returns HTTPResponse.Status
-func (r EnvironmentListDomainScopesResponse) Status() string {
+func (r EnvironmentListDomainScopesPaginatedResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -27714,7 +27714,7 @@ func (r EnvironmentListDomainScopesResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r EnvironmentListDomainScopesResponse) StatusCode() int {
+func (r EnvironmentListDomainScopesPaginatedResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -27941,14 +27941,14 @@ func (r DomainUpdateThemeResponse) StatusCode() int {
 	return 0
 }
 
-type EnvironmentListDomainUsersResponse struct {
+type EnvironmentListDomainUsersPaginatedResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *UserPage
 }
 
 // Status returns HTTPResponse.Status
-func (r EnvironmentListDomainUsersResponse) Status() string {
+func (r EnvironmentListDomainUsersPaginatedResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -27956,7 +27956,7 @@ func (r EnvironmentListDomainUsersResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r EnvironmentListDomainUsersResponse) StatusCode() int {
+func (r EnvironmentListDomainUsersPaginatedResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -28050,14 +28050,14 @@ func (r DomainUpdateUserResponse) StatusCode() int {
 	return 0
 }
 
-type EnvironmentListDomainUserAuditsResponse struct {
+type EnvironmentListDomainUserAuditsPaginatedResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *[]Audit
 }
 
 // Status returns HTTPResponse.Status
-func (r EnvironmentListDomainUserAuditsResponse) Status() string {
+func (r EnvironmentListDomainUserAuditsPaginatedResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -28065,7 +28065,7 @@ func (r EnvironmentListDomainUserAuditsResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r EnvironmentListDomainUserAuditsResponse) StatusCode() int {
+func (r EnvironmentListDomainUserAuditsPaginatedResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -28632,14 +28632,14 @@ func (r OrganizationUpdatePlatfomFormTemplateResponse) StatusCode() int {
 	return 0
 }
 
-type OrganizationListPlatformGroupsResponse struct {
+type OrganizationListPlatformGroupsPaginatedResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *[]Group
 }
 
 // Status returns HTTPResponse.Status
-func (r OrganizationListPlatformGroupsResponse) Status() string {
+func (r OrganizationListPlatformGroupsPaginatedResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -28647,7 +28647,7 @@ func (r OrganizationListPlatformGroupsResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r OrganizationListPlatformGroupsResponse) StatusCode() int {
+func (r OrganizationListPlatformGroupsPaginatedResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -28740,14 +28740,14 @@ func (r OrganizationUpdatePlatformGroupResponse) StatusCode() int {
 	return 0
 }
 
-type OrganizationListPlatformGroupMembersResponse struct {
+type OrganizationListPlatformGroupMembersPaginatedResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *User
 }
 
 // Status returns HTTPResponse.Status
-func (r OrganizationListPlatformGroupMembersResponse) Status() string {
+func (r OrganizationListPlatformGroupMembersPaginatedResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -28755,7 +28755,7 @@ func (r OrganizationListPlatformGroupMembersResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r OrganizationListPlatformGroupMembersResponse) StatusCode() int {
+func (r OrganizationListPlatformGroupMembersPaginatedResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -29236,14 +29236,14 @@ func (r OrganizationUpdatePlatformShardingTagResponse) StatusCode() int {
 	return 0
 }
 
-type OrganizationListPlatformUsersResponse struct {
+type OrganizationListPlatformUsersPaginatedResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *Page
 }
 
 // Status returns HTTPResponse.Status
-func (r OrganizationListPlatformUsersResponse) Status() string {
+func (r OrganizationListPlatformUsersPaginatedResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -29251,7 +29251,7 @@ func (r OrganizationListPlatformUsersResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r OrganizationListPlatformUsersResponse) StatusCode() int {
+func (r OrganizationListPlatformUsersPaginatedResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -30375,13 +30375,13 @@ func (c *ClientWithResponses) AuthTokenExchangeWithResponse(ctx context.Context,
 	return ParseAuthTokenExchangeResponse(rsp)
 }
 
-// OrganizationListPlatformAuditsWithResponse request returning *OrganizationListPlatformAuditsResponse
-func (c *ClientWithResponses) OrganizationListPlatformAuditsWithResponse(ctx context.Context, organizationId string, params *OrganizationListPlatformAuditsParams, reqEditors ...RequestEditorFn) (*OrganizationListPlatformAuditsResponse, error) {
-	rsp, err := c.OrganizationListPlatformAudits(ctx, organizationId, params, reqEditors...)
+// OrganizationListPlatformAuditsPaginatedWithResponse request returning *OrganizationListPlatformAuditsPaginatedResponse
+func (c *ClientWithResponses) OrganizationListPlatformAuditsPaginatedWithResponse(ctx context.Context, organizationId string, params *OrganizationListPlatformAuditsPaginatedParams, reqEditors ...RequestEditorFn) (*OrganizationListPlatformAuditsPaginatedResponse, error) {
+	rsp, err := c.OrganizationListPlatformAuditsPaginated(ctx, organizationId, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseOrganizationListPlatformAuditsResponse(rsp)
+	return ParseOrganizationListPlatformAuditsPaginatedResponse(rsp)
 }
 
 // OrganizationGetPlatformAuditWithResponse request returning *OrganizationGetPlatformAuditResponse
@@ -30463,13 +30463,13 @@ func (c *ClientWithResponses) OrganizationListPlatfomEnvironmentsWithResponse(ct
 	return ParseOrganizationListPlatfomEnvironmentsResponse(rsp)
 }
 
-// EnvironmentListDomainsWithResponse request returning *EnvironmentListDomainsResponse
-func (c *ClientWithResponses) EnvironmentListDomainsWithResponse(ctx context.Context, organizationId string, environmentId string, params *EnvironmentListDomainsParams, reqEditors ...RequestEditorFn) (*EnvironmentListDomainsResponse, error) {
-	rsp, err := c.EnvironmentListDomains(ctx, organizationId, environmentId, params, reqEditors...)
+// EnvironmentListDomainsPaginatedWithResponse request returning *EnvironmentListDomainsPaginatedResponse
+func (c *ClientWithResponses) EnvironmentListDomainsPaginatedWithResponse(ctx context.Context, organizationId string, environmentId string, params *EnvironmentListDomainsPaginatedParams, reqEditors ...RequestEditorFn) (*EnvironmentListDomainsPaginatedResponse, error) {
+	rsp, err := c.EnvironmentListDomainsPaginated(ctx, organizationId, environmentId, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseEnvironmentListDomainsResponse(rsp)
+	return ParseEnvironmentListDomainsPaginatedResponse(rsp)
 }
 
 // EnvironmentCreateDomainWithBodyWithResponse request with arbitrary body returning *EnvironmentCreateDomainResponse
@@ -30646,13 +30646,13 @@ func (c *ClientWithResponses) DomainGetAnalyticsWithResponse(ctx context.Context
 	return ParseDomainGetAnalyticsResponse(rsp)
 }
 
-// EnvironmentListDomainApplicationsWithResponse request returning *EnvironmentListDomainApplicationsResponse
-func (c *ClientWithResponses) EnvironmentListDomainApplicationsWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, params *EnvironmentListDomainApplicationsParams, reqEditors ...RequestEditorFn) (*EnvironmentListDomainApplicationsResponse, error) {
-	rsp, err := c.EnvironmentListDomainApplications(ctx, organizationId, environmentId, domain, params, reqEditors...)
+// EnvironmentListDomainApplicationsPaginatedWithResponse request returning *EnvironmentListDomainApplicationsPaginatedResponse
+func (c *ClientWithResponses) EnvironmentListDomainApplicationsPaginatedWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, params *EnvironmentListDomainApplicationsPaginatedParams, reqEditors ...RequestEditorFn) (*EnvironmentListDomainApplicationsPaginatedResponse, error) {
+	rsp, err := c.EnvironmentListDomainApplicationsPaginated(ctx, organizationId, environmentId, domain, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseEnvironmentListDomainApplicationsResponse(rsp)
+	return ParseEnvironmentListDomainApplicationsPaginatedResponse(rsp)
 }
 
 // EnvironmentCreateDomainApplicationWithBodyWithResponse request with arbitrary body returning *EnvironmentCreateDomainApplicationResponse
@@ -30933,13 +30933,13 @@ func (c *ClientWithResponses) ApplicationDeleteMemberWithResponse(ctx context.Co
 	return ParseApplicationDeleteMemberResponse(rsp)
 }
 
-// ApplicationListResourcesWithResponse request returning *ApplicationListResourcesResponse
-func (c *ClientWithResponses) ApplicationListResourcesWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, application string, params *ApplicationListResourcesParams, reqEditors ...RequestEditorFn) (*ApplicationListResourcesResponse, error) {
-	rsp, err := c.ApplicationListResources(ctx, organizationId, environmentId, domain, application, params, reqEditors...)
+// ApplicationListResourcesPaginatedWithResponse request returning *ApplicationListResourcesPaginatedResponse
+func (c *ClientWithResponses) ApplicationListResourcesPaginatedWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, application string, params *ApplicationListResourcesPaginatedParams, reqEditors ...RequestEditorFn) (*ApplicationListResourcesPaginatedResponse, error) {
+	rsp, err := c.ApplicationListResourcesPaginated(ctx, organizationId, environmentId, domain, application, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseApplicationListResourcesResponse(rsp)
+	return ParseApplicationListResourcesPaginatedResponse(rsp)
 }
 
 // ApplicationGetResourceWithResponse request returning *ApplicationGetResourceResponse
@@ -30995,13 +30995,13 @@ func (c *ClientWithResponses) ApplicationUpdateTypeWithResponse(ctx context.Cont
 	return ParseApplicationUpdateTypeResponse(rsp)
 }
 
-// EnvironmentListDomainAuditsWithResponse request returning *EnvironmentListDomainAuditsResponse
-func (c *ClientWithResponses) EnvironmentListDomainAuditsWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, params *EnvironmentListDomainAuditsParams, reqEditors ...RequestEditorFn) (*EnvironmentListDomainAuditsResponse, error) {
-	rsp, err := c.EnvironmentListDomainAudits(ctx, organizationId, environmentId, domain, params, reqEditors...)
+// EnvironmentListDomainAuditsPaginatedWithResponse request returning *EnvironmentListDomainAuditsPaginatedResponse
+func (c *ClientWithResponses) EnvironmentListDomainAuditsPaginatedWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, params *EnvironmentListDomainAuditsPaginatedParams, reqEditors ...RequestEditorFn) (*EnvironmentListDomainAuditsPaginatedResponse, error) {
+	rsp, err := c.EnvironmentListDomainAuditsPaginated(ctx, organizationId, environmentId, domain, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseEnvironmentListDomainAuditsResponse(rsp)
+	return ParseEnvironmentListDomainAuditsPaginatedResponse(rsp)
 }
 
 // DomainGetAuditWithResponse request returning *DomainGetAuditResponse
@@ -31588,13 +31588,13 @@ func (c *ClientWithResponses) DomainUpdateFormWithResponse(ctx context.Context, 
 	return ParseDomainUpdateFormResponse(rsp)
 }
 
-// EnvironmentListDomainGroupsWithResponse request returning *EnvironmentListDomainGroupsResponse
-func (c *ClientWithResponses) EnvironmentListDomainGroupsWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, params *EnvironmentListDomainGroupsParams, reqEditors ...RequestEditorFn) (*EnvironmentListDomainGroupsResponse, error) {
-	rsp, err := c.EnvironmentListDomainGroups(ctx, organizationId, environmentId, domain, params, reqEditors...)
+// EnvironmentListDomainGroupsPaginatedWithResponse request returning *EnvironmentListDomainGroupsPaginatedResponse
+func (c *ClientWithResponses) EnvironmentListDomainGroupsPaginatedWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, params *EnvironmentListDomainGroupsPaginatedParams, reqEditors ...RequestEditorFn) (*EnvironmentListDomainGroupsPaginatedResponse, error) {
+	rsp, err := c.EnvironmentListDomainGroupsPaginated(ctx, organizationId, environmentId, domain, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseEnvironmentListDomainGroupsResponse(rsp)
+	return ParseEnvironmentListDomainGroupsPaginatedResponse(rsp)
 }
 
 // EnvironmentCreateDomainGroupWithBodyWithResponse request with arbitrary body returning *EnvironmentCreateDomainGroupResponse
@@ -31649,13 +31649,13 @@ func (c *ClientWithResponses) DomainUpdateGroupWithResponse(ctx context.Context,
 	return ParseDomainUpdateGroupResponse(rsp)
 }
 
-// DomainGetGroupMemebersWithResponse request returning *DomainGetGroupMemebersResponse
-func (c *ClientWithResponses) DomainGetGroupMemebersWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, group string, params *DomainGetGroupMemebersParams, reqEditors ...RequestEditorFn) (*DomainGetGroupMemebersResponse, error) {
-	rsp, err := c.DomainGetGroupMemebers(ctx, organizationId, environmentId, domain, group, params, reqEditors...)
+// DomainGetGroupMemebersPaginatedWithResponse request returning *DomainGetGroupMemebersPaginatedResponse
+func (c *ClientWithResponses) DomainGetGroupMemebersPaginatedWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, group string, params *DomainGetGroupMemebersPaginatedParams, reqEditors ...RequestEditorFn) (*DomainGetGroupMemebersPaginatedResponse, error) {
+	rsp, err := c.DomainGetGroupMemebersPaginated(ctx, organizationId, environmentId, domain, group, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseDomainGetGroupMemebersResponse(rsp)
+	return ParseDomainGetGroupMemebersPaginatedResponse(rsp)
 }
 
 // EnvironmentRemoveDomainGroupMemeberWithResponse request returning *EnvironmentRemoveDomainGroupMemeberResponse
@@ -31992,13 +31992,13 @@ func (c *ClientWithResponses) DomainUpdateResourceWithResponse(ctx context.Conte
 	return ParseDomainUpdateResourceResponse(rsp)
 }
 
-// EnvironmentListDomainRolesWithResponse request returning *EnvironmentListDomainRolesResponse
-func (c *ClientWithResponses) EnvironmentListDomainRolesWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, params *EnvironmentListDomainRolesParams, reqEditors ...RequestEditorFn) (*EnvironmentListDomainRolesResponse, error) {
-	rsp, err := c.EnvironmentListDomainRoles(ctx, organizationId, environmentId, domain, params, reqEditors...)
+// EnvironmentListDomainRolesPaginatedWithResponse request returning *EnvironmentListDomainRolesPaginatedResponse
+func (c *ClientWithResponses) EnvironmentListDomainRolesPaginatedWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, params *EnvironmentListDomainRolesPaginatedParams, reqEditors ...RequestEditorFn) (*EnvironmentListDomainRolesPaginatedResponse, error) {
+	rsp, err := c.EnvironmentListDomainRolesPaginated(ctx, organizationId, environmentId, domain, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseEnvironmentListDomainRolesResponse(rsp)
+	return ParseEnvironmentListDomainRolesPaginatedResponse(rsp)
 }
 
 // EnvironmentCreateDomainMemberRoleWithBodyWithResponse request with arbitrary body returning *EnvironmentCreateDomainMemberRoleResponse
@@ -32053,13 +32053,13 @@ func (c *ClientWithResponses) DomainUpdateRoleWithResponse(ctx context.Context, 
 	return ParseDomainUpdateRoleResponse(rsp)
 }
 
-// EnvironmentListDomainScopesWithResponse request returning *EnvironmentListDomainScopesResponse
-func (c *ClientWithResponses) EnvironmentListDomainScopesWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, params *EnvironmentListDomainScopesParams, reqEditors ...RequestEditorFn) (*EnvironmentListDomainScopesResponse, error) {
-	rsp, err := c.EnvironmentListDomainScopes(ctx, organizationId, environmentId, domain, params, reqEditors...)
+// EnvironmentListDomainScopesPaginatedWithResponse request returning *EnvironmentListDomainScopesPaginatedResponse
+func (c *ClientWithResponses) EnvironmentListDomainScopesPaginatedWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, params *EnvironmentListDomainScopesPaginatedParams, reqEditors ...RequestEditorFn) (*EnvironmentListDomainScopesPaginatedResponse, error) {
+	rsp, err := c.EnvironmentListDomainScopesPaginated(ctx, organizationId, environmentId, domain, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseEnvironmentListDomainScopesResponse(rsp)
+	return ParseEnvironmentListDomainScopesPaginatedResponse(rsp)
 }
 
 // EnvironmentCreateDomainScopeWithBodyWithResponse request with arbitrary body returning *EnvironmentCreateDomainScopeResponse
@@ -32192,13 +32192,13 @@ func (c *ClientWithResponses) DomainUpdateThemeWithResponse(ctx context.Context,
 	return ParseDomainUpdateThemeResponse(rsp)
 }
 
-// EnvironmentListDomainUsersWithResponse request returning *EnvironmentListDomainUsersResponse
-func (c *ClientWithResponses) EnvironmentListDomainUsersWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, params *EnvironmentListDomainUsersParams, reqEditors ...RequestEditorFn) (*EnvironmentListDomainUsersResponse, error) {
-	rsp, err := c.EnvironmentListDomainUsers(ctx, organizationId, environmentId, domain, params, reqEditors...)
+// EnvironmentListDomainUsersPaginatedWithResponse request returning *EnvironmentListDomainUsersPaginatedResponse
+func (c *ClientWithResponses) EnvironmentListDomainUsersPaginatedWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, params *EnvironmentListDomainUsersPaginatedParams, reqEditors ...RequestEditorFn) (*EnvironmentListDomainUsersPaginatedResponse, error) {
+	rsp, err := c.EnvironmentListDomainUsersPaginated(ctx, organizationId, environmentId, domain, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseEnvironmentListDomainUsersResponse(rsp)
+	return ParseEnvironmentListDomainUsersPaginatedResponse(rsp)
 }
 
 // EnvironmentCreateDomainUserWithBodyWithResponse request with arbitrary body returning *EnvironmentCreateDomainUserResponse
@@ -32253,13 +32253,13 @@ func (c *ClientWithResponses) DomainUpdateUserWithResponse(ctx context.Context, 
 	return ParseDomainUpdateUserResponse(rsp)
 }
 
-// EnvironmentListDomainUserAuditsWithResponse request returning *EnvironmentListDomainUserAuditsResponse
-func (c *ClientWithResponses) EnvironmentListDomainUserAuditsWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, user string, params *EnvironmentListDomainUserAuditsParams, reqEditors ...RequestEditorFn) (*EnvironmentListDomainUserAuditsResponse, error) {
-	rsp, err := c.EnvironmentListDomainUserAudits(ctx, organizationId, environmentId, domain, user, params, reqEditors...)
+// EnvironmentListDomainUserAuditsPaginatedWithResponse request returning *EnvironmentListDomainUserAuditsPaginatedResponse
+func (c *ClientWithResponses) EnvironmentListDomainUserAuditsPaginatedWithResponse(ctx context.Context, organizationId string, environmentId string, domain string, user string, params *EnvironmentListDomainUserAuditsPaginatedParams, reqEditors ...RequestEditorFn) (*EnvironmentListDomainUserAuditsPaginatedResponse, error) {
+	rsp, err := c.EnvironmentListDomainUserAuditsPaginated(ctx, organizationId, environmentId, domain, user, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseEnvironmentListDomainUserAuditsResponse(rsp)
+	return ParseEnvironmentListDomainUserAuditsPaginatedResponse(rsp)
 }
 
 // DomainGetUserAuditWithResponse request returning *DomainGetUserAuditResponse
@@ -32536,13 +32536,13 @@ func (c *ClientWithResponses) OrganizationUpdatePlatfomFormTemplateWithResponse(
 	return ParseOrganizationUpdatePlatfomFormTemplateResponse(rsp)
 }
 
-// OrganizationListPlatformGroupsWithResponse request returning *OrganizationListPlatformGroupsResponse
-func (c *ClientWithResponses) OrganizationListPlatformGroupsWithResponse(ctx context.Context, organizationId string, params *OrganizationListPlatformGroupsParams, reqEditors ...RequestEditorFn) (*OrganizationListPlatformGroupsResponse, error) {
-	rsp, err := c.OrganizationListPlatformGroups(ctx, organizationId, params, reqEditors...)
+// OrganizationListPlatformGroupsPaginatedWithResponse request returning *OrganizationListPlatformGroupsPaginatedResponse
+func (c *ClientWithResponses) OrganizationListPlatformGroupsPaginatedWithResponse(ctx context.Context, organizationId string, params *OrganizationListPlatformGroupsPaginatedParams, reqEditors ...RequestEditorFn) (*OrganizationListPlatformGroupsPaginatedResponse, error) {
+	rsp, err := c.OrganizationListPlatformGroupsPaginated(ctx, organizationId, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseOrganizationListPlatformGroupsResponse(rsp)
+	return ParseOrganizationListPlatformGroupsPaginatedResponse(rsp)
 }
 
 // OrganizationCreatePlatformGroupWithBodyWithResponse request with arbitrary body returning *OrganizationCreatePlatformGroupResponse
@@ -32597,13 +32597,13 @@ func (c *ClientWithResponses) OrganizationUpdatePlatformGroupWithResponse(ctx co
 	return ParseOrganizationUpdatePlatformGroupResponse(rsp)
 }
 
-// OrganizationListPlatformGroupMembersWithResponse request returning *OrganizationListPlatformGroupMembersResponse
-func (c *ClientWithResponses) OrganizationListPlatformGroupMembersWithResponse(ctx context.Context, organizationId string, group string, params *OrganizationListPlatformGroupMembersParams, reqEditors ...RequestEditorFn) (*OrganizationListPlatformGroupMembersResponse, error) {
-	rsp, err := c.OrganizationListPlatformGroupMembers(ctx, organizationId, group, params, reqEditors...)
+// OrganizationListPlatformGroupMembersPaginatedWithResponse request returning *OrganizationListPlatformGroupMembersPaginatedResponse
+func (c *ClientWithResponses) OrganizationListPlatformGroupMembersPaginatedWithResponse(ctx context.Context, organizationId string, group string, params *OrganizationListPlatformGroupMembersPaginatedParams, reqEditors ...RequestEditorFn) (*OrganizationListPlatformGroupMembersPaginatedResponse, error) {
+	rsp, err := c.OrganizationListPlatformGroupMembersPaginated(ctx, organizationId, group, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseOrganizationListPlatformGroupMembersResponse(rsp)
+	return ParseOrganizationListPlatformGroupMembersPaginatedResponse(rsp)
 }
 
 // OrganizationRemovePlatformGroupMemberWithResponse request returning *OrganizationRemovePlatformGroupMemberResponse
@@ -32868,13 +32868,13 @@ func (c *ClientWithResponses) OrganizationUpdatePlatformShardingTagWithResponse(
 	return ParseOrganizationUpdatePlatformShardingTagResponse(rsp)
 }
 
-// OrganizationListPlatformUsersWithResponse request returning *OrganizationListPlatformUsersResponse
-func (c *ClientWithResponses) OrganizationListPlatformUsersWithResponse(ctx context.Context, organizationId string, params *OrganizationListPlatformUsersParams, reqEditors ...RequestEditorFn) (*OrganizationListPlatformUsersResponse, error) {
-	rsp, err := c.OrganizationListPlatformUsers(ctx, organizationId, params, reqEditors...)
+// OrganizationListPlatformUsersPaginatedWithResponse request returning *OrganizationListPlatformUsersPaginatedResponse
+func (c *ClientWithResponses) OrganizationListPlatformUsersPaginatedWithResponse(ctx context.Context, organizationId string, params *OrganizationListPlatformUsersPaginatedParams, reqEditors ...RequestEditorFn) (*OrganizationListPlatformUsersPaginatedResponse, error) {
+	rsp, err := c.OrganizationListPlatformUsersPaginated(ctx, organizationId, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseOrganizationListPlatformUsersResponse(rsp)
+	return ParseOrganizationListPlatformUsersPaginatedResponse(rsp)
 }
 
 // OrganizationCreatePlatformUserWithBodyWithResponse request with arbitrary body returning *OrganizationCreatePlatformUserResponse
@@ -33403,15 +33403,15 @@ func ParseAuthTokenExchangeResponse(rsp *http.Response) (*AuthTokenExchangeRespo
 	return response, nil
 }
 
-// ParseOrganizationListPlatformAuditsResponse parses an HTTP response from a OrganizationListPlatformAuditsWithResponse call
-func ParseOrganizationListPlatformAuditsResponse(rsp *http.Response) (*OrganizationListPlatformAuditsResponse, error) {
+// ParseOrganizationListPlatformAuditsPaginatedResponse parses an HTTP response from a OrganizationListPlatformAuditsPaginatedWithResponse call
+func ParseOrganizationListPlatformAuditsPaginatedResponse(rsp *http.Response) (*OrganizationListPlatformAuditsPaginatedResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &OrganizationListPlatformAuditsResponse{
+	response := &OrganizationListPlatformAuditsPaginatedResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -33591,15 +33591,15 @@ func ParseOrganizationListPlatfomEnvironmentsResponse(rsp *http.Response) (*Orga
 	return response, nil
 }
 
-// ParseEnvironmentListDomainsResponse parses an HTTP response from a EnvironmentListDomainsWithResponse call
-func ParseEnvironmentListDomainsResponse(rsp *http.Response) (*EnvironmentListDomainsResponse, error) {
+// ParseEnvironmentListDomainsPaginatedResponse parses an HTTP response from a EnvironmentListDomainsPaginatedWithResponse call
+func ParseEnvironmentListDomainsPaginatedResponse(rsp *http.Response) (*EnvironmentListDomainsPaginatedResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &EnvironmentListDomainsResponse{
+	response := &EnvironmentListDomainsPaginatedResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -33951,15 +33951,15 @@ func ParseDomainGetAnalyticsResponse(rsp *http.Response) (*DomainGetAnalyticsRes
 	return response, nil
 }
 
-// ParseEnvironmentListDomainApplicationsResponse parses an HTTP response from a EnvironmentListDomainApplicationsWithResponse call
-func ParseEnvironmentListDomainApplicationsResponse(rsp *http.Response) (*EnvironmentListDomainApplicationsResponse, error) {
+// ParseEnvironmentListDomainApplicationsPaginatedResponse parses an HTTP response from a EnvironmentListDomainApplicationsPaginatedWithResponse call
+func ParseEnvironmentListDomainApplicationsPaginatedResponse(rsp *http.Response) (*EnvironmentListDomainApplicationsPaginatedResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &EnvironmentListDomainApplicationsResponse{
+	response := &EnvironmentListDomainApplicationsPaginatedResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -34449,15 +34449,15 @@ func ParseApplicationDeleteMemberResponse(rsp *http.Response) (*ApplicationDelet
 	return response, nil
 }
 
-// ParseApplicationListResourcesResponse parses an HTTP response from a ApplicationListResourcesWithResponse call
-func ParseApplicationListResourcesResponse(rsp *http.Response) (*ApplicationListResourcesResponse, error) {
+// ParseApplicationListResourcesPaginatedResponse parses an HTTP response from a ApplicationListResourcesPaginatedWithResponse call
+func ParseApplicationListResourcesPaginatedResponse(rsp *http.Response) (*ApplicationListResourcesPaginatedResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &ApplicationListResourcesResponse{
+	response := &ApplicationListResourcesPaginatedResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -34605,15 +34605,15 @@ func ParseApplicationUpdateTypeResponse(rsp *http.Response) (*ApplicationUpdateT
 	return response, nil
 }
 
-// ParseEnvironmentListDomainAuditsResponse parses an HTTP response from a EnvironmentListDomainAuditsWithResponse call
-func ParseEnvironmentListDomainAuditsResponse(rsp *http.Response) (*EnvironmentListDomainAuditsResponse, error) {
+// ParseEnvironmentListDomainAuditsPaginatedResponse parses an HTTP response from a EnvironmentListDomainAuditsPaginatedWithResponse call
+func ParseEnvironmentListDomainAuditsPaginatedResponse(rsp *http.Response) (*EnvironmentListDomainAuditsPaginatedResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &EnvironmentListDomainAuditsResponse{
+	response := &EnvironmentListDomainAuditsPaginatedResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -35709,15 +35709,15 @@ func ParseDomainUpdateFormResponse(rsp *http.Response) (*DomainUpdateFormRespons
 	return response, nil
 }
 
-// ParseEnvironmentListDomainGroupsResponse parses an HTTP response from a EnvironmentListDomainGroupsWithResponse call
-func ParseEnvironmentListDomainGroupsResponse(rsp *http.Response) (*EnvironmentListDomainGroupsResponse, error) {
+// ParseEnvironmentListDomainGroupsPaginatedResponse parses an HTTP response from a EnvironmentListDomainGroupsPaginatedWithResponse call
+func ParseEnvironmentListDomainGroupsPaginatedResponse(rsp *http.Response) (*EnvironmentListDomainGroupsPaginatedResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &EnvironmentListDomainGroupsResponse{
+	response := &EnvironmentListDomainGroupsPaginatedResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -35829,15 +35829,15 @@ func ParseDomainUpdateGroupResponse(rsp *http.Response) (*DomainUpdateGroupRespo
 	return response, nil
 }
 
-// ParseDomainGetGroupMemebersResponse parses an HTTP response from a DomainGetGroupMemebersWithResponse call
-func ParseDomainGetGroupMemebersResponse(rsp *http.Response) (*DomainGetGroupMemebersResponse, error) {
+// ParseDomainGetGroupMemebersPaginatedResponse parses an HTTP response from a DomainGetGroupMemebersPaginatedWithResponse call
+func ParseDomainGetGroupMemebersPaginatedResponse(rsp *http.Response) (*DomainGetGroupMemebersPaginatedResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &DomainGetGroupMemebersResponse{
+	response := &DomainGetGroupMemebersPaginatedResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -36555,15 +36555,15 @@ func ParseDomainUpdateResourceResponse(rsp *http.Response) (*DomainUpdateResourc
 	return response, nil
 }
 
-// ParseEnvironmentListDomainRolesResponse parses an HTTP response from a EnvironmentListDomainRolesWithResponse call
-func ParseEnvironmentListDomainRolesResponse(rsp *http.Response) (*EnvironmentListDomainRolesResponse, error) {
+// ParseEnvironmentListDomainRolesPaginatedResponse parses an HTTP response from a EnvironmentListDomainRolesPaginatedWithResponse call
+func ParseEnvironmentListDomainRolesPaginatedResponse(rsp *http.Response) (*EnvironmentListDomainRolesPaginatedResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &EnvironmentListDomainRolesResponse{
+	response := &EnvironmentListDomainRolesPaginatedResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -36675,15 +36675,15 @@ func ParseDomainUpdateRoleResponse(rsp *http.Response) (*DomainUpdateRoleRespons
 	return response, nil
 }
 
-// ParseEnvironmentListDomainScopesResponse parses an HTTP response from a EnvironmentListDomainScopesWithResponse call
-func ParseEnvironmentListDomainScopesResponse(rsp *http.Response) (*EnvironmentListDomainScopesResponse, error) {
+// ParseEnvironmentListDomainScopesPaginatedResponse parses an HTTP response from a EnvironmentListDomainScopesPaginatedWithResponse call
+func ParseEnvironmentListDomainScopesPaginatedResponse(rsp *http.Response) (*EnvironmentListDomainScopesPaginatedResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &EnvironmentListDomainScopesResponse{
+	response := &EnvironmentListDomainScopesPaginatedResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -36955,15 +36955,15 @@ func ParseDomainUpdateThemeResponse(rsp *http.Response) (*DomainUpdateThemeRespo
 	return response, nil
 }
 
-// ParseEnvironmentListDomainUsersResponse parses an HTTP response from a EnvironmentListDomainUsersWithResponse call
-func ParseEnvironmentListDomainUsersResponse(rsp *http.Response) (*EnvironmentListDomainUsersResponse, error) {
+// ParseEnvironmentListDomainUsersPaginatedResponse parses an HTTP response from a EnvironmentListDomainUsersPaginatedWithResponse call
+func ParseEnvironmentListDomainUsersPaginatedResponse(rsp *http.Response) (*EnvironmentListDomainUsersPaginatedResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &EnvironmentListDomainUsersResponse{
+	response := &EnvironmentListDomainUsersPaginatedResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -37075,15 +37075,15 @@ func ParseDomainUpdateUserResponse(rsp *http.Response) (*DomainUpdateUserRespons
 	return response, nil
 }
 
-// ParseEnvironmentListDomainUserAuditsResponse parses an HTTP response from a EnvironmentListDomainUserAuditsWithResponse call
-func ParseEnvironmentListDomainUserAuditsResponse(rsp *http.Response) (*EnvironmentListDomainUserAuditsResponse, error) {
+// ParseEnvironmentListDomainUserAuditsPaginatedResponse parses an HTTP response from a EnvironmentListDomainUserAuditsPaginatedWithResponse call
+func ParseEnvironmentListDomainUserAuditsPaginatedResponse(rsp *http.Response) (*EnvironmentListDomainUserAuditsPaginatedResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &EnvironmentListDomainUserAuditsResponse{
+	response := &EnvironmentListDomainUserAuditsPaginatedResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -37657,15 +37657,15 @@ func ParseOrganizationUpdatePlatfomFormTemplateResponse(rsp *http.Response) (*Or
 	return response, nil
 }
 
-// ParseOrganizationListPlatformGroupsResponse parses an HTTP response from a OrganizationListPlatformGroupsWithResponse call
-func ParseOrganizationListPlatformGroupsResponse(rsp *http.Response) (*OrganizationListPlatformGroupsResponse, error) {
+// ParseOrganizationListPlatformGroupsPaginatedResponse parses an HTTP response from a OrganizationListPlatformGroupsPaginatedWithResponse call
+func ParseOrganizationListPlatformGroupsPaginatedResponse(rsp *http.Response) (*OrganizationListPlatformGroupsPaginatedResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &OrganizationListPlatformGroupsResponse{
+	response := &OrganizationListPlatformGroupsPaginatedResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -37767,15 +37767,15 @@ func ParseOrganizationUpdatePlatformGroupResponse(rsp *http.Response) (*Organiza
 	return response, nil
 }
 
-// ParseOrganizationListPlatformGroupMembersResponse parses an HTTP response from a OrganizationListPlatformGroupMembersWithResponse call
-func ParseOrganizationListPlatformGroupMembersResponse(rsp *http.Response) (*OrganizationListPlatformGroupMembersResponse, error) {
+// ParseOrganizationListPlatformGroupMembersPaginatedResponse parses an HTTP response from a OrganizationListPlatformGroupMembersPaginatedWithResponse call
+func ParseOrganizationListPlatformGroupMembersPaginatedResponse(rsp *http.Response) (*OrganizationListPlatformGroupMembersPaginatedResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &OrganizationListPlatformGroupMembersResponse{
+	response := &OrganizationListPlatformGroupMembersPaginatedResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -38265,15 +38265,15 @@ func ParseOrganizationUpdatePlatformShardingTagResponse(rsp *http.Response) (*Or
 	return response, nil
 }
 
-// ParseOrganizationListPlatformUsersResponse parses an HTTP response from a OrganizationListPlatformUsersWithResponse call
-func ParseOrganizationListPlatformUsersResponse(rsp *http.Response) (*OrganizationListPlatformUsersResponse, error) {
+// ParseOrganizationListPlatformUsersPaginatedResponse parses an HTTP response from a OrganizationListPlatformUsersPaginatedWithResponse call
+func ParseOrganizationListPlatformUsersPaginatedResponse(rsp *http.Response) (*OrganizationListPlatformUsersPaginatedResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &OrganizationListPlatformUsersResponse{
+	response := &OrganizationListPlatformUsersPaginatedResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
